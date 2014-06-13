@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Duc
  */
-@XmlRootElement
 public class LoginJsonRequest {
     private String userName;
     private String pass;
