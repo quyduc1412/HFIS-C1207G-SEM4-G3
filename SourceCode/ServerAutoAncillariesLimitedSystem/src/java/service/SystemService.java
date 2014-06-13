@@ -48,11 +48,32 @@ public class SystemService {
         return "Hi" + name;
     }
     @POST
-    @Produces("application/json")
+    @Produces("text/plain")
+    @Consumes("application/json")
     @Path("/login")
     public String Login(LoginJsonRequest login) {
         //TODO return proper representation object
         return "Hi" + login.getPass();
+    }
+    
+    @GET
+    @Produces("text/json")
+    @Path("/users2")
+    public LoginJsonRequest getP() {
+        //TODO return proper representation object
+        LoginJsonRequest ljr = new LoginJsonRequest("a", "a");
+        ljr.setPass("a");
+        ljr.setUserName("");
+        return ljr;
+    }
+    
+    @POST
+    @Produces("text/plain")
+    @Consumes("application/json")
+    @Path("/users3")
+    public String setP(LoginJsonRequest jsonRequest) {
+        //TODO return proper representation object
+        return "a";
     }
     /**
      * PUT method for updating or creating an instance of SystemService
