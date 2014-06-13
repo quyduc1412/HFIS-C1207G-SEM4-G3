@@ -15,6 +15,8 @@ import com.opensymphony.xwork2.ActionSupport;
 public class Index extends ActionSupport {
     
     public Index() {
+        
+        
     }
     
     public String execute() throws Exception {
