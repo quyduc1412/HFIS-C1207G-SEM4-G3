@@ -4,9 +4,15 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-    <package name="default" extends="struts-default">
+    <package name="default" extends="struts-default,json-default">
         <action class="autoancillarieslimited.action.Index" name="index">
             <result>index.jsp</result>
         </action>
+        <action class="autoancillarieslimited.action.ItemAction" name="item">
+            <result>item.jsp</result>
+        </action>
+         <action class="autoancillarieslimited.action.CategoryAction" name="getcategory">
+                <result type="json">
+            </result></action>
     </package>
 </struts>

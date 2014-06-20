@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2014 7:41:11 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="autoancillarieslimited.hiberate.entities.Customer" table="Customer" schema="dbo" catalog="AutoAncillariesLimitedDB">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="email" type="serializable">
+            <column name="Email" />
+        </property>
+        <property name="firstName" type="serializable">
+            <column name="FirstName" />
+        </property>
+        <property name="lastName" type="serializable">
+            <column name="LastName" />
+        </property>
+        <property name="passWord" type="serializable">
+            <column name="PassWord" />
+        </property>
+        <property name="phoneNumber" type="serializable">
+            <column name="PhoneNumber" />
+        </property>
+        <property name="gender" type="java.lang.Boolean">
+            <column name="Gender" />
+        </property>
+        <property name="address" type="serializable">
+            <column name="Address" />
+        </property>
+        <property name="city" type="serializable">
+            <column name="City" />
+        </property>
+        <property name="country" type="serializable">
+            <column name="Country" />
+        </property>
+    </class>
+</hibernate-mapping>
