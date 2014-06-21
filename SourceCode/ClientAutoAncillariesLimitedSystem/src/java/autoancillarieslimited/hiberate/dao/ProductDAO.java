@@ -164,16 +164,4 @@ public class ProductDAO {
         }
         return set;
     }
-
-    public static void main(String[] args) {
-        ProductDAO aO = new ProductDAO();
-        Item get = aO.getItems().get(0);
-//        System.out.println(get.getType_ID());
-//        get.setType_ID(1);
-        get.setName("K123125555");
-        aO.saveItem(get);
-        System.out.println(aO.getTypeItem().size());
-//        System.out.println(aO.getItems().get(0).getType_ID());
-//        System.out.println(aO.getImagesOfItem(1).size());
-    }
 }

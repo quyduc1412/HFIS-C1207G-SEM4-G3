@@ -15,6 +15,7 @@
         <title>SimpleAdmin</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
+        <script src="js/jquery.json-2.4.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
         <script src="js/classy.min.js" type="text/javascript"></script>
         <script src="js/model.js" type="text/javascript"></script>
@@ -28,7 +29,8 @@
                 });
             });
         </script>
-        <script src="js/item.js" type="text/javascript"></script>
+        <script src="js/model/reponse.js" type="text/javascript"></script>
+        <script src="js/view/item.js" type="text/javascript"></script>
         <style>
             #overlay{
                 width: 100%;

@@ -27,25 +27,19 @@ public class ParserUtil {
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(dataJson);
             JSONObject jsonObject = (JSONObject) obj;
-            JSONObject itemObject = (JSONObject) jsonObject.get("__data");
-            String name = (String) itemObject.get("name");
-            String description = (String) itemObject.get("description");
-            int category = Integer.parseInt((String) itemObject.get("category"));
-            double price = Double.parseDouble((String) itemObject.get("price"));
+            String name = (String) jsonObject.get("P0");
+            String description = (String) jsonObject.get("P2");
+            int category = Integer.parseInt((String) jsonObject.get("P1"));
+            double price = Double.parseDouble((String) jsonObject.get("P3"));
             i.setName(name);
             i.setDescription(description);
             i.setPrice(price);
             i.setDate_Created(new Date());
             TypeItem typeItemByID = ProductDAO.getInstance().getTypeItemByID(category);
-            System.out.println(typeItemByID.getItems());
             i.setTypeItem(typeItemByID);
         } catch (ParseException ex) {
             Logger.getLogger(ParserUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
         return i;
-    }
-    public static void main(String[] args) {
-        Item parserItem = parserItem("{\"__data\":{\"name\":\"sfasfasf\",\"description\":\"\",\"category\":\"0\",\"price\":\"123\"}}");
-        ProductDAO.getInstance().saveItem(parserItem);
     }
 }

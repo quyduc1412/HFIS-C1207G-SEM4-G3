@@ -1,5 +1,6 @@
 
 $(document).ready(function() {
+    var _service = Service();
     var Item = Model.$extend({
         mapping: function() {
             return {
@@ -12,7 +13,6 @@ $(document).ready(function() {
     });
     $('a.add').on('click', function(e) {
         e.preventDefault();
-        var _service = Service();
         var onGetListSuccess = function(result) {
             var data = "";
             $.each(result.list, function(index, value) {
@@ -29,13 +29,18 @@ $(document).ready(function() {
         var category = $('.dialog.additem #category').val();
         var desciption = $('.dialog.additem #desciption').val();
         var price = $('.dialog.additem #price').val();
-        var item = new Item();
-        item.set('name', name);
-        item.set('description', desciption);
-        item.set('category', category);
-        item.set('price', price);
-        $('.dialog.additem #desciption').html(JSON.stringify(item));
-        alert(JSON.stringify(item));
+        var data = new Item();
+        data.set('name', name);
+        data.set('description', desciption);
+        data.set('category', category);
+        data.set('price', price);
+        alert(data.toJsonString());
+        var onInsertSuccess = function(result) {
+            if(result.code === 400){
+                location.reload();
+            }
+        };
+        _service.call('insertItem',data.toJsonString(),onInsertSuccess);
     });
     $('#overlay .cancel').on('click', function(e) {
         e.preventDefault();

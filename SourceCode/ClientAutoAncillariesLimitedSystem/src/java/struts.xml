@@ -11,8 +11,13 @@
         <action class="autoancillarieslimited.action.ItemAction" name="item">
             <result>item.jsp</result>
         </action>
-         <action class="autoancillarieslimited.action.CategoryAction" name="getcategory">
-                <result type="json">
-            </result></action>
+        <action class="autoancillarieslimited.action.CategoryAction" name="getcategory">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.ItemServices" name="insertItem">
+            <result type="json">
+            </result>
+        </action>
     </package>
 </struts>

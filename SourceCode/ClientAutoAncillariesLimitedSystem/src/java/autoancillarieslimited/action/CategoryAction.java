@@ -34,5 +34,4 @@ public class CategoryAction extends ActionSupport {
         list = ProductDAO.getInstance().getTypeItem();
         return Action.SUCCESS;
     }
-    
 }
