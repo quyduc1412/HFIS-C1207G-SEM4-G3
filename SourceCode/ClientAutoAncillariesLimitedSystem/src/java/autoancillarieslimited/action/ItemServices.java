@@ -19,7 +19,6 @@ import java.util.Map;
 public class ItemServices extends ActionSupport {
 
     private String data;
-
     public String getData() {
         return data;
     }
@@ -33,11 +32,12 @@ public class ItemServices extends ActionSupport {
     public ItemServices() {
     }
 
+    
     public int getCode() {
         return code;
     }
 
-    public String execute() throws Exception {
+    public String insert() throws Exception {
         if (data != null) {
             Item parserItem = parserItem(data);
             ProductDAO.getInstance().saveItem(parserItem);
@@ -45,5 +45,11 @@ public class ItemServices extends ActionSupport {
         }
         return SUCCESS;
     }
-
+    public String delete() throws Exception {
+        if (data != null) {
+            ProductDAO.getInstance().deleteItem(Integer.parseInt(data));
+            code = 400;
+        }
+        return SUCCESS;
+    }
 }

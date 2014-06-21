@@ -15,7 +15,12 @@
             <result type="json">
             </result>
         </action>
-        <action class="autoancillarieslimited.action.ItemServices" name="insertItem">
+        <action class="autoancillarieslimited.action.ItemServices" name="insertItem" method="insert">
+            <result type="json">
+            </result>
+        </action>
+        
+        <action class="autoancillarieslimited.action.ItemServices" name="deleteItem" method="delete">
             <result type="json">
             </result>
         </action>

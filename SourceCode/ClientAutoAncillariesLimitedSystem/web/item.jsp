@@ -47,6 +47,7 @@
         </style>
     </head>
     <body>
+        <div id="message" style="width: 100%;height: 30px;position: fixed"></div>
         <div id="overlay">
             <div class="half_w dialog additem">
                 <div class="h_title">Add new page - form elements</div>

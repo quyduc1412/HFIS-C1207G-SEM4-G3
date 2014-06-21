@@ -31,7 +31,7 @@ CREATE TABLE Item(
 )
 GO
 CREATE TABLE TypeItem(
-	[ID] int identity(0,1),
+	[ID] int identity(1,1),
 	[Name_Type] nvarchar(33),
 	PRIMARY KEY ([ID]),
 )

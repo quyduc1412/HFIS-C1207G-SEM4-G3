@@ -11,6 +11,7 @@ import autoancillarieslimited.hiberate.entities.TypeItem;
 import autoancillarieslimited.hiberate.util.HibernateUtil;
 import java.util.List;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -118,6 +119,29 @@ public class ProductDAO {
         return true;
     }
 
+    public int deleteItem(int id) {
+        Session session = null;
+        Transaction beginTransaction = null;
+        int executeUpdate = 0;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            Query setInteger = session.createQuery("delete from Item where id like ?").setInteger(0, id);
+            executeUpdate = setInteger.executeUpdate();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return executeUpdate;
+    }
+    
     public List<Item> getItems() {
         List<Item> set = null;
         Session session = null;

@@ -36,8 +36,15 @@ $(document).ready(function() {
         data.set('price', price);
         alert(data.toJsonString());
         var onInsertSuccess = function(result) {
+            $('#overlay').fadeOut();
+            $('#message').text('SUCCESS');
+            $('#message').fadeIn();
+            setTimeout(
+            function() 
+            {
+              $('#message').fadeOut()
+            }, 5000);
             if(result.code === 400){
-                location.reload();
             }
         };
         _service.call('insertItem',data.toJsonString(),onInsertSuccess);
@@ -45,5 +52,9 @@ $(document).ready(function() {
     $('#overlay .cancel').on('click', function(e) {
         e.preventDefault();
         $('#overlay').fadeOut();
+    });
+    $('.table-icon.delete').on('click', function(e) {
+        e.preventDefault();
+        _service.call('deleteItem',$(this).attr("item_id"));
     });
 });
