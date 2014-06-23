@@ -15,23 +15,23 @@
             <result type="json">
             </result>
         </action>
-        <action class="autoancillarieslimited.action.ItemServices" name="insertItem" method="insert">
+        <action class="autoancillarieslimited.action.item.AddItem" name="insertItem" method="insert">
             <result type="json">
             </result>
         </action>
         
-        <action class="autoancillarieslimited.action.ItemServices" name="deleteItem" method="delete">
+        <action class="autoancillarieslimited.action.item.DeleteItem" name="deleteItem" method="delete">
             <result type="json">
             </result>
         </action>
         
         
-        <action class="autoancillarieslimited.action.ItemServices" name="getItemByID" method="getItem">
+        <action class="autoancillarieslimited.action.item.GetItem" name="getItemByID" method="getItem">
             <result type="json">
             </result>
         </action>
         
-        <action class="autoancillarieslimited.action.ItemServices" name="updateItem" method="update">
+        <action class="autoancillarieslimited.action.item.UpdateItem" name="updateItem" method="update">
             <result type="json">
             </result>
         </action>
