@@ -43,41 +43,32 @@
                 margin-left: auto;
                 margin-right: auto;
                 float: none;
+                
+                position: relative;
+            }
+            .dialog.half_w.confirm{
+                margin-top: 100px;
+                text-align: center;
+                
+            }
+            .dialog.half_w.confirm h3.title{
+                height: 30px;
+            }
+            #overlay #bg-overlay{
+                height: 100%;
+                width: 100%;
+                opacity: 0.7;
+                position: fixed;
+                background: url(img/overlay.png) repeat 0 0;
             }
         </style>
     </head>
     <body>
         <div id="message" style="width: 100%;height: 30px;position: fixed"></div>
         <div id="overlay">
-            <div class="half_w dialog additem">
-                <div class="h_title">Add new page - form elements<a id="id"></a></div>
-                <form action="" method="post">
-                    <div class="element">
-                        <label for="name">Name <span class="red">(required)</span></label>
-                        <input id="name" name="name" class="text err">
-                    </div>
-                    <div class="element">
-                        <label for="category">Category <span class="red">(required)</span></label>
-                        <select name="category" class="err" id="category">
-                        </select>
-                    </div>
-                    <div class="element">
-                        <label for="price">Price <span class="red">(required)</span></label>
-                        <input id="price" name="price" class="text err">
-                    </div>
-                    <div class="element">
-                        <label for="attach">Attachments</label>
-                        <input type="file" name="attach">
-                    </div>
-                    <div class="element">
-                        <label for="content">Description <span>(required)</span></label>
-                        <textarea name="content" class="textarea" rows="10" id="desciption"></textarea>
-                    </div>
-                    <div class="entry">
-                        <button type="submit" class="add">Save page</button> <button class="cancel">Cancel</button>
-                    </div>
-                </form>
-            </div>
+            <div id="bg-overlay"></div>
+            <!--<div class="comfirm dialog half_w"><button id="yes">Yes</button><button id="cancel">Cancel</button></div>-->
+            <div id="context"></div>
         </div>
         <div class="wrap">
             <div id="header">

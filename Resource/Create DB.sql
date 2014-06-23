@@ -17,19 +17,6 @@ CREATE TABLE Customer(
 	CONSTRAINT pk_Customer PRIMARY KEY (id)
 )
 GO
-DROP TABLE Item
-CREATE TABLE Item(
-	[ID] int identity(0,1),
-	[Name] ntext,
-	[Description] ntext,
-	[Type_ID] int,
-	[Price] float,
-	[Date_Created] datetime,
-	PRIMARY KEY ([ID]),
-	CONSTRAINT fk_Item FOREIGN KEY ([Type_ID])
-	REFERENCES TypeItem([ID])
-)
-GO
 CREATE TABLE TypeItem(
 	[ID] int identity(1,1),
 	[Name_Type] nvarchar(33),
@@ -44,6 +31,19 @@ CREATE TABLE Images_Item(
 	CONSTRAINT fk_Images_Item FOREIGN KEY ([ID_Item])
 	REFERENCES Item([ID])
 )
+
+GO
+CREATE TABLE Item(
+	[ID] int identity(0,1),
+	[Name] ntext,
+	[Description] ntext,
+	[Type_ID] int,
+	[Price] float,
+	[Date_Created] datetime,
+	PRIMARY KEY ([ID]),
+	CONSTRAINT fk_Item FOREIGN KEY ([Type_ID])
+	REFERENCES TypeItem([ID])
+)
 GO
 CREATE TABLE PurchaseOrder(
 	[ID] int identity(0,1),
@@ -52,9 +52,8 @@ CREATE TABLE PurchaseOrder(
 	[ID_Item] int,
 	PRIMARY KEY ([ID])
 )
-INSERT INTO TypeItem VALUES('Lop Xe')
-INSERT INTO TypeItem VALUES('ACC')
+INSERT INTO TypeItem VALUES('Type 1')
+INSERT INTO TypeItem VALUES('Type 2')
 SELECT *  FROM TypeItem
 INSERT INTO Item VALUES('K0345','Lop xe',0,4545,GETDATE())
 SELECT *  FROM Item
-INSERT INTO Images_Item VALUES(0,'abc')
