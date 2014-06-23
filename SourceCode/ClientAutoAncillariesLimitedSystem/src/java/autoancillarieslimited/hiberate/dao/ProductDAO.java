@@ -19,7 +19,7 @@ import org.hibernate.Transaction;
  *
  * @author Duc
  */
-public class ProductDAO {
+public class ProductDAO extends AbstractDao<Item>{
 
     private static ProductDAO INSTANCE;
 
@@ -98,50 +98,6 @@ public class ProductDAO {
         return true;
     }
 
-    public boolean saveItem(Item item) {
-        Session session = null;
-        Transaction beginTransaction = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            beginTransaction = session.beginTransaction();
-            session.save(item);
-            session.getTransaction().commit();
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            if (beginTransaction != null) {
-                beginTransaction.rollback();
-            }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        return true;
-    }
-
-    public int deleteItem(int id) {
-        Session session = null;
-        Transaction beginTransaction = null;
-        int executeUpdate = 0;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            beginTransaction = session.beginTransaction();
-            Query setInteger = session.createQuery("delete from Item where id like ?").setInteger(0, id);
-            executeUpdate = setInteger.executeUpdate();
-            session.getTransaction().commit();
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            if (beginTransaction != null) {
-                beginTransaction.rollback();
-            }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        return executeUpdate;
-    }
-    
     public List<Item> getItems() {
         List<Item> set = null;
         Session session = null;

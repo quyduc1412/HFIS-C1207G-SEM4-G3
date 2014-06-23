@@ -8,7 +8,7 @@
             <column name="ID" />
             <generator class="identity" />
         </id>
-        <many-to-one cascade="all" name="typeItem" class="autoancillarieslimited.hiberate.entities.TypeItem" fetch="select">
+        <many-to-one cascade="all" name="typeItem" lazy="false" class="autoancillarieslimited.hiberate.entities.TypeItem" fetch="select">
             <column name="Type_ID" />
         </many-to-one>
         <property name="name" type="string">

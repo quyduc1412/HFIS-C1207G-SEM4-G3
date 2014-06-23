@@ -36,7 +36,7 @@ public class TypeItem  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public Serializable getNameType() {
+    public String getNameType() {
         return this.nameType;
     }
     

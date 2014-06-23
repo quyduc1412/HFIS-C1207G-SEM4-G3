@@ -21,16 +21,16 @@ import org.json.simple.JSONObject;
  */
 public class ParserUtil {
 
-    public static Item parserItem(String dataJson) {
+    public Item parserItem(String dataJson) {
         Item i = new Item();
         try {
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(dataJson);
             JSONObject jsonObject = (JSONObject) obj;
-            String name = (String) jsonObject.get("P0");
-            String description = (String) jsonObject.get("P2");
-            int category = Integer.parseInt((String) jsonObject.get("P1"));
-            double price = Double.parseDouble((String) jsonObject.get("P3"));
+            String name = (String) jsonObject.get("P1");
+            String description = (String) jsonObject.get("P3");
+            int category = Integer.parseInt((String) jsonObject.get("P2"));
+            double price = Double.parseDouble((String) jsonObject.get("P4"));
             i.setName(name);
             i.setDescription(description);
             i.setPrice(price);
@@ -41,5 +41,15 @@ public class ParserUtil {
             Logger.getLogger(ParserUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
         return i;
+    }
+    
+    public String parserItemJSon(Item item) {
+        JSONObject jSONObject = new JSONObject();
+        jSONObject.put("P0", item.getId());
+        jSONObject.put("P1",item.getName());
+        jSONObject.put("P3",item.getDescription());
+        jSONObject.put("P2",item.getTypeItem().getId());
+        jSONObject.put("P4",item.getPrice());
+        return jSONObject.toString();
     }
 }

@@ -3,7 +3,7 @@ var Service = Class.$extend({
         $.ajax({
             type: 'POST',
             url: url,
-            data: {data:jsonData},
+            data: {data_request:jsonData},
             dataType: 'json',
             success: function(result) {
                 onSuccess(result);

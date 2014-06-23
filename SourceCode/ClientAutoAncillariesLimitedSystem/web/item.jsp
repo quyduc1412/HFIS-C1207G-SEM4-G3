@@ -50,7 +50,7 @@
         <div id="message" style="width: 100%;height: 30px;position: fixed"></div>
         <div id="overlay">
             <div class="half_w dialog additem">
-                <div class="h_title">Add new page - form elements</div>
+                <div class="h_title">Add new page - form elements<a id="id"></a></div>
                 <form action="" method="post">
                     <div class="element">
                         <label for="name">Name <span class="red">(required)</span></label>
