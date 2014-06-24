@@ -35,5 +35,10 @@
             <result type="json">
             </result>
         </action>
+        
+        <action class="autoancillarieslimited.action.item.UploadFile" name="uploadFile">
+            <result type="json">
+            </result>
+        </action>
     </package>
 </struts>

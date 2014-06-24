@@ -51,9 +51,9 @@ public class UpdateItem extends ActionSupport{
                 byID.setPrice(parserItem.getPrice());
                 byID.setDescription(parserItem.getDescription());
                 byID.setName(parserItem.getName());
-                ProductDAO.getInstance().update(parserItem);
+                ProductDAO.getInstance().update(byID);
                 byID.setTypeItem(parserItem.getTypeItem());
-                ProductDAO.getInstance().update(parserItem);
+                ProductDAO.getInstance().update(byID);
             }
             data_response = "1234";
             code = 400;

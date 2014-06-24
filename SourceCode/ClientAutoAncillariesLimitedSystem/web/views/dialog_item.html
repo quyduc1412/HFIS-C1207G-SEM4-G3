@@ -21,15 +21,18 @@ and open the template in the editor.
             <input id="price" name="price" class="text err">
         </div>
         <div class="element">
-            <label for="attach">Attachments</label>
-            <input type="file" name="attach">
-        </div>
-        <div class="element">
             <label for="content">Description <span>(required)</span></label>
             <textarea name="content" class="textarea" rows="10" id="desciption"></textarea>
+        </div>
+        <div class="element">
+            <label for="content">Image</label>
+            <div class="element" style="width: auto; height: 150px; overflow-y: scroll;">
+            <div id="fileuploader">Upload</div>
+            </div>
         </div>
         <div class="entry">
             <button type="submit" class="add">Save page</button> <button class="cancel">Cancel</button>
         </div>
     </form>
+
 </div>

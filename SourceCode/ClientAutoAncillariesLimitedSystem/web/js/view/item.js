@@ -40,7 +40,7 @@ $(document).ready(function() {
         e.preventDefault();
         var response = $(this).attr("item_id");
         $("#overlay #context").load("views/confirm_dialog.html", function() {
-            $(document).trigger('COMFIRM_LOADED', ['You Want Delete This Item ?',response]);
+            $(document).trigger('COMFIRM_LOADED', ['You Want Delete This Item ?', response]);
             $('#overlay').fadeIn();
         });
     });
@@ -57,7 +57,7 @@ $(document).ready(function() {
             _service.call('getItemByID', data, onGetSuccess);
         });
     });
-    
+
     $('#main a.add').on('click', function(e) {
         e.preventDefault();
         $("#overlay #context").load("views/dialog_item.html", function() {
@@ -73,6 +73,12 @@ $(document).ready(function() {
             e.preventDefault();
             $('#overlay').fadeOut();
         });
+        $("#fileuploader").uploadFile({
+            url: "uploadFile",
+            formData: {"name":"Ravi","age":31},
+            allowedTypes: "png,gif,jpg,jpeg",
+            fileName: "myfile"
+        });
         $('.dialog.additem .add').on('click', function(e) {
             e.preventDefault();
 
@@ -82,16 +88,17 @@ $(document).ready(function() {
             var desciption = $('.dialog.additem #desciption').val();
             var price = $('.dialog.additem #price').val();
             var data = new Item();
-            if(id === ''){
-                data.set('id', 0);
-            }else{
+            alert(id);
+            if (id === '') {
+                data.set('id', '0');
+            } else {
                 data.set('id', id);
             }
             data.set('name', name);
             data.set('description', desciption);
             data.set('category', category);
             data.set('price', price);
-            alert(data.get('id'));
+            alert(data.toJsonString());
             var onInsertSuccess = function(result) {
                 $('#overlay').fadeOut();
                 $('#message').text('SUCCESS');
@@ -113,12 +120,12 @@ $(document).ready(function() {
     });
     $(document).on('COMFIRM_LOADED', function(event, data, item_id) {
         $('.half_w.dialog.confirm h3.title').html(data);
-        $('.half_w.dialog.confirm .yes').on('click',function (e){
-            _service.call('deleteItem', item_id,function (){
+        $('.half_w.dialog.confirm .yes').on('click', function(e) {
+            _service.call('deleteItem', item_id, function() {
                 $('#overlay').fadeOut();
             });
         });
-        $('.half_w.dialog.confirm .no').on('click',function (e){
+        $('.half_w.dialog.confirm .no').on('click', function(e) {
             $('#overlay').fadeOut();
         });
     });
