@@ -48,7 +48,7 @@ public class GetItem extends ActionSupport{
         if (data_request != null) {
             System.out.println("Get Item");
             data_response = new ParserUtil().parserItemJSon(ProductDAO.getInstance().getByID(Integer.parseInt(data_request), Item.class));
-            code = 3;
+            code = 400;
         }
         return SUCCESS;
     }

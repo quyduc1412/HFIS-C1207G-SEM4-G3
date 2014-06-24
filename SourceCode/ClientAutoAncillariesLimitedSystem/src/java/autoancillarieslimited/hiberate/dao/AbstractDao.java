@@ -29,7 +29,7 @@ public class AbstractDao<T extends Object> implements IDao<T>{
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
             session.save(object);
-            session.getTransaction().commit();
+            beginTransaction.commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();
             if (beginTransaction != null) {
@@ -53,7 +53,7 @@ public class AbstractDao<T extends Object> implements IDao<T>{
             beginTransaction = session.beginTransaction();
             Query setInteger = session.createQuery("delete from "+ clazz.getName() +" where id like ?").setInteger(0, id);
             executeUpdate = setInteger.executeUpdate();
-            session.getTransaction().commit();
+            beginTransaction.commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();
             if (beginTransaction != null) {
@@ -76,7 +76,9 @@ public class AbstractDao<T extends Object> implements IDao<T>{
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
             item = (T) session.get(clazz, id);
-            session.getTransaction().commit();
+            session.flush();
+            session.clear();
+            beginTransaction.commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();
             if (beginTransaction != null) {
@@ -88,6 +90,30 @@ public class AbstractDao<T extends Object> implements IDao<T>{
             }
         }
         return item;
+    }
+
+    @Override
+    public boolean update(T object) {
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            session.update(object);
+            session.flush();
+            session.clear();
+            beginTransaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return true;
     }
     
 }

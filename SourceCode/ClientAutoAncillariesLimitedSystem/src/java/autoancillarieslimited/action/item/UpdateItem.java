@@ -45,10 +45,24 @@ public class UpdateItem extends ActionSupport{
 
     public String update() throws Exception {
         if (data_request != null) {
+            Item parserItem = ParserUtil.parserItem(data_request);
+            Item byID = ProductDAO.getInstance().getByID(parserItem.getId(), Item.class);
+            if(byID != null && parserItem != null){
+                byID.setPrice(parserItem.getPrice());
+                byID.setDescription(parserItem.getDescription());
+                byID.setName(parserItem.getName());
+                ProductDAO.getInstance().update(parserItem);
+                byID.setTypeItem(parserItem.getTypeItem());
+                ProductDAO.getInstance().update(parserItem);
+            }
             data_response = "1234";
-            code = 4;
+            code = 400;
         }
         return SUCCESS;
     }
-    
+//    public static void main(String[] args) {
+//        Item byID = ProductDAO.getInstance().getByID(61, Item.class);
+//        byID.setDescription("Description Item 2 2 2 2");
+//        ProductDAO.getInstance().update(byID);
+//    }
 }

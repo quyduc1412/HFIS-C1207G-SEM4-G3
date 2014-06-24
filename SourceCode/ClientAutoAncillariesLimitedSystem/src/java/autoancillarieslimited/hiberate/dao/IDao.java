@@ -14,4 +14,5 @@ public interface IDao<T> {
     public boolean insert(T object) ;
     public boolean deleteByID(int id,Class clazz) ;
     public T getByID(int id,Class clazz) ;
+    public boolean update(T object);
 }

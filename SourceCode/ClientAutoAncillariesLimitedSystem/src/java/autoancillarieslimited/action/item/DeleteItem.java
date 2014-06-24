@@ -45,7 +45,7 @@ public class DeleteItem extends ActionSupport{
     public String delete() throws Exception {
         if (data_request != null) {
             ProductDAO.getInstance().deleteByID(Integer.parseInt(data_request), Item.class);
-            code = 2;
+            code = 400;
         }
         return SUCCESS;
     }

@@ -19,7 +19,7 @@ import org.hibernate.Transaction;
  *
  * @author Duc
  */
-public class ProductDAO extends AbstractDao<Item>{
+public class ProductDAO extends AbstractDao<Item> {
 
     private static ProductDAO INSTANCE;
 
@@ -64,7 +64,9 @@ public class ProductDAO extends AbstractDao<Item>{
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
             set = (TypeItem) session.createQuery("from TypeItem where ID = ?").setInteger(0, id_Item).uniqueResult();
-            session.getTransaction().commit();
+            session.flush();
+            session.clear();
+            beginTransaction.commit();
         } catch (HibernateException ex) {
             if (beginTransaction != null) {
                 beginTransaction.rollback();
@@ -106,9 +108,8 @@ public class ProductDAO extends AbstractDao<Item>{
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
             set = session.createQuery("from Item").list();
-            for (Item t : set) {
-                System.out.println(t.getTypeItem().getNameType());
-            }
+            session.flush();
+            session.clear();
             session.getTransaction().commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();

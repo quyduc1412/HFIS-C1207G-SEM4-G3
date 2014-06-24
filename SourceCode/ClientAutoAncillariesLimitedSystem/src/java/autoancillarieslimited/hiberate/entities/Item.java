@@ -93,6 +93,14 @@ public class Item  implements java.io.Serializable {
         this.date_Created = date_Created;
     }
 
+    public int getType_ID() {
+        return type_ID;
+    }
+
+    public void setType_ID(int type_ID) {
+        this.type_ID = type_ID;
+    }
+
 
 
 

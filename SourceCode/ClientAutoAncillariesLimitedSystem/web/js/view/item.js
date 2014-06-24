@@ -82,7 +82,11 @@ $(document).ready(function() {
             var desciption = $('.dialog.additem #desciption').val();
             var price = $('.dialog.additem #price').val();
             var data = new Item();
-            data.set('id', id);
+            if(id === ''){
+                data.set('id', 0);
+            }else{
+                data.set('id', id);
+            }
             data.set('name', name);
             data.set('description', desciption);
             data.set('category', category);

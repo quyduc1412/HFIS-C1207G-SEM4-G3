@@ -21,35 +21,34 @@ import org.json.simple.JSONObject;
  */
 public class ParserUtil {
 
-    public Item parserItem(String dataJson) {
+    public static Item parserItem(String dataJson) throws ParseException {
         Item i = new Item();
-        try {
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(dataJson);
-            JSONObject jsonObject = (JSONObject) obj;
-            String name = (String) jsonObject.get("P1");
-            String description = (String) jsonObject.get("P3");
-            int category = Integer.parseInt((String) jsonObject.get("P2"));
-            double price = Double.parseDouble((String) jsonObject.get("P4"));
-            i.setName(name);
-            i.setDescription(description);
-            i.setPrice(price);
-            i.setDate_Created(new Date());
-            TypeItem typeItemByID = ProductDAO.getInstance().getTypeItemByID(category);
-            i.setTypeItem(typeItemByID);
-        } catch (ParseException ex) {
-            Logger.getLogger(ParserUtil.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JSONParser parser = new JSONParser();
+        Object obj = parser.parse(dataJson);
+        JSONObject jsonObject = (JSONObject) obj;
+        int id = Integer.parseInt((String) jsonObject.get("P0"));
+        String name = (String) jsonObject.get("P1");
+        String description = (String) jsonObject.get("P3");
+        int category = Integer.parseInt((String) jsonObject.get("P2"));
+        double price = Double.parseDouble((String) jsonObject.get("P4"));
+        i.setId(id);
+        i.setName(name);
+        i.setDescription(description);
+        i.setPrice(price);
+        i.setDate_Created(new Date());
+        TypeItem typeItemByID = ProductDAO.getInstance().getTypeItemByID(category);
+        i.setTypeItem(typeItemByID);
+        i.setType_ID(category);
         return i;
     }
-    
-    public String parserItemJSon(Item item) {
+
+    public  static  String parserItemJSon(Item item) {
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("P0", item.getId());
-        jSONObject.put("P1",item.getName());
-        jSONObject.put("P3",item.getDescription());
-        jSONObject.put("P2",item.getTypeItem().getId());
-        jSONObject.put("P4",item.getPrice());
+        jSONObject.put("P1", item.getName());
+        jSONObject.put("P3", item.getDescription());
+        jSONObject.put("P2", item.getTypeItem().getId());
+        jSONObject.put("P4", item.getPrice());
         return jSONObject.toString();
     }
 }

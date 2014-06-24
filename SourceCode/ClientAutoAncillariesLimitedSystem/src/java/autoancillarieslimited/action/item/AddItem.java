@@ -10,6 +10,7 @@ import autoancillarieslimited.hiberate.dao.ProductDAO;
 import autoancillarieslimited.hiberate.entities.Item;
 import autoancillarieslimited.parser.ParserUtil;
 import com.opensymphony.xwork2.ActionSupport;
+import java.io.File;
 
 /**
  *
@@ -18,6 +19,12 @@ import com.opensymphony.xwork2.ActionSupport;
 public class AddItem extends ActionSupport{
     
 
+    private File fileUpload;
+
+    public void setFileUpload(File fileUpload) {
+        this.fileUpload = fileUpload;
+    }
+    
     private String data_request;
 
     private String data_response;
@@ -45,9 +52,9 @@ public class AddItem extends ActionSupport{
 
     public String insert() throws Exception {
         if (data_request != null) {
-            Item parserItem = new ParserUtil().parserItem(data_request);
+            Item parserItem = ParserUtil.parserItem(data_request);
             ProductDAO.getInstance().insert(parserItem);
-            code = 1;
+            code = 400;
         }
         return SUCCESS;
     }
