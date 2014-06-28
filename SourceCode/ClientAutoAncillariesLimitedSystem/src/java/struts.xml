@@ -1,0 +1,44 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default,json-default" namespace="/manager">
+        <action class="autoancillarieslimited.action.Index" name="index">
+            <result>index.jsp</result>
+        </action>
+        <action class="autoancillarieslimited.action.ItemAction" name="item">
+            <result>item.jsp</result>
+        </action>
+        <action class="autoancillarieslimited.action.CategoryAction" name="getcategory">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.item.AddItem" name="insertItem" method="insert">
+            <result type="json">
+            </result>
+        </action>
+        
+        <action class="autoancillarieslimited.action.item.DeleteItem" name="deleteItem" method="delete">
+            <result type="json">
+            </result>
+        </action>
+        
+        
+        <action class="autoancillarieslimited.action.item.GetItem" name="getItemByID" method="getItem">
+            <result type="json">
+            </result>
+        </action>
+        
+        <action class="autoancillarieslimited.action.item.UpdateItem" name="updateItem" method="update">
+            <result type="json">
+            </result>
+        </action>
+        
+        <action class="autoancillarieslimited.action.item.UploadFile" name="uploadFile">
+            <result type="json">
+            </result>
+        </action>
+    </package>
+</struts>

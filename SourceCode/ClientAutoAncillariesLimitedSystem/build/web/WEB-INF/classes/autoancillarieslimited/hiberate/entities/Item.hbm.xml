@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2014 7:41:11 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="autoancillarieslimited.hiberate.entities.Item" table="Item" schema="dbo" catalog="AutoAncillariesLimitedDB">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one cascade="all" name="typeItem" lazy="false" class="autoancillarieslimited.hiberate.entities.TypeItem" fetch="select">
+            <column name="Type_ID" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="Price" precision="53" scale="0" />
+        </property>
+        <property name="date_Created" type="timestamp">
+            <column name="Date_Created" length="23" />
+        </property>
+        <set name="imagesItems" cascade="all" table="Images_Item" inverse="true" lazy="false" fetch="select">
+            <key>
+                <column name="ID_Item" />
+            </key>
+            <one-to-many class="autoancillarieslimited.hiberate.entities.ImagesItem" />
+        </set>
+    </class>
+</hibernate-mapping>
