@@ -7,7 +7,6 @@
     <property name="hibernate.connection.username">sa</property>
     <property name="hibernate.connection.password">123456</property>
     <mapping resource="autoancillarieslimited/hiberate/entities/Item.hbm.xml"/>
-    <mapping resource="autoancillarieslimited/hiberate/entities/ImagesItem.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/Customer.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/TypeItem.hbm.xml"/>
   </session-factory>

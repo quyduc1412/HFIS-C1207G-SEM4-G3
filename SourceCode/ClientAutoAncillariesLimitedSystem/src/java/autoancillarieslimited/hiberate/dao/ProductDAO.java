@@ -5,7 +5,6 @@
  */
 package autoancillarieslimited.hiberate.dao;
 
-import autoancillarieslimited.hiberate.entities.ImagesItem;
 import autoancillarieslimited.hiberate.entities.Item;
 import autoancillarieslimited.hiberate.entities.TypeItem;
 import autoancillarieslimited.hiberate.util.HibernateUtil;
@@ -32,28 +31,28 @@ public class ProductDAO extends AbstractDao<Item> {
 
     private ProductDAO() {
     }
-
-    public List<ImagesItem> getImagesOfItem(int id_Item) {
-
-        List<ImagesItem> set = null;
-        Session session = null;
-        Transaction beginTransaction = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            beginTransaction = session.beginTransaction();
-            set = session.createQuery("from ImagesItem where ID_Item = ?").setInteger(0, id_Item).list();
-            session.getTransaction().commit();
-        } catch (HibernateException ex) {
-            if (beginTransaction != null) {
-                beginTransaction.rollback();
-            }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        return set;
-    }
+//
+//    public List<ImagesItem> getImagesOfItem(int id_Item) {
+//
+//        List<ImagesItem> set = null;
+//        Session session = null;
+//        Transaction beginTransaction = null;
+//        try {
+//            session = HibernateUtil.getSessionFactory().openSession();
+//            beginTransaction = session.beginTransaction();
+//            set = session.createQuery("from ImagesItem where ID_Item = ?").setInteger(0, id_Item).list();
+//            session.getTransaction().commit();
+//        } catch (HibernateException ex) {
+//            if (beginTransaction != null) {
+//                beginTransaction.rollback();
+//            }
+//        } finally {
+//            if (session != null) {
+//                session.close();
+//            }
+//        }
+//        return set;
+//    }
 
     public TypeItem getTypeItemByID(int id_Item) {
 
@@ -78,27 +77,27 @@ public class ProductDAO extends AbstractDao<Item> {
         }
         return set;
     }
-
-    public boolean insertImage(ImagesItem item) {
-        Session session = null;
-        Transaction beginTransaction = null;
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            beginTransaction = session.beginTransaction();
-            session.saveOrUpdate(item);
-            session.getTransaction().commit();
-        } catch (HibernateException ex) {
-            ex.printStackTrace();
-            if (beginTransaction != null) {
-                beginTransaction.rollback();
-            }
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
-        return true;
-    }
+//
+//    public boolean insertImage(ImagesItem item) {
+//        Session session = null;
+//        Transaction beginTransaction = null;
+//        try {
+//            session = HibernateUtil.getSessionFactory().openSession();
+//            beginTransaction = session.beginTransaction();
+//            session.saveOrUpdate(item);
+//            session.getTransaction().commit();
+//        } catch (HibernateException ex) {
+//            ex.printStackTrace();
+//            if (beginTransaction != null) {
+//                beginTransaction.rollback();
+//            }
+//        } finally {
+//            if (session != null) {
+//                session.close();
+//            }
+//        }
+//        return true;
+//    }
 
     public List<Item> getItems() {
         List<Item> set = null;

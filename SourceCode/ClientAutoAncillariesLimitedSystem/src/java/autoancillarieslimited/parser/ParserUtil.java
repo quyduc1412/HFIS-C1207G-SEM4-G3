@@ -31,6 +31,8 @@ public class ParserUtil {
         String description = (String) jsonObject.get("P3");
         int category = Integer.parseInt((String) jsonObject.get("P2"));
         double price = Double.parseDouble((String) jsonObject.get("P4"));
+        String images = (String) jsonObject.get("P6");
+   //     String imagesData
         i.setId(id);
         i.setName(name);
         i.setDescription(description);
@@ -39,6 +41,7 @@ public class ParserUtil {
         TypeItem typeItemByID = ProductDAO.getInstance().getTypeItemByID(category);
         i.setTypeItem(typeItemByID);
         i.setType_ID(category);
+        i.setImages(images);
         return i;
     }
 
@@ -49,6 +52,7 @@ public class ParserUtil {
         jSONObject.put("P3", item.getDescription());
         jSONObject.put("P2", item.getTypeItem().getId());
         jSONObject.put("P4", item.getPrice());
+        jSONObject.put("P6", item.getImages());
         return jSONObject.toString();
     }
 }

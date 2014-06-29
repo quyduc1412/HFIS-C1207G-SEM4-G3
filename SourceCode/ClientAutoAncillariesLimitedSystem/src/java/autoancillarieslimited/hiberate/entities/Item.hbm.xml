@@ -23,11 +23,8 @@
         <property name="date_Created" type="timestamp">
             <column name="Date_Created" length="23" />
         </property>
-        <set name="imagesItems" cascade="all" table="Images_Item" inverse="true" lazy="false" fetch="select">
-            <key>
-                <column name="ID_Item" />
-            </key>
-            <one-to-many class="autoancillarieslimited.hiberate.entities.ImagesItem" />
-        </set>
+        <property name="images" type="string">
+            <column name="Images" />
+        </property>
     </class>
 </hibernate-mapping>

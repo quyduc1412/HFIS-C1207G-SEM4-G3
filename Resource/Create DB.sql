@@ -23,16 +23,6 @@ CREATE TABLE TypeItem(
 	PRIMARY KEY ([ID]),
 )
 GO
-CREATE TABLE Images_Item(
-	[ID] int identity(0,1),
-	[ID_Item] int,
-	[Image_Link] ntext,
-	PRIMARY KEY ([ID]),
-	CONSTRAINT fk_Images_Item FOREIGN KEY ([ID_Item])
-	REFERENCES Item([ID])
-)
-
-GO
 CREATE TABLE Item(
 	[ID] int identity(0,1),
 	[Name] ntext,
@@ -40,11 +30,20 @@ CREATE TABLE Item(
 	[Type_ID] int,
 	[Price] float,
 	[Date_Created] datetime,
+	[Images] ntext,
 	PRIMARY KEY ([ID]),
 	CONSTRAINT fk_Item FOREIGN KEY ([Type_ID])
 	REFERENCES TypeItem([ID])
 )
 GO
+CREATE TABLE WareHouses(
+	[ID] int identity(0,1),
+	[Name] ntext,
+	[Address] ntext,
+	[Phone] ntext
+)
+GO
+
 CREATE TABLE PurchaseOrder(
 	[ID] int identity(0,1),
 	[Date_Order] datetime,

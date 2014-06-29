@@ -5,5 +5,4 @@
   <table-filter match-name="TypeItem"/>
   <table-filter match-name="Customer"/>
   <table-filter match-name="Item"/>
-  <table-filter match-name="Images_Item"/>
 </hibernate-reverse-engineering>

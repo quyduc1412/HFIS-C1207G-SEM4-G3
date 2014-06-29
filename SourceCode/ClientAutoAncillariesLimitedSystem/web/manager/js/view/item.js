@@ -9,7 +9,8 @@ $(document).ready(function() {
                 'category': 'P2',
                 'description': 'P3',
                 'price': 'P4',
-                'date_Created': 'P5'
+                'date_Created': 'P5',
+                'images' : 'P6'
             };
         }
     });
@@ -22,6 +23,14 @@ $(document).ready(function() {
         $('.dialog.additem #category').val(item.get('P2'));
         $('.dialog.additem #desciption').val(item.get('P3'));
         $('.dialog.additem #price').val(item.get('P4'));
+        var images = item.get('P6');
+        var arr_image = images.split(';');
+        for(var i=0;i<arr_image.length;i++){
+            if(arr_image[i] !== ''){
+                $('.dialog.additem #images_form').append("<img src='../upload/"+arr_image[i]+"' alt='' style='width: 20%;float:left;display: inline-block'/>");
+            }
+        }
+        
     };
     var getTypeItem = function(after, data2) {
         var onGetListSuccess = function(result) {
@@ -69,15 +78,22 @@ $(document).ready(function() {
 
     });
     $(document).on('DIALOG_LOADED', function(event, data_method) {
+        var images_data = "";
         $('#overlay .cancel').on('click', function(e) {
             e.preventDefault();
             $('#overlay').fadeOut();
         });
         $("#fileuploader").uploadFile({
             url: "uploadFile",
-            formData: {"name":"Ravi","age":31},
+//            formData: {"name":"Ravi","age":31},
             allowedTypes: "png,gif,jpg,jpeg",
-            fileName: "myfile"
+            fileName: "myfile",
+            onSuccess:function(files,data,xhr)
+            {
+               $('.dialog.additem #images_form').append("<img src='../upload/"+data.myfileFileName+"' alt='' style='width: 20%;float:left;display: inline-block'/>");
+               images_data += data.myfileFileName + ";";
+               
+            }
         });
         $('.dialog.additem .add').on('click', function(e) {
             e.preventDefault();
@@ -88,7 +104,6 @@ $(document).ready(function() {
             var desciption = $('.dialog.additem #desciption').val();
             var price = $('.dialog.additem #price').val();
             var data = new Item();
-            alert(id);
             if (id === '') {
                 data.set('id', '0');
             } else {
@@ -98,7 +113,7 @@ $(document).ready(function() {
             data.set('description', desciption);
             data.set('category', category);
             data.set('price', price);
-            alert(data.toJsonString());
+            data.set('images',images_data);
             var onInsertSuccess = function(result) {
                 $('#overlay').fadeOut();
                 $('#message').text('SUCCESS');
@@ -112,9 +127,9 @@ $(document).ready(function() {
                 }
             };
             if (data_method === 1) {
-                _service.call('insertItem', data.toJsonString(), onInsertSuccess);
+               _service.call('insertItem', data.toJsonString(), onInsertSuccess);
             } else {
-                _service.call('updateItem', data.toJsonString(), onInsertSuccess);
+               _service.call('updateItem', data.toJsonString(), onInsertSuccess);
             }
         });
     });

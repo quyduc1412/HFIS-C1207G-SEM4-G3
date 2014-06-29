@@ -11,6 +11,8 @@ import autoancillarieslimited.hiberate.entities.Item;
 import autoancillarieslimited.parser.ParserUtil;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -53,6 +55,8 @@ public class AddItem extends ActionSupport{
     public String insert() throws Exception {
         if (data_request != null) {
             Item parserItem = ParserUtil.parserItem(data_request);
+//            Set<ImagesItem> image = new HashSet();
+//            image.add(new ImagesItem());
             ProductDAO.getInstance().insert(parserItem);
             code = 400;
         }

@@ -20,7 +20,7 @@ public class Item  implements java.io.Serializable {
      private Double price;
      private Date date_Created;
      private int type_ID;
-     private Set imagesItems = new HashSet(0);
+     private String images;
 
     public Item() {
     }
@@ -29,8 +29,8 @@ public class Item  implements java.io.Serializable {
     public Item(int id) {
         this.id = id;
     }
-
-    public Item(int id, TypeItem typeItem, String name, String description, Double price, Date date_Created, int type_ID) {
+    
+    public Item(int id, TypeItem typeItem, String name, String description, Double price, Date date_Created, int type_ID, String images) {
         this.id = id;
         this.typeItem = typeItem;
         this.name = name;
@@ -38,6 +38,7 @@ public class Item  implements java.io.Serializable {
         this.price = price;
         this.date_Created = date_Created;
         this.type_ID = type_ID;
+        this.images = images;
     }
 
     
@@ -77,14 +78,17 @@ public class Item  implements java.io.Serializable {
     public void setPrice(Double price) {
         this.price = price;
     }
-    public Set getImagesItems() {
-        return this.imagesItems;
-    }
-    
-    public void setImagesItems(Set imagesItems) {
-        this.imagesItems = imagesItems;
+
+    public String getImages() {
+        return images;
     }
 
+    public void setImages(String images) {
+        this.images = images;
+    }
+    
+    
+    
     public Date getDate_Created() {
         return date_Created;
     }

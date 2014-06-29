@@ -4,7 +4,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<div class="half_w dialog additem">
+<div class="half_w dialog additem" style="width: 660px">
     <div class="h_title"><a id="title-dialog">Add new item:</a> <a id="id"></a></div>
     <form action="" method="post">
         <div class="element">
@@ -12,22 +12,26 @@ and open the template in the editor.
             <input id="name" name="name" class="text err">
         </div>
         <div class="element">
-            <label for="category">Category <span class="red">(required)</span></label>
-            <select name="category" class="err" id="category">
-            </select>
-        </div>
-        <div class="element">
-            <label for="price">Price <span class="red">(required)</span></label>
-            <input id="price" name="price" class="text err">
+            <div style="float: left;width: 50%;">
+                <label for="category">Category <span class="red">(required)</span></label>
+                <select name="category" class="err" id="category">
+                </select>
+            </div>
+            <div style="float: left;width: 50%;">
+                <label for="price">Price <span class="red">(required)</span></label>
+                <input id="price" name="price" class="text err">
+            </div>
         </div>
         <div class="element">
             <label for="content">Description <span>(required)</span></label>
-            <textarea name="content" class="textarea" rows="10" id="desciption"></textarea>
+            <textarea name="content" class="textarea" rows="6" id="desciption"></textarea>
+        </div>
+        <div id="images_form" class="element">
         </div>
         <div class="element">
             <label for="content">Image</label>
             <div class="element" style="width: auto; height: 150px; overflow-y: scroll;">
-            <div id="fileuploader">Upload</div>
+                <div id="fileuploader">Upload</div>
             </div>
         </div>
         <div class="entry">
