@@ -4,7 +4,7 @@
 
 <struts>
     <!-- Configuration for the default package. -->
-    <package name="default" extends="struts-default,json-default" namespace="/manager">
+    <package name="default" extends="struts-default,json-default">
         <action class="autoancillarieslimited.action.Index" name="index">
             <result>index.jsp</result>
         </action>
