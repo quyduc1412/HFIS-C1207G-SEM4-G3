@@ -51,6 +51,7 @@ public class UpdateItem extends ActionSupport{
                 byID.setPrice(parserItem.getPrice());
                 byID.setDescription(parserItem.getDescription());
                 byID.setName(parserItem.getName());
+                byID.setImages(parserItem.getImages());
                 ProductDAO.getInstance().update(byID);
                 byID.setTypeItem(parserItem.getTypeItem());
                 ProductDAO.getInstance().update(byID);

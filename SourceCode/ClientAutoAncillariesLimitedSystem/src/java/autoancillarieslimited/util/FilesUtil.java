@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class FilesUtil {
-
+    public static void deleteFile(File file){
+        file.delete();
+    }
     public static void saveFile(File file, String fileName, String filesDirectory) throws IOException {
         FileInputStream in = null;
         FileOutputStream out = null;

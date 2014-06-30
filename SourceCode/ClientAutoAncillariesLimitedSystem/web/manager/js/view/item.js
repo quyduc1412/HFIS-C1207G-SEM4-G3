@@ -10,10 +10,12 @@ $(document).ready(function() {
                 'description': 'P3',
                 'price': 'P4',
                 'date_Created': 'P5',
-                'images' : 'P6'
+                'images': 'P6'
             };
         }
     });
+
+    var images_data = "";
     var onFillData = function(result) {
         $('#overlay').fadeIn();
         var item = new Item();
@@ -24,13 +26,14 @@ $(document).ready(function() {
         $('.dialog.additem #desciption').val(item.get('P3'));
         $('.dialog.additem #price').val(item.get('P4'));
         var images = item.get('P6');
+        images_data = images;
         var arr_image = images.split(';');
-        for(var i=0;i<arr_image.length;i++){
-            if(arr_image[i] !== ''){
-                $('.dialog.additem #images_form').append("<img src='../upload/"+arr_image[i]+"' alt='' style='width: 20%;float:left;display: inline-block'/>");
+        for (var i = 0; i < arr_image.length; i++) {
+            if (arr_image[i] !== '') {
+                $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + arr_image[i] + "' src='../upload/" + arr_image[i] + "' alt='' style='width: 20%;float:left;display: inline-block'/>");
             }
         }
-        
+        $(document).trigger('RELOAD_IMAGES');
     };
     var getTypeItem = function(after, data2) {
         var onGetListSuccess = function(result) {
@@ -78,7 +81,9 @@ $(document).ready(function() {
 
     });
     $(document).on('DIALOG_LOADED', function(event, data_method) {
-        var images_data = "";
+        if (data_method === 1) {
+            images_data = "";
+        }
         $('#overlay .cancel').on('click', function(e) {
             e.preventDefault();
             $('#overlay').fadeOut();
@@ -88,11 +93,11 @@ $(document).ready(function() {
 //            formData: {"name":"Ravi","age":31},
             allowedTypes: "png,gif,jpg,jpeg",
             fileName: "myfile",
-            onSuccess:function(files,data,xhr)
+            onSuccess: function(files, data, xhr)
             {
-               $('.dialog.additem #images_form').append("<img src='../upload/"+data.myfileFileName+"' alt='' style='width: 20%;float:left;display: inline-block'/>");
-               images_data += data.myfileFileName + ";";
-               
+                $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + data.myfileFileName + "' src='../upload/" + data.myfileFileName + "' alt='' style='width: 20%;float:left;display: inline-block'/>");
+                images_data += data.myfileFileName + ";";
+                $(document).trigger('RELOAD_IMAGES');
             }
         });
         $('.dialog.additem .add').on('click', function(e) {
@@ -113,7 +118,7 @@ $(document).ready(function() {
             data.set('description', desciption);
             data.set('category', category);
             data.set('price', price);
-            data.set('images',images_data);
+            data.set('images', images_data);
             var onInsertSuccess = function(result) {
                 $('#overlay').fadeOut();
                 $('#message').text('SUCCESS');
@@ -127,9 +132,9 @@ $(document).ready(function() {
                 }
             };
             if (data_method === 1) {
-               _service.call('insertItem', data.toJsonString(), onInsertSuccess);
+                _service.call('insertItem', data.toJsonString(), onInsertSuccess);
             } else {
-               _service.call('updateItem', data.toJsonString(), onInsertSuccess);
+                _service.call('updateItem', data.toJsonString(), onInsertSuccess);
             }
         });
     });
@@ -142,6 +147,17 @@ $(document).ready(function() {
         });
         $('.half_w.dialog.confirm .no').on('click', function(e) {
             $('#overlay').fadeOut();
+        });
+    });
+    
+    
+    $(document).on('RELOAD_IMAGES', function (e){
+         $('.deleteimg').on('click', function(e) {
+            var filename_delete = $(this).attr("name");
+            alert(filename_delete);
+            _service.call_normal('deleteFile', filename_delete,function (data){
+                alert(data);
+            });
         });
     });
 });

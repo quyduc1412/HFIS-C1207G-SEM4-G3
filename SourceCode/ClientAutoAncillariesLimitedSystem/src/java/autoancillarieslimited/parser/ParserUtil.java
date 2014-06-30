@@ -21,28 +21,32 @@ import org.json.simple.JSONObject;
  */
 public class ParserUtil {
 
-    public static Item parserItem(String dataJson) throws ParseException {
-        Item i = new Item();
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(dataJson);
-        JSONObject jsonObject = (JSONObject) obj;
-        int id = Integer.parseInt((String) jsonObject.get("P0"));
-        String name = (String) jsonObject.get("P1");
-        String description = (String) jsonObject.get("P3");
-        int category = Integer.parseInt((String) jsonObject.get("P2"));
-        double price = Double.parseDouble((String) jsonObject.get("P4"));
-        String images = (String) jsonObject.get("P6");
-   //     String imagesData
-        i.setId(id);
-        i.setName(name);
-        i.setDescription(description);
-        i.setPrice(price);
-        i.setDate_Created(new Date());
-        TypeItem typeItemByID = ProductDAO.getInstance().getTypeItemByID(category);
-        i.setTypeItem(typeItemByID);
-        i.setType_ID(category);
-        i.setImages(images);
-        return i;
+    public static Item parserItem(String dataJson) {
+        try {
+            Item i = new Item();
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(dataJson);
+            JSONObject jsonObject = (JSONObject) obj;
+            int id = Integer.parseInt((String) jsonObject.get("P0"));
+            String name = (String) jsonObject.get("P1");
+            String description = (String) jsonObject.get("P3");
+            int category = Integer.parseInt((String) jsonObject.get("P2"));
+            double price = Double.parseDouble((String) jsonObject.get("P4"));
+            String images = (String) jsonObject.get("P6");
+            //     String imagesData
+            i.setId(id);
+            i.setName(name);
+            i.setDescription(description);
+            i.setPrice(price);
+            i.setDate_Created(new Date());
+            TypeItem typeItemByID = ProductDAO.getInstance().getTypeItemByID(category);
+            i.setTypeItem(typeItemByID);
+            i.setType_ID(category);
+            i.setImages(images);
+            return i;
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     public  static  String parserItemJSon(Item item) {
