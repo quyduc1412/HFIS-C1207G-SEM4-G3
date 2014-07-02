@@ -6,7 +6,10 @@
     <property name="hibernate.connection.url">jdbc:sqlserver://DUCNXQ\SQLEXPRESS;databaseName=AutoAncillariesLimitedDB</property>
     <property name="hibernate.connection.username">sa</property>
     <property name="hibernate.connection.password">123456</property>
+    <mapping resource="autoancillarieslimited/hiberate/entities/WareHouses.hbm.xml"/>
+    <mapping resource="autoancillarieslimited/hiberate/entities/Sysdiagrams.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/Item.hbm.xml"/>
+    <mapping resource="autoancillarieslimited/hiberate/entities/Employee.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/Customer.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/TypeItem.hbm.xml"/>
   </session-factory>

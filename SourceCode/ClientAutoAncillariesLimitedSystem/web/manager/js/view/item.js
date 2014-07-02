@@ -14,7 +14,27 @@ $(document).ready(function() {
             };
         }
     });
-
+    $('#message').fadeOut();
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    var onGetCategorySuccess = function(result) {
+        var data = "";
+        var param = getParameterByName("category");
+        data += "<option value='all'>All</option>";
+        $.each(result.list, function(index, value) {
+            if (param.indexOf(value.id) !== -1) {
+                data += "<option value='" + value.id + "' selected>" + value.nameType + "</option>";
+            } else {
+                data += "<option value='" + value.id + "'>" + value.nameType + "</option>";
+            }
+        });
+        $('#filterCategory').html(data);
+    };
+    _service.call('getcategory', '', onGetCategorySuccess);
     var images_data = "";
     var onFillData = function(result) {
         $('#overlay').fadeIn();
@@ -61,7 +81,7 @@ $(document).ready(function() {
         e.preventDefault();
         var data = $(this).attr("item_id");
         $("#overlay #context").load("views/dialog_item.html", function() {
-            $(document).trigger('DIALOG_LOADED', 2);
+            $(document).trigger('DIALOG_ITEM_LOADED', 2);
             $('.dialog.additem #title-dialog').html('Edit Item');
             var onGetSuccess = function(result) {
                 getTypeItem(onFillData, result);
@@ -73,14 +93,15 @@ $(document).ready(function() {
     $('#main a.add').on('click', function(e) {
         e.preventDefault();
         $("#overlay #context").load("views/dialog_item.html", function() {
-            $(document).trigger('DIALOG_LOADED', 1);
+            $(document).trigger('DIALOG_ITEM_LOADED', 1);
             $('.dialog.additem #title-dialog').html('Add Item');
             getTypeItem();
             $('#overlay').fadeIn();
         });
 
     });
-    $(document).on('DIALOG_LOADED', function(event, data_method) {
+    $(document).on('DIALOG_ITEM_LOADED', function(event, data_method) {
+         $("#form_dialog_item").validationEngine();
         if (data_method === 1) {
             images_data = "";
         }
@@ -120,14 +141,19 @@ $(document).ready(function() {
             data.set('price', price);
             data.set('images', images_data);
             var onInsertSuccess = function(result) {
-                $('#overlay').fadeOut();
-                $('#message').text('SUCCESS');
+                if (result.code === 400) {
+                    $('#overlay').fadeOut();
+                }
+                $('#message').text(result.data_response);
                 $('#message').fadeIn();
                 setTimeout(
                         function()
                         {
-                            $('#message').fadeOut()
-                        }, 5000);
+                            $('#message').fadeOut();
+                            if (result.code === 400) {
+                                location.reload();
+                            }
+                        }, 3000);
                 if (result.code === 400) {
                 }
             };
@@ -149,14 +175,32 @@ $(document).ready(function() {
             $('#overlay').fadeOut();
         });
     });
-    
-    
-    $(document).on('RELOAD_IMAGES', function (e){
-         $('.deleteimg').on('click', function(e) {
+
+
+    $(document).on('RELOAD_IMAGES', function(e) {
+        $('.deleteimg').on('click', function(e) {
             var filename_delete = $(this).attr("name");
-            alert(filename_delete);
-            _service.call_normal('deleteFile', filename_delete,function (data){
-                alert(data);
+            var DeleteRequest = Model.$extend({
+                mapping: function() {
+                    return {
+                        'id': 'P0',
+                        'filename': 'P1'
+                    };
+                }
+            });
+            var data = new DeleteRequest();
+            data.set('filename', filename_delete);
+            data.set('id', $('.dialog.additem #id').html());
+            _service.call_normal('deleteFile', data.toJsonString(), function(data) {
+                images_data = images_data.replace(data.data_response, "");
+                var arr_image = images_data.split(';');
+                $('.dialog.additem #images_form').html("");
+                for (var i = 0; i < arr_image.length; i++) {
+                    if (arr_image[i] !== '') {
+                        $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + arr_image[i] + "' src='../upload/" + arr_image[i] + "' alt='' style='width: 20%;float:left;display: inline-block'/>");
+                    }
+                }
+                $(document).trigger('RELOAD_IMAGES');
             });
         });
     });

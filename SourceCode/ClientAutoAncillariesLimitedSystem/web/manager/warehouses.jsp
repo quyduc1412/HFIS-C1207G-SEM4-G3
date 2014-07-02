@@ -15,18 +15,13 @@
         <title>SimpleAdmin</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
-        <script src="js/jquery1.9.1.min.js" type="text/javascript"></script>
         <link href="js/uploadfile.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/jquery1.9.1.min.js" type="text/javascript"></script>
         <script src="js/jquery.json-2.4.js" type="text/javascript"></script>
         <script src="js/jquery.uploadfile.min.js" type="text/javascript"></script>
         <script src="js/classy.min.js" type="text/javascript"></script>
         <script src="js/model.js" type="text/javascript"></script>
         <script src="js/service.js" type="text/javascript"></script>
-        <script src="js/model/reponse.js" type="text/javascript"></script>
-        <script src="js/view/item.js" type="text/javascript"></script>
-        <script src="js/jquery.validationEngine-en.js" type="text/javascript"></script>
-        <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
-        <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript">
             $(function() {
                 $(".box .h_title").not(this).next("ul").hide("normal");
@@ -36,6 +31,8 @@
                 });
             });
         </script>
+        <script src="js/model/reponse.js" type="text/javascript"></script>
+        <script src="js/view/item.js" type="text/javascript"></script>
         <style>
             #overlay{
                 width: 100%;
@@ -69,7 +66,7 @@
         </style>
     </head>
     <body>
-        <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
+        <div id="message" style="width: 100%;height: 30px;position: fixed"></div>
         <div id="overlay">
             <div id="bg-overlay"></div>
             <!--<div class="comfirm dialog half_w"><button id="yes">Yes</button><button id="cancel">Cancel</button></div>-->
@@ -161,8 +158,8 @@
                 </div>
                 <div id="main">
                     <div class="full_w">
-                        <div class="h_title">Manager Items</div>
-                        <h2>Manager Item Page</h2>
+                        <div class="h_title">Manager Warehourses Page</div>
+                        <h2>Manager Warehourses Page</h2>
                         <div>
                             <form method="get">
                                 <div style="float: right;margin-right: 5px">
@@ -178,23 +175,21 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Date Created</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Price</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col" style="width: 65px;">Modify</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                <d:iterator value="litstItem">
+                                <d:iterator value="list">
                                     <tr>
                                         <td class="align-center"><d:property value="id"/></td>
-                                        <td><d:property value="name"/></td>
-                                        <td><d:property value="description"/></td>
-                                        <td><d:property value="date_Created"/></td>
-                                        <td class="align-center"><d:property value="typeItem.nameType"/></td>
-                                        <td><d:property value="price"/></td>
+                                        <td class="align-center"><d:property value="name"/></td>
+                                        <td class="align-center"><d:property value="address"/></td>
+                                        <td class="align-center"><d:property value="phone"/></td>
+                                        <td class="align-center"><d:property value="email"/></td> 
                                         <td>
                                             <a href="#" class="table-icon edit" item_id="<d:property value="id"/>" title="Edit"></a>
                                             <a href="#" class="table-icon archive" item_id="<d:property value="id"/>" title="Archive"></a>

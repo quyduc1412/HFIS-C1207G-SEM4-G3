@@ -98,8 +98,7 @@ public class ProductDAO extends AbstractDao<Item> {
 //        }
 //        return true;
 //    }
-
-    public List<Item> getItems() {
+ public List<Item> getItems() {
         List<Item> set = null;
         Session session = null;
         Transaction beginTransaction = null;
@@ -107,6 +106,33 @@ public class ProductDAO extends AbstractDao<Item> {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
             set = session.createQuery("from Item").list();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+    public List<Item> getItems(Item filter) {
+        List<Item> set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            if(filter.getType_ID() != 0){
+            set = session.createQuery("from Item where Name like '%" + filter.getName() + "%' AND Type_ID ='" + filter.getType_ID()+ "' ").list();
+            }else{
+                set = session.createQuery("from Item where Name like '%" + filter.getName() + "%'").list();
+            }
             session.flush();
             session.clear();
             session.getTransaction().commit();

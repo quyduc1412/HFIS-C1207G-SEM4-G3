@@ -1,5 +1,5 @@
 package autoancillarieslimited.hiberate.entities;
-// Generated Jun 17, 2014 7:41:10 AM by Hibernate Tools 3.6.0
+// Generated Jul 1, 2014 11:22:27 AM by Hibernate Tools 3.6.0
 
 
 import java.io.Serializable;
