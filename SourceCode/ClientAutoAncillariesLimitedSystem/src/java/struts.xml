@@ -4,6 +4,7 @@
 
 <struts>
     <!-- Configuration for the default package. -->
+    <include file="struts-warehouses.xml"/>
     <package name="default" extends="struts-default,json-default" namespace="/manager">
         <action class="autoancillarieslimited.action.Index" name="index">
             <result>index.jsp</result>
@@ -28,7 +29,6 @@
             <result type="json">
             </result>
         </action>
-        
         
         <action class="autoancillarieslimited.action.item.GetItem" name="getItemByID" method="getItem">
             <result type="json">

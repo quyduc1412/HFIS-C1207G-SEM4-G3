@@ -32,7 +32,7 @@
             });
         </script>
         <script src="js/model/reponse.js" type="text/javascript"></script>
-        <script src="js/view/item.js" type="text/javascript"></script>
+        <script src="js/view/warehouses.js" type="text/javascript"></script>
         <style>
             #overlay{
                 width: 100%;
@@ -66,7 +66,7 @@
         </style>
     </head>
     <body>
-        <div id="message" style="width: 100%;height: 30px;position: fixed"></div>
+         <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
         <div id="overlay">
             <div id="bg-overlay"></div>
             <!--<div class="comfirm dialog half_w"><button id="yes">Yes</button><button id="cancel">Cancel</button></div>-->

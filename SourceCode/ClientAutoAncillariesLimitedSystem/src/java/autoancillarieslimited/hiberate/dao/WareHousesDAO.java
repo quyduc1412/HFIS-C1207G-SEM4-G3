@@ -6,6 +6,8 @@
 package autoancillarieslimited.hiberate.dao;
 
 import autoancillarieslimited.hiberate.entities.Item;
+import autoancillarieslimited.hiberate.entities.Region;
+import autoancillarieslimited.hiberate.entities.TypeItem;
 import autoancillarieslimited.hiberate.entities.WareHouses;
 import autoancillarieslimited.hiberate.util.HibernateUtil;
 import java.util.List;
@@ -38,6 +40,28 @@ public class WareHousesDAO extends AbstractDao<WareHouses> {
             set = session.createQuery("from WareHouses").list();
             session.flush();
             session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+    
+    public List<Region> getRegion() {
+        List<Region> set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = session.createQuery("from Region").list();
             session.getTransaction().commit();
         } catch (HibernateException ex) {
             ex.printStackTrace();

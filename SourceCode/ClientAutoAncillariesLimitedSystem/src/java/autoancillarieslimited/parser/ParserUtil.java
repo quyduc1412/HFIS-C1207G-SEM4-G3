@@ -8,12 +8,13 @@ package autoancillarieslimited.parser;
 import autoancillarieslimited.hiberate.dao.ProductDAO;
 import autoancillarieslimited.hiberate.entities.Item;
 import autoancillarieslimited.hiberate.entities.TypeItem;
+import autoancillarieslimited.hiberate.entities.WareHouses;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.json.simple.JSONObject;
 
 /**
  *
@@ -58,5 +59,29 @@ public class ParserUtil {
         jSONObject.put("P4", item.getPrice());
         jSONObject.put("P6", item.getImages());
         return jSONObject.toString();
+    }
+    
+    public static WareHouses parserWarehouses(String dataJson){
+        try {
+            WareHouses i = new WareHouses();
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(dataJson);
+            JSONObject jsonObject = (JSONObject) obj;
+            int id = Integer.parseInt((String) jsonObject.get("P0"));
+            String name = (String) jsonObject.get("P1");
+            String address = (String) jsonObject.get("P2");
+            String phone = (String) jsonObject.get("P3");
+            String email = (String) jsonObject.get("P4");
+            int region_ID = Integer.parseInt((String) jsonObject.get("P5"));
+            i.setId(id);
+            i.setName(name);
+            i.setAddress(address);
+            i.setPhone(phone);
+            i.setEmail(email);
+            i.setRegion_ID(region_ID);
+            return i;
+        } catch (Exception ex) {
+            return null;
+        }
     }
 }

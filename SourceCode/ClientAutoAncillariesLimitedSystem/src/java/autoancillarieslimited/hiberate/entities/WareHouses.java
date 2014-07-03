@@ -15,6 +15,7 @@ public class WareHouses  implements java.io.Serializable {
      private int id;
      private String name;
      private String address;
+     private int region_ID;
      private String phone;
      private String email;
      private Set employees = new HashSet(0);
@@ -26,14 +27,17 @@ public class WareHouses  implements java.io.Serializable {
     public WareHouses(int id) {
         this.id = id;
     }
-    public WareHouses(int id, String name, String address, String phone, String email, Set employees) {
-       this.id = id;
-       this.name = name;
-       this.address = address;
-       this.phone = phone;
-       this.email = email;
-       this.employees = employees;
+
+    public WareHouses(int id, String name, String address, int region_ID, String phone, String email) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.region_ID = region_ID;
+        this.phone = phone;
+        this.email = email;
     }
+    
+    
    
     public int getId() {
         return this.id;
@@ -76,6 +80,14 @@ public class WareHouses  implements java.io.Serializable {
     
     public void setEmployees(Set employees) {
         this.employees = employees;
+    }
+
+    public int getRegion_ID() {
+        return region_ID;
+    }
+
+    public void setRegion_ID(int region_ID) {
+        this.region_ID = region_ID;
     }
 
 

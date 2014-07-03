@@ -3,31 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package autoancillarieslimited.action.item;
+package autoancillarieslimited.action.warehouses;
 
 import autoancillarieslimited.hiberate.dao.ProductDAO;
+import autoancillarieslimited.hiberate.dao.WareHousesDAO;
 import autoancillarieslimited.hiberate.entities.Item;
+import autoancillarieslimited.hiberate.entities.WareHouses;
 import autoancillarieslimited.hiberate.util.StringUtils;
 import autoancillarieslimited.parser.ParserUtil;
 import com.opensymphony.xwork2.ActionSupport;
-import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
  * @author Duc
  */
-public class AddItem extends ActionSupport{
-    
+public class AddWarehousesAction extends ActionSupport {
 
-    private File fileUpload;
-
-    public void setFileUpload(File fileUpload) {
-        this.fileUpload = fileUpload;
-    }
-    
     private String data_request;
 
     private String data_response;
@@ -46,24 +37,21 @@ public class AddItem extends ActionSupport{
         this.data_response = data_response;
     }
 
-    public AddItem() {
-    }
-
     public int getCode() {
         return code;
     }
 
-    public String insert() throws Exception {
+    public AddWarehousesAction() {
+    }
+
+    public String execute() throws Exception {
         if (data_request != null) {
-            Item parserItem = ParserUtil.parserItem(data_request);
-//            Set<ImagesItem> image = new HashSet();
-//            image.add(new ImagesItem());
-            ProductDAO.getInstance().insert(parserItem);
+            WareHouses parserItem = ParserUtil.parserWarehouses(data_request);
+            WareHousesDAO.getInstance().insert(parserItem);
             code = StringUtils.SUCCESS;
-            data_response = StringUtils.ADD_ITEM_SUCCESS;
+            data_response = StringUtils.ADD_WAREHOUSE_SUCCESS;
         }
         return SUCCESS;
     }
 
-    
 }

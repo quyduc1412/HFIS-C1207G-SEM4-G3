@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Jul 1, 2014 11:22:28 AM by Hibernate Tools 3.6.0 -->
+<!-- Generated Jul 3, 2014 11:16:54 AM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="autoancillarieslimited.hiberate.entities.WareHouses" table="WareHouses" schema="dbo" catalog="AutoAncillariesLimitedDB">
         <id name="id" type="int">
@@ -13,6 +13,9 @@
         </property>
         <property name="address" type="string">
             <column name="Address" />
+        </property>
+        <property name="region_ID" type="int">
+            <column name="Region_ID" />
         </property>
         <property name="phone" type="string">
             <column name="Phone" />
