@@ -19,4 +19,5 @@ public class StringUtils {
     public static final String DELETE_WAREHOUSE_SUCCESS = "Delete WAreHouse success!";
     public static final int SUCCESS = 400;
     public static final int FAILD = 405;
+    public static String UPDATE_WAREHOUSE_SUCCESS = "Update WAreHouse success!";
 }

@@ -75,4 +75,28 @@ public class WareHousesDAO extends AbstractDao<WareHouses> {
         }
         return set;
     }
+    
+    public Region getRegionByID(int id){
+        Region item = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            item = (Region) session.get(Region.class, id);
+            session.flush();
+            session.clear();
+            beginTransaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return item;
+    }
 }

@@ -6,24 +6,24 @@
     <class name="autoancillarieslimited.hiberate.entities.Employee" table="Employee" schema="dbo" catalog="AutoAncillariesLimitedDB">
         <id name="id" type="int">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <many-to-one name="wareHouses" class="autoancillarieslimited.hiberate.entities.WareHouses" fetch="select">
+        <many-to-one name="wareHouses" lazy="false" class="autoancillarieslimited.hiberate.entities.WareHouses" fetch="select">
             <column name="WareHouses_ID" />
         </many-to-one>
-        <property name="email" type="serializable">
+        <property name="email" type="string">
             <column name="Email" />
         </property>
-        <property name="password" type="serializable">
+        <property name="password" type="string">
             <column name="Password" />
         </property>
-        <property name="name" type="serializable">
+        <property name="name" type="string">
             <column name="Name" />
         </property>
-        <property name="address" type="serializable">
+        <property name="address" type="string">
             <column name="Address" />
         </property>
-        <property name="phone" type="serializable">
+        <property name="phone" type="string">
             <column name="Phone" />
         </property>
     </class>

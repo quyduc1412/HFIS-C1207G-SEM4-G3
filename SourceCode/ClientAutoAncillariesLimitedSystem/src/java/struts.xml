@@ -4,6 +4,7 @@
 
 <struts>
     <!-- Configuration for the default package. -->
+    <include file="struts-item.xml"/>
     <include file="struts-warehouses.xml"/>
     <package name="default" extends="struts-default,json-default" namespace="/manager">
         <action class="autoancillarieslimited.action.Index" name="index">
@@ -12,42 +13,11 @@
         <action class="autoancillarieslimited.action.ItemAction" name="item">
             <result>item.jsp</result>
         </action>
-        
         <action class="autoancillarieslimited.action.WareHousesAction" name="warehouses">
             <result>warehouses.jsp</result>
         </action>
-        <action class="autoancillarieslimited.action.CategoryAction" name="getcategory">
-            <result type="json">
-            </result>
-        </action>
-        <action class="autoancillarieslimited.action.item.AddItem" name="insertItem" method="insert">
-            <result type="json">
-            </result>
-        </action>
-        
-        <action class="autoancillarieslimited.action.item.DeleteItem" name="deleteItem" method="delete">
-            <result type="json">
-            </result>
-        </action>
-        
-        <action class="autoancillarieslimited.action.item.GetItem" name="getItemByID" method="getItem">
-            <result type="json">
-            </result>
-        </action>
-        
-        <action class="autoancillarieslimited.action.item.UpdateItem" name="updateItem" method="update">
-            <result type="json">
-            </result>
-        </action>
-        
-        <action class="autoancillarieslimited.action.item.UploadFile" name="uploadFile">
-            <result type="json">
-            </result>
-        </action>
-        
-        <action class="autoancillarieslimited.action.item.DeleteFile" name="deleteFile">
-            <result type="json">
-            </result>
+        <action class="autoancillarieslimited.action.EmployeeAction" name="employees">
+            <result>employees.jsp</result>
         </action>
     </package>
 </struts>

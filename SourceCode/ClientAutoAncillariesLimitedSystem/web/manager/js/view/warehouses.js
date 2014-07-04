@@ -17,6 +17,18 @@ $(document).ready(function() {
             };
         }
     });
+    
+    var onFillData = function(result) {
+        $('#overlay').fadeIn();
+        var item = new WareHouses();
+        item.parse(result.data_response);
+        $('.dialog.additem #id').html(item.get('P0'));
+        $('.dialog.additem #name').val(item.get('P1'));
+        $('.dialog.additem #address').val(item.get('P2'));
+        $('.dialog.additem #phone').val(item.get('P3'));
+        $('.dialog.additem #email').val(item.get('P4'));
+        $('.dialog.additem #region').val(item.get('P5'));
+    };
     $('.table-icon.edit').on('click', function(e) {
         e.preventDefault();
         var data = $(this).attr("item_id");
@@ -24,10 +36,10 @@ $(document).ready(function() {
             $(document).trigger('DIALOG_WAREHOUSES_LOADED', 2);
             $('.dialog.additem #title-dialog').html('Edit Warehouses');
             $('#overlay').fadeIn();
-//            var onGetSuccess = function(result) {
-//                getTypeItem(onFillData, result);
-//            };
-//            _service.call('getItemByID', data, onGetSuccess);
+            var onGetSuccess = function(result) {
+                getRegion(onFillData, result);
+            };
+            _service.call('getwarehousebyid', data, onGetSuccess);
         });
     });
     $('#main a.add').on('click', function(e) {
@@ -109,7 +121,7 @@ $(document).ready(function() {
                 if (data_method === 1) {
                     _service.call('addwarehouse', data.toJsonString(), onInsertSuccess);
                 } else {
-                    _service.call('addwarehouse', data.toJsonString(), onInsertSuccess);
+                    _service.call('updatewarehouses', data.toJsonString(), onInsertSuccess);
                 }
             } else {
                 $("#form_dialog_warehouses").validationEngine();

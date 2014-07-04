@@ -35,7 +35,7 @@
         <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
         <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script src="js/model/reponse.js" type="text/javascript"></script>
-        <script src="js/view/warehouses.js" type="text/javascript"></script>
+        <script src="js/view/employees.js" type="text/javascript"></script>
         <style>
             #overlay{
                 width: 100%;
@@ -126,7 +126,7 @@
                 <%@include file="sidebar.jsp" %>
                 <div id="main">
                     <div class="full_w">
-                        <div class="h_title">Manager Warehourses Page</div>
+                        <div class="h_title">Manager Employee Page</div>
                         <h2>Manager Warehourses Page</h2>
                         <div>
                             <form method="get">
@@ -142,11 +142,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
+                                    <th scope="col">Warehouse</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Region</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">Phone</th>
-                                    <th scope="col">Email</th>
                                     <th scope="col" style="width: 65px;">Modify</th>
                                 </tr>
                             </thead>
@@ -155,11 +154,10 @@
                                 <d:iterator value="list">
                                     <tr>
                                         <td class="align-center"><d:property value="id"/></td>
+                                        <td class="align-center">(ID:<d:property value="wareHouses.id"/>) <d:property value="wareHouses.name"/></td>
                                         <td class="align-center"><d:property value="name"/></td>
-                                        <td class="align-center"><d:property value="region.name"/></td>
                                         <td class="align-center"><d:property value="address"/></td>
-                                        <td class="align-center"><d:property value="phone"/></td>
-                                        <td class="align-center"><d:property value="email"/></td> 
+                                        <td class="align-center"><d:property value="phone"/></td> 
                                         <td>
                                             <a href="#" class="table-icon edit" item_id="<d:property value="id"/>" title="Edit"></a>
                                             <a href="#" class="table-icon archive" item_id="<d:property value="id"/>" title="Archive"></a>

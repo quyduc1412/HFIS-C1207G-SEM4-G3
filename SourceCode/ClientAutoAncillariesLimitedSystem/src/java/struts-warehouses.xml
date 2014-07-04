@@ -17,5 +17,13 @@
             <result type="json">
             </result>
         </action>
+        <action class="autoancillarieslimited.action.warehouses.GetWareHouseAction" name="getwarehousebyid">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.warehouses.UpdateWareHousesAction" name="updatewarehouses">
+            <result type="json">
+            </result>
+        </action>
     </package>
 </struts>
