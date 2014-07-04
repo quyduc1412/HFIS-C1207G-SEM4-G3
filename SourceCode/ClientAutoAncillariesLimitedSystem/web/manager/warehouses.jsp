@@ -31,6 +31,9 @@
                 });
             });
         </script>
+        <script src="js/jquery.validationEngine-en.js" type="text/javascript"></script>
+        <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
+        <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script src="js/model/reponse.js" type="text/javascript"></script>
         <script src="js/view/warehouses.js" type="text/javascript"></script>
         <style>

@@ -3,22 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package autoancillarieslimited.action.warehouses;
 
-package autoancillarieslimited.action.item;
-
-import autoancillarieslimited.hiberate.dao.ProductDAO;
-import autoancillarieslimited.hiberate.entities.Item;
+import autoancillarieslimited.hiberate.dao.WareHousesDAO;
+import autoancillarieslimited.hiberate.entities.WareHouses;
 import autoancillarieslimited.hiberate.util.StringUtils;
-import autoancillarieslimited.parser.ParserUtil;
-import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
  *
  * @author Duc
  */
-public class DeleteItem extends ActionSupport{
-    
+public class DeleteWarehouseAction extends ActionSupport {
+
     private String data_request;
 
     private String data_response;
@@ -37,23 +34,23 @@ public class DeleteItem extends ActionSupport{
         this.data_response = data_response;
     }
 
-    public DeleteItem() {
-    }
-
     public int getCode() {
         return code;
     }
-    public String delete(){
-        try{
-        if (data_request != null) {
-            ProductDAO.getInstance().deleteByID(Integer.parseInt(data_request), Item.class);
-            code = 400;
-            data_response = StringUtils.DELETE_ITEM_SUCCESS;
-        }
-        }catch(Exception ex){
-            code = StringUtils.FAILD;
+
+    public DeleteWarehouseAction() {
+    }
+
+    public String execute() {
+        try {
+            WareHousesDAO.getInstance().deleteByID(Integer.parseInt(data_request), WareHouses.class);
+            data_response = StringUtils.DELETE_WAREHOUSE_SUCCESS;
+            code = StringUtils.SUCCESS;
+        } catch (Exception ex) {
             data_response = ex.getMessage();
+            code = StringUtils.FAILD;
         }
         return SUCCESS;
     }
+
 }

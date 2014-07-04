@@ -13,5 +13,9 @@
             <result type="json">
             </result>
         </action>
+        <action class="autoancillarieslimited.action.warehouses.DeleteWarehouseAction" name="deletewarehouse">
+            <result type="json">
+            </result>
+        </action>
     </package>
 </struts>

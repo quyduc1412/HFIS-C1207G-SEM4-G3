@@ -13,7 +13,7 @@ $(document).ready(function() {
                 'address': 'P2',
                 'phone': 'P3',
                 'email': 'P4',
-                'region' : 'P5'
+                'region': 'P5'
             };
         }
     });
@@ -40,7 +40,7 @@ $(document).ready(function() {
         });
 
     });
-    
+
     var getRegion = function(after, data2) {
         var onGetListSuccess = function(result) {
             var data = "";
@@ -52,9 +52,18 @@ $(document).ready(function() {
         };
         _service.call('getRegion', '', onGetListSuccess);
     };
-    
+
+    $('.table-icon.delete').on('click', function(e) {
+        e.preventDefault();
+        var response = $(this).attr("item_id");
+        $("#overlay #context").load("views/confirm_dialog.html", function() {
+            $(document).trigger('COMFIRM_LOADED', ['You Want Delete This Warehous ?', response]);
+            $('#overlay').fadeIn();
+        });
+    });
+
     $(document).on('DIALOG_WAREHOUSES_LOADED', function(event, data_method) {
-//        $("#form_dialog_item").validationEngine();
+        $("#form_dialog_warehouses").validationEngine();
         $('#overlay .cancel').on('click', function(e) {
             e.preventDefault();
             $('#overlay').fadeOut();
@@ -95,13 +104,41 @@ $(document).ready(function() {
                 if (result.code === 400) {
                 }
             };
-            alert(data.toJsonString());
-
-            if (data_method === 1) {
-                _service.call('addwarehouse', data.toJsonString(), onInsertSuccess);
+            var valid = $("#form_dialog_warehouses").validationEngine('validate');
+            if (valid === true) {
+                if (data_method === 1) {
+                    _service.call('addwarehouse', data.toJsonString(), onInsertSuccess);
+                } else {
+                    _service.call('addwarehouse', data.toJsonString(), onInsertSuccess);
+                }
             } else {
-                _service.call('addwarehouse', data.toJsonString(), onInsertSuccess);
+                $("#form_dialog_warehouses").validationEngine();
             }
+        });
+    });
+    $(document).on('COMFIRM_LOADED', function(event, data, item_id) {
+        $('.half_w.dialog.confirm h3.title').html(data);
+        $('.half_w.dialog.confirm .yes').on('click', function() {
+            _service.call('deletewarehouse', item_id, function(result) {
+                if (result.code === 400) {
+                    $('#overlay').fadeOut();
+                }
+                $('#message').text(result.data_response);
+                $('#message').fadeIn();
+                setTimeout(
+                        function()
+                        {
+                            $('#message').fadeOut();
+                            if (result.code === 400) {
+                                location.reload();
+                            }
+                        }, 3000);
+                if (result.code === 400) {
+                }
+            });
+        });
+        $('.half_w.dialog.confirm .no').on('click', function(e) {
+            $('#overlay').fadeOut();
         });
     });
 });

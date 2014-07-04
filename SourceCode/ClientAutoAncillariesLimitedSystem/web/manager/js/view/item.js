@@ -101,7 +101,7 @@ $(document).ready(function() {
 
     });
     $(document).on('DIALOG_ITEM_LOADED', function(event, data_method) {
-         $("#form_dialog_item").validationEngine();
+        $("#form_dialog_item").validationEngine();
         if (data_method === 1) {
             images_data = "";
         }
@@ -157,18 +157,38 @@ $(document).ready(function() {
                 if (result.code === 400) {
                 }
             };
-            if (data_method === 1) {
-                _service.call('insertItem', data.toJsonString(), onInsertSuccess);
-            } else {
-                _service.call('updateItem', data.toJsonString(), onInsertSuccess);
+
+            var valid = $("#form_dialog_item").validationEngine('validate');
+            if (valid === true) {
+                if (data_method === 1) {
+                    _service.call('insertItem', data.toJsonString(), onInsertSuccess);
+                } else {
+                    _service.call('updateItem', data.toJsonString(), onInsertSuccess);
+                }
+            }else{
+                $("#form_dialog_item").validationEngine();
             }
         });
     });
     $(document).on('COMFIRM_LOADED', function(event, data, item_id) {
         $('.half_w.dialog.confirm h3.title').html(data);
         $('.half_w.dialog.confirm .yes').on('click', function(e) {
-            _service.call('deleteItem', item_id, function() {
-                $('#overlay').fadeOut();
+            _service.call('deleteItem', item_id, function(result) {
+                if (result.code === 400) {
+                    $('#overlay').fadeOut();
+                }
+                $('#message').text(result.data_response);
+                $('#message').fadeIn();
+                setTimeout(
+                        function()
+                        {
+                            $('#message').fadeOut();
+                            if (result.code === 400) {
+                                location.reload();
+                            }
+                        }, 3000);
+                if (result.code === 400) {
+                }
             });
         });
         $('.half_w.dialog.confirm .no').on('click', function(e) {

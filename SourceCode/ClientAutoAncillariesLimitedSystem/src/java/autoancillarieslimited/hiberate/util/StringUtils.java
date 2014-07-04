@@ -13,8 +13,10 @@ package autoancillarieslimited.hiberate.util;
 public class StringUtils {
     public static final String ADD_ITEM_SUCCESS = "Add Item Success";
     public static final String ADD_ITEM_FAILD = "Add Item Faild";
+    public static final String DELETE_ITEM_SUCCESS = "Delete item success!";
     public static final String ADD_WAREHOUSE_SUCCESS = "Add WareHouse Success";
     public static final String ADD_WAREHOUSE_FAILD = "Add WareHouse Faild";
+    public static final String DELETE_WAREHOUSE_SUCCESS = "Delete WAreHouse success!";
     public static final int SUCCESS = 400;
     public static final int FAILD = 405;
 }
