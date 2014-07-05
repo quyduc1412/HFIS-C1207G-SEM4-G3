@@ -20,5 +20,8 @@
         <action class="autoancillarieslimited.action.EmployeeAction" name="employees">
             <result>employees.jsp</result>
         </action>
+        <action class="autoancillarieslimited.action.CustomerAction" name="customer">
+            <result>customer.jsp</result>
+        </action>
     </package>
 </struts>

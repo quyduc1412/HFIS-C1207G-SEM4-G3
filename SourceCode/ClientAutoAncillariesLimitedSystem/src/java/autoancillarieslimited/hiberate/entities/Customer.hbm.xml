@@ -6,34 +6,37 @@
     <class name="autoancillarieslimited.hiberate.entities.Customer" table="Customer" schema="dbo" catalog="AutoAncillariesLimitedDB">
         <id name="id" type="int">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
-        <property name="email" type="serializable">
+        <property name="email" type="string">
             <column name="Email" />
         </property>
-        <property name="firstName" type="serializable">
+        <property name="firstName" type="string">
             <column name="FirstName" />
         </property>
-        <property name="lastName" type="serializable">
+        <property name="lastName" type="string">
             <column name="LastName" />
         </property>
-        <property name="passWord" type="serializable">
+        <property name="passWord" type="string">
             <column name="PassWord" />
         </property>
-        <property name="phoneNumber" type="serializable">
+        <property name="phoneNumber" type="string">
             <column name="PhoneNumber" />
         </property>
         <property name="gender" type="java.lang.Boolean">
             <column name="Gender" />
         </property>
-        <property name="address" type="serializable">
+        <property name="address" type="string">
             <column name="Address" />
         </property>
-        <property name="city" type="serializable">
+        <property name="city" type="string">
             <column name="City" />
         </property>
-        <property name="country" type="serializable">
+        <property name="country" type="string">
             <column name="Country" />
+        </property>
+        <property name="status" type="int">
+            <column name="Status" />
         </property>
     </class>
 </hibernate-mapping>
