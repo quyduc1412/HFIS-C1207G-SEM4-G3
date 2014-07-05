@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package autoancillarieslimited.action.warehouses;
+package autoancillarieslimited.action.employee;
 
+import autoancillarieslimited.hiberate.dao.EmployeeDAO;
 import autoancillarieslimited.hiberate.dao.WareHousesDAO;
+import autoancillarieslimited.hiberate.entities.Employee;
 import autoancillarieslimited.hiberate.entities.WareHouses;
 import autoancillarieslimited.hiberate.util.StringUtils;
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
  *
  * @author Duc
  */
-public class UpdateWareHousesAction extends ActionSupport {
+public class UpdateEmployee extends ActionSupport {
 
     private String data_request;
 
@@ -38,21 +41,19 @@ public class UpdateWareHousesAction extends ActionSupport {
         return code;
     }
 
-    public UpdateWareHousesAction() {
+    public UpdateEmployee() {
     }
 
-    @Override
-    public String execute() {
-        try {
-            WareHouses houses = WareHouses.parserWarehouses(data_request);
+    public String execute() throws Exception {
+         try {
+            Employee houses = Employee.parserEmployee(data_request);
             if (houses != null) {
-                WareHousesDAO.getInstance().update(houses);
-//                WareHouses byID = WareHousesDAO.getInstance().getByID(houses.getId(), WareHouses.class);
-
-//                byID.setAddress(houses.getAddress());
-//                byID.setEmail(houses.set);
+                EmployeeDAO.getInstance().update(houses);
+                WareHouses byID = WareHousesDAO.getInstance().getByID(houses.getWareHouses_ID(), WareHouses.class);
+                houses.setWareHouses(byID);
+                EmployeeDAO.getInstance().update(houses);
                 code = StringUtils.SUCCESS;
-                data_response = StringUtils.UPDATE_WAREHOUSE_SUCCESS;
+                data_response = StringUtils.UPDATE_EMPLOYEE_SUCCESS;
             } else {
             }
         } catch (Exception ex) {

@@ -3,31 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package autoancillarieslimited.action.employee;
 
-package autoancillarieslimited.action.item;
-
-import autoancillarieslimited.hiberate.dao.ProductDAO;
-import autoancillarieslimited.hiberate.entities.Item;
+import autoancillarieslimited.hiberate.dao.EmployeeDAO;
+import autoancillarieslimited.hiberate.dao.WareHousesDAO;
+import autoancillarieslimited.hiberate.entities.Employee;
+import autoancillarieslimited.hiberate.entities.WareHouses;
 import autoancillarieslimited.hiberate.util.StringUtils;
-import autoancillarieslimited.parser.ParserUtil;
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
-import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
  * @author Duc
  */
-public class AddItem extends ActionSupport{
-    
+public class DeleteEmployee extends ActionSupport {
 
-    private File fileUpload;
-
-    public void setFileUpload(File fileUpload) {
-        this.fileUpload = fileUpload;
-    }
-    
     private String data_request;
 
     private String data_response;
@@ -46,27 +37,23 @@ public class AddItem extends ActionSupport{
         this.data_response = data_response;
     }
 
-    public AddItem() {
-    }
-
     public int getCode() {
         return code;
     }
 
-    public String insert() throws Exception {
-        try{
-        if (data_request != null) {
-            Item parserItem = ParserUtil.parserItem(data_request);
-            ProductDAO.getInstance().insert(parserItem);
+    public DeleteEmployee() {
+    }
+
+    public String execute() throws Exception {
+        try {
+            EmployeeDAO.getInstance().deleteByID(Integer.parseInt(data_request), Employee.class);
+            data_response = StringUtils.DELETE_EMPLOYEE_SUCCESS;
             code = StringUtils.SUCCESS;
-            data_response = StringUtils.ADD_ITEM_SUCCESS;
-        }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             data_response = ex.getMessage();
             code = StringUtils.FAILD;
         }
         return SUCCESS;
     }
 
-    
 }

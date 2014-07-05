@@ -8,6 +8,7 @@ package autoancillarieslimited.action.item;
 
 import autoancillarieslimited.hiberate.dao.ProductDAO;
 import autoancillarieslimited.hiberate.entities.Item;
+import autoancillarieslimited.hiberate.util.StringUtils;
 import autoancillarieslimited.parser.ParserUtil;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
@@ -43,7 +44,8 @@ public class UpdateItem extends ActionSupport{
         return code;
     }
 
-    public String update() throws Exception {
+    public String update(){
+        try{
         if (data_request != null) {
             Item parserItem = ParserUtil.parserItem(data_request);
             Item byID = ProductDAO.getInstance().getByID(parserItem.getId(), Item.class);
@@ -56,14 +58,13 @@ public class UpdateItem extends ActionSupport{
                 byID.setTypeItem(parserItem.getTypeItem());
                 ProductDAO.getInstance().update(byID);
             }
-            data_response = "1234";
-            code = 400;
+            data_response = StringUtils.UPDATE_ITEM_SUCCESS;
+            code = StringUtils.SUCCESS;;
+        }
+        }catch(Exception ex){
+            code = StringUtils.FAILD;
+            data_response = ex.getMessage();
         }
         return SUCCESS;
     }
-//    public static void main(String[] args) {
-//        Item byID = ProductDAO.getInstance().getByID(61, Item.class);
-//        byID.setDescription("Description Item 2 2 2 2");
-//        ProductDAO.getInstance().update(byID);
-//    }
 }

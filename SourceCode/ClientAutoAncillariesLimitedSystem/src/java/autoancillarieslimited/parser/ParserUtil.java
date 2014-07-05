@@ -6,6 +6,8 @@
 package autoancillarieslimited.parser;
 
 import autoancillarieslimited.hiberate.dao.ProductDAO;
+import autoancillarieslimited.hiberate.dao.WareHousesDAO;
+import autoancillarieslimited.hiberate.entities.Employee;
 import autoancillarieslimited.hiberate.entities.Item;
 import autoancillarieslimited.hiberate.entities.TypeItem;
 import autoancillarieslimited.hiberate.entities.WareHouses;
@@ -50,7 +52,34 @@ public class ParserUtil {
         }
     }
 
-    public  static  String parserItemJSon(Item item) {
+    public static Employee parserEmployeeFromJSON(String dataJson) {
+        try {
+            Employee i = new Employee();
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(dataJson);
+            JSONObject jsonObject = (JSONObject) obj;
+            int id = Integer.parseInt((String) jsonObject.get("P0"));
+            int warehouse_id = Integer.parseInt((String) jsonObject.get("P1"));
+            String email = (String) jsonObject.get("P2");
+            String password = (String) jsonObject.get("P3");
+            String name = (String) jsonObject.get("P4");
+            String address = (String) jsonObject.get("P5");
+            String phone = (String) jsonObject.get("P6");
+            i.setId(id);
+            i.setEmail(email);
+            i.setPassword(password);
+            i.setName(name);
+            i.setAddress(address);
+            i.setPhone(phone);
+            WareHouses houses = WareHousesDAO.getInstance().getByID(warehouse_id, WareHouses.class);
+            i.setWareHouses(houses);
+            return i;
+        } catch (Exception ex) {
+            return null;
+        }
+    }
+
+    public static String parserItemJSon(Item item) {
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("P0", item.getId());
         jSONObject.put("P1", item.getName());
@@ -60,8 +89,8 @@ public class ParserUtil {
         jSONObject.put("P6", item.getImages());
         return jSONObject.toString();
     }
-    
-    public static WareHouses parserWarehouses(String dataJson){
+
+    public static WareHouses parserWarehouses(String dataJson) {
         try {
             WareHouses i = new WareHouses();
             JSONParser parser = new JSONParser();

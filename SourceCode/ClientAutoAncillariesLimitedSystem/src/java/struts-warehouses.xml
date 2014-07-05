@@ -25,5 +25,9 @@
             <result type="json">
             </result>
         </action>
+        <action class="autoancillarieslimited.action.warehouses.GetAllWareHouses" name="getallwarehouses">
+            <result type="json">
+            </result>
+        </action>
     </package>
 </struts>

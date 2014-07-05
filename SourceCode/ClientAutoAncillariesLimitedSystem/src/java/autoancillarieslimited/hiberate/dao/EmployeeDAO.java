@@ -27,6 +27,37 @@ public class EmployeeDAO extends AbstractDao<Employee>{
         }
         return INSTANCE;
     }
+    
+    
+    public List<Employee> getEmployees(Employee filter) {
+        List<Employee> set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            if (filter.getWareHouses_ID() != 0) {
+                set = session.createQuery("from Employee where Name like '%" + filter.getName() + "%' AND WareHouses_ID ='" + filter.getWareHouses_ID()+ "' ").list();
+            } else {
+                set = session.createQuery("from Employee where Name like '%" + filter.getName() + "%'").list();
+            }
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
+    
     public List<Employee> getEmployees() {
         List<Employee> set = null;
         Session session = null;

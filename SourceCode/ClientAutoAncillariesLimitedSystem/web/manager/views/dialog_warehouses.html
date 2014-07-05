@@ -9,7 +9,7 @@ and open the template in the editor.
     <form id="form_dialog_warehouses" action="" method="post">
         <div class="element">
             <label for="name">Name <span class="red">(required)</span></label>
-            <input id="name" name="name" class="validate[required,maxSize[20]] text err">
+            <input id="name" name="name" class="validate[required,maxSize[20]] text">
         </div>
         <div class="element">
             <div style="float: left;width: 50%;">
@@ -19,18 +19,18 @@ and open the template in the editor.
             </div>
             <div style="float: left;width: 50%;">
                 <label for="price">Phone <span class="red">(required)</span></label>
-                <input id="phone" name="phone" class="validate[required,custom[integer],maxSize[11]] text err">
+                <input id="phone" name="phone" class="validate[required,custom[integer],maxSize[11]] text">
             </div>
         </div>
         <div class="element">
-            <label for="content">Address <span>(required)</span></label>
+            <label for="content">Address <span class="red">(required)</span></label>
             <textarea name="address" class="validate[required,maxSize[50]] textarea" rows="6" id="address"></textarea>
         </div>
         <div id="images_form" class="element">
         </div>
         <div class="element">
-            <label for="email">Email</label>
-            <input id="email" name="email" class="validate[required,custom[email]] text err">
+            <label for="email">Email<span class="red">(required)</span></label>
+            <input id="email" name="email" class="validate[required,custom[email],maxSize[30]] text err">
         </div>
         <div class="entry">
             <button type="submit" class="add">Save Warehouses</button> <button class="cancel">Cancel</button>

@@ -6,6 +6,7 @@
     <!-- Configuration for the default package. -->
     <include file="struts-item.xml"/>
     <include file="struts-warehouses.xml"/>
+    <include file="struts-employee.xml"/>
     <package name="default" extends="struts-default,json-default" namespace="/manager">
         <action class="autoancillarieslimited.action.Index" name="index">
             <result>index.jsp</result>

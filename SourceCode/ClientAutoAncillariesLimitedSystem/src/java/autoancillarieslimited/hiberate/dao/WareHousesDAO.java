@@ -29,7 +29,7 @@ public class WareHousesDAO extends AbstractDao<WareHouses> {
         }
         return INSTANCE;
     }
-    
+
     public List<WareHouses> getWareHouses() {
         List<WareHouses> set = null;
         Session session = null;
@@ -53,7 +53,35 @@ public class WareHousesDAO extends AbstractDao<WareHouses> {
         }
         return set;
     }
-    
+
+    public List<WareHouses> getWareHouses(WareHouses filter) {
+        List<WareHouses> set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            if (filter.getRegion_ID() != 0) {
+                set = session.createQuery("from WareHouses where Name like '%" + filter.getName() + "%' AND Region_ID ='" + filter.getRegion_ID() + "' ").list();
+            } else {
+                set = session.createQuery("from WareHouses where Name like '%" + filter.getName() + "%'").list();
+            }
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
     public List<Region> getRegion() {
         List<Region> set = null;
         Session session = null;
@@ -75,8 +103,8 @@ public class WareHousesDAO extends AbstractDao<WareHouses> {
         }
         return set;
     }
-    
-    public Region getRegionByID(int id){
+
+    public Region getRegionByID(int id) {
         Region item = null;
         Session session = null;
         Transaction beginTransaction = null;

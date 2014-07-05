@@ -17,7 +17,12 @@ $(document).ready(function() {
             };
         }
     });
-    
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
     var onFillData = function(result) {
         $('#overlay').fadeIn();
         var item = new WareHouses();
@@ -64,7 +69,20 @@ $(document).ready(function() {
         };
         _service.call('getRegion', '', onGetListSuccess);
     };
-
+    var onLoadRegionSuccess = function(result) {
+        var data = "";
+        data += "<option value='all'>All</option>";
+        var param = getParameterByName("category");
+        $.each(result.list, function(index, value) {
+            if (param.indexOf(value.id) !== -1) {
+                data += "<option value='" + value.id + "' selected>" + value.name + "</option>";
+            } else {
+                data += "<option value='" + value.id + "'>" + value.name + "</option>";
+            }
+        });
+        $('#filterCategory').html(data);
+    };
+    _service.call('getRegion', '', onLoadRegionSuccess);
     $('.table-icon.delete').on('click', function(e) {
         e.preventDefault();
         var response = $(this).attr("item_id");
@@ -100,9 +118,7 @@ $(document).ready(function() {
             data.set('phone', phone);
             data.set('email', email);
             var onInsertSuccess = function(result) {
-                if (result.code === 400) {
-                    $('#overlay').fadeOut();
-                }
+                $('#overlay').fadeOut();
                 $('#message').text(result.data_response);
                 $('#message').fadeIn();
                 setTimeout(
@@ -132,9 +148,7 @@ $(document).ready(function() {
         $('.half_w.dialog.confirm h3.title').html(data);
         $('.half_w.dialog.confirm .yes').on('click', function() {
             _service.call('deletewarehouse', item_id, function(result) {
-                if (result.code === 400) {
-                    $('#overlay').fadeOut();
-                }
+                $('#overlay').fadeOut();
                 $('#message').text(result.data_response);
                 $('#message').fadeIn();
                 setTimeout(

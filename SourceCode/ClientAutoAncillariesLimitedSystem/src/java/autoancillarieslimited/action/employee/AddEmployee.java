@@ -4,31 +4,20 @@
  * and open the template in the editor.
  */
 
-package autoancillarieslimited.action.item;
+package autoancillarieslimited.action.employee;
 
-import autoancillarieslimited.hiberate.dao.ProductDAO;
-import autoancillarieslimited.hiberate.entities.Item;
+import autoancillarieslimited.hiberate.dao.EmployeeDAO;
+import autoancillarieslimited.hiberate.entities.Employee;
 import autoancillarieslimited.hiberate.util.StringUtils;
 import autoancillarieslimited.parser.ParserUtil;
 import com.opensymphony.xwork2.ActionSupport;
-import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  *
  * @author Duc
  */
-public class AddItem extends ActionSupport{
-    
-
-    private File fileUpload;
-
-    public void setFileUpload(File fileUpload) {
-        this.fileUpload = fileUpload;
-    }
-    
-    private String data_request;
+public class AddEmployee extends ActionSupport {
+     private String data_request;
 
     private String data_response;
 
@@ -46,27 +35,25 @@ public class AddItem extends ActionSupport{
         this.data_response = data_response;
     }
 
-    public AddItem() {
-    }
-
     public int getCode() {
         return code;
     }
-
-    public String insert() throws Exception {
+    public AddEmployee() {
+    }
+    
+    public String execute(){
         try{
-        if (data_request != null) {
-            Item parserItem = ParserUtil.parserItem(data_request);
-            ProductDAO.getInstance().insert(parserItem);
+        Employee e = ParserUtil.parserEmployeeFromJSON(data_request);
+        if(e != null){
+            EmployeeDAO.getInstance().insert(e);
             code = StringUtils.SUCCESS;
-            data_response = StringUtils.ADD_ITEM_SUCCESS;
+            data_response = StringUtils.ADD_EMPLOYEE_SUCCESS;
         }
         }catch(Exception ex){
-            data_response = ex.getMessage();
+            data_response = StringUtils.ADD_EMPLOYEE_FAILD + " " + ex.getMessage();
             code = StringUtils.FAILD;
         }
         return SUCCESS;
     }
-
     
 }

@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
-        <title>SimpleAdmin</title>
+        <title>Manager Items Page</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
         <script src="js/jquery1.9.1.min.js" type="text/javascript"></script>
@@ -126,8 +126,8 @@
                 <%@include file="sidebar.jsp" %>
                 <div id="main">
                     <div class="full_w">
-                        <div class="h_title">Manager Items</div>
-                        <h2>Manager Item Page</h2>
+                        <div class="h_title">Manager Items Page</div>
+                        <h2>Manager Items Page</h2>
                         <div>
                             <form method="get">
                                 <div style="float: right;margin-right: 5px">
@@ -171,7 +171,7 @@
                             </tbody>
                         </table>
                         <div class="entry">
-                            <div class="pagination">
+<!--                            <div class="pagination">
                                 <span>« First</span>
                                 <span class="active">1</span>
                                 <a href="">2</a>
@@ -181,9 +181,9 @@
                                 <a href="">23</a>
                                 <a href="">24</a>
                                 <a href="">Last »</a>
-                            </div>
+                            </div>-->
                             <div class="sep"></div>		
-                            <a class="button add" href="">Add new page</a> <a class="button" href="">Categories</a> 
+                            <a class="button add" href="">New Item</a>
                         </div>
                     </div>
                 </div>

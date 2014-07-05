@@ -50,7 +50,7 @@ $(document).ready(function() {
         var arr_image = images.split(';');
         for (var i = 0; i < arr_image.length; i++) {
             if (arr_image[i] !== '') {
-                $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + arr_image[i] + "' src='../upload/" + arr_image[i] + "' alt='' style='width: 20%;float:left;display: inline-block'/>");
+                $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + arr_image[i] + "' src='../upload/" + arr_image[i] + "' alt='' style='width: 20%;float:left;display: inline-block';height:122px;/>");
             }
         }
         $(document).trigger('RELOAD_IMAGES');
@@ -124,6 +124,7 @@ $(document).ready(function() {
         $('.dialog.additem .add').on('click', function(e) {
             e.preventDefault();
 
+            $("#form_dialog_item").validationEngine();
             var id = $('.dialog.additem #id').html();
             var name = $('.dialog.additem #name').val();
             var category = $('.dialog.additem #category').val();
@@ -141,9 +142,7 @@ $(document).ready(function() {
             data.set('price', price);
             data.set('images', images_data);
             var onInsertSuccess = function(result) {
-                if (result.code === 400) {
-                    $('#overlay').fadeOut();
-                }
+                $('#overlay').fadeOut();
                 $('#message').text(result.data_response);
                 $('#message').fadeIn();
                 setTimeout(
@@ -165,7 +164,7 @@ $(document).ready(function() {
                 } else {
                     _service.call('updateItem', data.toJsonString(), onInsertSuccess);
                 }
-            }else{
+            } else {
                 $("#form_dialog_item").validationEngine();
             }
         });
@@ -174,9 +173,7 @@ $(document).ready(function() {
         $('.half_w.dialog.confirm h3.title').html(data);
         $('.half_w.dialog.confirm .yes').on('click', function(e) {
             _service.call('deleteItem', item_id, function(result) {
-                if (result.code === 400) {
-                    $('#overlay').fadeOut();
-                }
+                $('#overlay').fadeOut();
                 $('#message').text(result.data_response);
                 $('#message').fadeIn();
                 setTimeout(

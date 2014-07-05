@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
-        <title>SimpleAdmin</title>
+        <title>Manager Warehourses Page</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
         <link href="js/uploadfile.min.css" rel="stylesheet" type="text/css"/>
@@ -131,7 +131,7 @@
                         <div>
                             <form method="get">
                                 <div style="float: right;margin-right: 5px">
-                                    <a>Category</a><select name="category" id="filterCategory"></select><a>Name</a><input type="search" name="name" value="<d:property value="name"/>"/><input type="submit" value="Search" />
+                                    <a>Region</a><select name="category" id="filterCategory"></select><a>Name</a><input type="search" name="name" value="<d:property value="name"/>"/><input type="submit" value="Search" />
                                 </div>
                             </form>
                         </div>
@@ -171,7 +171,7 @@
                             </tbody>
                         </table>
                         <div class="entry">
-                            <div class="pagination">
+<!--                            <div class="pagination">
                                 <span>« First</span>
                                 <span class="active">1</span>
                                 <a href="">2</a>
@@ -181,9 +181,9 @@
                                 <a href="">23</a>
                                 <a href="">24</a>
                                 <a href="">Last »</a>
-                            </div>
+                            </div>-->
                             <div class="sep"></div>		
-                            <a class="button add" href="">Add new page</a> <a class="button" href="">Categories</a> 
+                            <a class="button add" href="">New Warehouse</a> <a class="button" href="employees">Manager Employee</a> 
                         </div>
                     </div>
                 </div>

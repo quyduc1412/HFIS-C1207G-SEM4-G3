@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
-        <title>SimpleAdmin</title>
+        <title>Manager Employee Page</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
         <link href="js/uploadfile.min.css" rel="stylesheet" type="text/css"/>
@@ -127,11 +127,11 @@
                 <div id="main">
                     <div class="full_w">
                         <div class="h_title">Manager Employee Page</div>
-                        <h2>Manager Warehourses Page</h2>
+                        <h2>Manager Employee Page</h2>
                         <div>
                             <form method="get">
                                 <div style="float: right;margin-right: 5px">
-                                    <a>Category</a><select name="category" id="filterCategory"></select><a>Name</a><input type="search" name="name" value="<d:property value="name"/>"/><input type="submit" value="Search" />
+                                    <a>Warehouse</a><select name="category" id="filterCategory"></select><a>Name</a><input type="search" name="name" value="<d:property value="name"/>"/><input type="submit" value="Search" />
                                 </div>
                             </form>
                         </div>
@@ -142,6 +142,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Warehouse</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Address</th>
@@ -154,6 +155,7 @@
                                 <d:iterator value="list">
                                     <tr>
                                         <td class="align-center"><d:property value="id"/></td>
+                                        <td class="align-center"><d:property value="email"/></td>
                                         <td class="align-center">(ID:<d:property value="wareHouses.id"/>) <d:property value="wareHouses.name"/></td>
                                         <td class="align-center"><d:property value="name"/></td>
                                         <td class="align-center"><d:property value="address"/></td>
@@ -169,7 +171,7 @@
                             </tbody>
                         </table>
                         <div class="entry">
-                            <div class="pagination">
+<!--                            <div class="pagination">
                                 <span>« First</span>
                                 <span class="active">1</span>
                                 <a href="">2</a>
@@ -179,9 +181,9 @@
                                 <a href="">23</a>
                                 <a href="">24</a>
                                 <a href="">Last »</a>
-                            </div>
+                            </div>-->
                             <div class="sep"></div>		
-                            <a class="button add" href="">Add new page</a> <a class="button" href="">Categories</a> 
+                            <a class="button add" href="">New Employee</a> <a class="button" href="warehouses">Manager Warehouse</a> 
                         </div>
                     </div>
                 </div>
