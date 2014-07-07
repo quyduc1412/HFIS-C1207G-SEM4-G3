@@ -96,17 +96,17 @@ button:hover, .button:hover{
 .right h3{	margin: 0 0 8px 0;}
 .right p{	margin: 0 0 8px 0;}
 
-#main form{
+#main{
 	margin: 15px;
 }
-#main form .element{
+#main .element{
 	clear: both;
 	border-bottom: 1px dashed #ededed;
 	display: block;
 	margin: 0;
 	padding: 10px 10px;
 }
-#main form label{
+#main label{
 	color: #575757;
 	display: block;
 	font-size: 12px;
@@ -114,12 +114,12 @@ button:hover, .button:hover{
 	margin: 0 0 5px 0;
 	padding: 0 0 0 3px;
 }
-#main form label span{
+#main label span{
 	color: #b8b8b8;
 	font-size: 11px;
 	font-weight: normal;
 }
-#main form input, #main form select, #main form textarea{
+#main input, #main select, #main textarea{
 	background: #FFFFFF;
 	border: 1px solid #DDDDDD;
 	border-radius: 3px;
@@ -127,19 +127,19 @@ button:hover, .button:hover{
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	padding: 5px 3px;
 }
-#main form input:focus, #main form select:focus, #main form textarea:focus{	border: 1px solid #b3b3b3;}
+#main input:focus, #main select:focus, #main textarea:focus{	border: 1px solid #b3b3b3;}
 
-#main form select{
+#main select{
 	border: 1px solid #DDDDDD;
 	border-radius: 3px;
 
 }
-#main form .text{
+#main .text{
 	margin: 0 0 12px 0;
 	width: 98%;
 }
 
-#main form .ok{
+#main .ok{
 	background: #F3F3F3 url(../img/i_ok.png) no-repeat 4px center;
 	padding-left: 25px;
 }

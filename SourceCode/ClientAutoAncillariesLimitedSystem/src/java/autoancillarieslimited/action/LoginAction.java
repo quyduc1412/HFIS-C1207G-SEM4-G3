@@ -22,10 +22,11 @@ public class LoginAction extends ActionSupport implements ServletResponseAware{
     public String execute() throws Exception {
         return SUCCESS;
     }
-
+    
     @Override
     public void setServletResponse(HttpServletResponse hsr) {
         response = hsr;
+        
     }
     
 }
