@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package autoancillarieslimited.action.employee;
+package autoancillarieslimited.action.customer;
 
+import autoancillarieslimited.hiberate.dao.CustomerDAO;
 import autoancillarieslimited.hiberate.dao.EmployeeDAO;
+import autoancillarieslimited.hiberate.entities.Customer;
 import autoancillarieslimited.hiberate.entities.Employee;
 import autoancillarieslimited.hiberate.util.StringUtils;
 import autoancillarieslimited.parser.ParserUtil;
@@ -15,7 +17,7 @@ import com.opensymphony.xwork2.ActionSupport;
  *
  * @author Duc
  */
-public class AddEmployee extends ActionSupport {
+public class AddCustomerAction extends ActionSupport {
 
     private String data_request;
 
@@ -39,14 +41,14 @@ public class AddEmployee extends ActionSupport {
         return code;
     }
 
-    public AddEmployee() {
+    public AddCustomerAction() {
     }
 
-    public String execute() {
+    public String execute() throws Exception {
         try {
-            Employee e = ParserUtil.parserEmployeeFromJSON(data_request);
-            if (e != null) {
-                EmployeeDAO.getInstance().insert(e);
+            Customer c = ParserUtil.parserCustomerFromJSON(data_request);
+            if (c != null) {
+                CustomerDAO.getInstance().insert(c);
                 code = StringUtils.SUCCESS;
                 data_response = StringUtils.ADD_EMPLOYEE_SUCCESS;
             }
@@ -54,6 +56,7 @@ public class AddEmployee extends ActionSupport {
             data_response = StringUtils.ADD_EMPLOYEE_FAILD + " " + ex.getMessage();
             code = StringUtils.FAILD;
         }
+
         return SUCCESS;
     }
 

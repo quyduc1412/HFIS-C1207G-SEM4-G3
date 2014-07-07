@@ -7,6 +7,7 @@ package autoancillarieslimited.parser;
 
 import autoancillarieslimited.hiberate.dao.ProductDAO;
 import autoancillarieslimited.hiberate.dao.WareHousesDAO;
+import autoancillarieslimited.hiberate.entities.Customer;
 import autoancillarieslimited.hiberate.entities.Employee;
 import autoancillarieslimited.hiberate.entities.Item;
 import autoancillarieslimited.hiberate.entities.TypeItem;
@@ -77,6 +78,36 @@ public class ParserUtil {
         } catch (Exception ex) {
             return null;
         }
+    }
+
+    public static Customer parserCustomerFromJSON(String dataJson) throws ParseException {
+            Customer i = new Customer();
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(dataJson);
+            JSONObject jsonObject = (JSONObject) obj;
+            int id = Integer.parseInt((String) jsonObject.get("P0"));
+            String email = (String) jsonObject.get("P1");
+            String firstName = (String) jsonObject.get("P2");
+            String lastName = (String) jsonObject.get("P3");
+            String passWord = (String) jsonObject.get("P4");
+            String phoneNumber = (String) jsonObject.get("P5");
+            boolean gender = Boolean.valueOf((String) jsonObject.get("P6"));
+            String address = (String) jsonObject.get("P7");
+            String city = (String) jsonObject.get("P8");
+            String country = (String) jsonObject.get("P9");
+            int status = Integer.parseInt((String) jsonObject.get("P10"));
+            i.setId(id);
+            i.setEmail(email);
+            i.setFirstName(firstName);
+            i.setLastName(lastName);
+            i.setPassWord(passWord);
+            i.setPhoneNumber(phoneNumber);
+            i.setGender(gender);
+            i.setAddress(address);
+            i.setCity(city);
+            i.setCountry(country);
+            i.setStatus(status);
+            return i;
     }
 
     public static String parserItemJSon(Item item) {

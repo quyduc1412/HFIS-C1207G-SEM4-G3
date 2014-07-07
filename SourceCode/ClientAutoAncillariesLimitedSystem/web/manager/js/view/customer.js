@@ -57,7 +57,7 @@ $(document).ready(function() {
     $('#main a.add').on('click', function(e) {
         e.preventDefault();
         $("#overlay #context").load("views/dialog_customer.html", function() {
-           // $(document).trigger('DIALOG_EMPLOYEE_LOADED', 1);
+            $(document).trigger('DIALOG_CUSTOMER_LOADED', 1);
             $('.dialog.additem #title-dialog').html('Add Employee');
             $('#overlay').fadeIn();
             //getWareHouses();
@@ -99,61 +99,71 @@ $(document).ready(function() {
 //        });
 //    });
 //
-//    $(document).on('DIALOG_EMPLOYEE_LOADED', function(event, data_method) {
-//        $("#form_dialog_employee").validationEngine();
-//        $('#overlay .cancel').on('click', function(e) {
-//            e.preventDefault();
-//            $('#overlay').fadeOut();
-//        });
-//        $('.dialog.additem .add').on('click', function(e) {
-//            e.preventDefault();
-//            var id = $('.dialog.additem #id').html();
-//            var wareHouses = $('.dialog.additem #warehouse').val();
-//            var email = $('.dialog.additem #email').val();
-//            var name = $('.dialog.additem #name').val();
-//            var address = $('.dialog.additem #address').val();
-//            var phone = $('.dialog.additem #phone').val();
-//            var password = $('.dialog.additem #password').val();
-//            var re_password = $('.dialog.additem #re-password').val();
-//            var data = new Employee();
-//            if (id === '') {
-//                data.set('id', '0');
-//            } else {
-//                data.set('id', id);
-//            }
-//            data.set('wareHouses', wareHouses);
-//            data.set('email', email);
-//            data.set('password', password);
-//            data.set('name', name);
-//            data.set('address', address);
-//            data.set('phone', phone);
-//            var onInsertSuccess = function(result) {
-//                $('#overlay').fadeOut();
-//                $('#message').text(result.data_response);
-//                $('#message').fadeIn();
-//                setTimeout(
-//                        function()
-//                        {
-//                            $('#message').fadeOut();
-//                            if (result.code === 400) {
-//                                location.reload();
-//                            }
-//                        }, 3000);
-//                if (result.code === 400) {
-//                }
-//            };
-//            var valid = $("#form_dialog_employee").validationEngine('validate');
-//            if (valid === true) {
-//                if (data_method === 1) {
-//                    _service.call('insertemployee', data.toJsonString(), onInsertSuccess);
-//                } else {
-//                    _service.call('updateemployee', data.toJsonString(), onInsertSuccess);
-//                }
-//            } else {
-//                $("#form_dialog_employee").validationEngine();
-//            }
-//        });
-//    });
+
+    $(document).on('DIALOG_CUSTOMER_LOADED', function(event, data_method) {
+        $("#form_dialog_customer").validationEngine();
+        $('#overlay .cancel').on('click', function(e) {
+            e.preventDefault();
+            $('#overlay').fadeOut();
+        });
+        $('.dialog.additem .add').on('click', function(e) {
+            e.preventDefault();
+            var id = $('.dialog.additem #id').html();
+            var email = $('.dialog.additem #email').val();
+            var fname = $('.dialog.additem #first-name').val();
+            var lname = $('.dialog.additem #last-name').val();
+            var password = $('.dialog.additem #password').val();
+            var re_password = $('.dialog.additem #re-password').val();
+            var phone = $('.dialog.additem #phone').val();
+            var gender = $('.dialog.additem #gender').val();
+            var address = $('.dialog.additem #address').val();
+            var city = $('.dialog.additem #city').val();
+            var country = $('.dialog.additem #country').val();
+           // var status = $('.dialog.additem #address').val();
+            var data = new Customer();
+            if (id === '') {
+                data.set('id', '0');
+            } else {
+                data.set('id', id);
+            }
+            data.set('email', email);
+            data.set('firstName', fname);
+            data.set('lastName', lname);
+            data.set('passWord', password);
+            data.set('phoneNumber', phone);
+            data.set('gender', gender);
+            data.set('address', address);
+            data.set('city', city);
+            data.set('country', country);
+            data.set('status','0');
+            var onInsertSuccess = function(result) {
+                $('#overlay').fadeOut();
+                $('#message').text(result.data_response);
+                $('#message').fadeIn();
+                setTimeout(
+                        function()
+                        {
+                            $('#message').fadeOut();
+                            if (result.code === 400) {
+                                location.reload();
+                            }
+                        }, 3000);
+                if (result.code === 400) {
+                }
+            };
+            var valid = $("#form_dialog_customer").validationEngine('validate');
+            if (valid === true) {
+                alert(data.toJsonString());
+                if (data_method === 1) {
+                    _service.call('insertcustomer', data.toJsonString(), onInsertSuccess);
+                } else {
+                    _service.call('insertcustomer', data.toJsonString(), onInsertSuccess);
+                }
+            } else {
+                $("#form_dialog_customer").validationEngine();
+            }
+        });
+    });
 //    $(document).on('COMFIRM_LOADED', function(event, data, item_id) {
 //        $('.half_w.dialog.confirm h3.title').html(data);
 //        $('.half_w.dialog.confirm .yes').on('click', function() {
