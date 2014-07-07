@@ -9,5 +9,17 @@
             <result type="json">
             </result>
         </action>
+        <action class="autoancillarieslimited.action.customer.GetCustomerAction" name="getcustomerbyid">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.customer.UpdateCustomerAction" name="updatecustomer">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.customer.DeleteCustomerAction" name="deletecustomer">
+            <result type="json">
+            </result>
+        </action>
     </package>
 </struts>

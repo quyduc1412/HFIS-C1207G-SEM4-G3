@@ -87,45 +87,13 @@
                         </div>
                     </div>
                 </div>
-                <div id="nav">
-                    <ul>
-                        <li class="upp"><a href="#">Main control</a>
-                            <ul>
-                                <li>&#8250; <a href="">Visit site</a></li>
-                                <li>&#8250; <a href="">Reports</a></li>
-                                <li>&#8250; <a href="">Add new page</a></li>
-                                <li>&#8250; <a href="">Site config</a></li>
-                            </ul>
-                        </li>
-                        <li class="upp"><a href="#">Manage content</a>
-                            <ul>
-                                <li>&#8250; <a href="">Show all pages</a></li>
-                                <li>&#8250; <a href="">Add new page</a></li>
-                                <li>&#8250; <a href="">Add new gallery</a></li>
-                                <li>&#8250; <a href="">Categories</a></li>
-                            </ul>
-                        </li>
-                        <li class="upp"><a href="#">Users</a>
-                            <ul>
-                                <li>&#8250; <a href="">Show all uses</a></li>
-                                <li>&#8250; <a href="">Add new user</a></li>
-                                <li>&#8250; <a href="">Lock users</a></li>
-                            </ul>
-                        </li>
-                        <li class="upp"><a href="#">Settings</a>
-                            <ul>
-                                <li>&#8250; <a href="">Site configuration</a></li>
-                                <li>&#8250; <a href="">Contact Form</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                <%@include file="navigation.jsp" %>
             </div>
 
             <div id="content">
                 <div id="main" style="width: 100% !important">
                     <div class="full_w">
-                        <div class="h_title">Manager Employee Page</div>
+                        <div class="h_title">Manager Customer Page</div>
                         <h2>Manager Employee Page</h2>
                         <div>
                             <form method="get">
@@ -192,7 +160,7 @@
                                 <a href="">Last »</a>
                             </div>-->
                             <div class="sep"></div>		
-                            <a class="button add" href="">New Employee</a> <a class="button" href="warehouses">Manager Warehouse</a> 
+                            <a class="button add" href="">New Customer</a> <a class="button" href="warehouses">Manager Warehouse</a> 
                         </div>
                     </div>
                 </div>

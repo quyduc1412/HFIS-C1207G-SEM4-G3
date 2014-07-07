@@ -7,17 +7,18 @@ package autoancillarieslimited.action.customer;
 
 import autoancillarieslimited.hiberate.dao.CustomerDAO;
 import autoancillarieslimited.hiberate.dao.EmployeeDAO;
+import autoancillarieslimited.hiberate.dao.WareHousesDAO;
 import autoancillarieslimited.hiberate.entities.Customer;
 import autoancillarieslimited.hiberate.entities.Employee;
+import autoancillarieslimited.hiberate.entities.WareHouses;
 import autoancillarieslimited.hiberate.util.StringUtils;
-import autoancillarieslimited.parser.ParserUtil;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
  *
  * @author Duc
  */
-public class AddCustomerAction extends ActionSupport {
+public class UpdateCustomerAction extends ActionSupport {
 
     private String data_request;
 
@@ -41,22 +42,22 @@ public class AddCustomerAction extends ActionSupport {
         return code;
     }
 
-    public AddCustomerAction() {
+    public UpdateCustomerAction() {
     }
 
     public String execute() throws Exception {
         try {
             Customer c = Customer.parserCustomerFromJSON(data_request);
             if (c != null) {
-                CustomerDAO.getInstance().insert(c);
+                CustomerDAO.getInstance().update(c);
                 code = StringUtils.SUCCESS;
-                data_response = StringUtils.ADD_EMPLOYEE_SUCCESS;
+                data_response = StringUtils.UPDATE_EMPLOYEE_SUCCESS;
+            } else {
             }
         } catch (Exception ex) {
-            data_response = StringUtils.ADD_EMPLOYEE_FAILD + " " + ex.getMessage();
             code = StringUtils.FAILD;
-        }
 
+        }
         return SUCCESS;
     }
 

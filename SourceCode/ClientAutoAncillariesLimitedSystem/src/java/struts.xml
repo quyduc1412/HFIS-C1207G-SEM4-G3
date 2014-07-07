@@ -24,5 +24,8 @@
         <action class="autoancillarieslimited.action.CustomerAction" name="customer">
             <result>customer.jsp</result>
         </action>
+        <action class="autoancillarieslimited.action.LoginAction" name="login">
+            <result>customer.jsp</result>
+        </action>
     </package>
 </struts>
