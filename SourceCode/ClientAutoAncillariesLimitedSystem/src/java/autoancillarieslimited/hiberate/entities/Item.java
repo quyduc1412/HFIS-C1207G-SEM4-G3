@@ -1,6 +1,4 @@
 package autoancillarieslimited.hiberate.entities;
-// Generated Jul 1, 2014 11:22:27 AM by Hibernate Tools 3.6.0
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -99,5 +97,13 @@ public class Item implements java.io.Serializable {
     public void setType_ID(int type_ID) {
         this.type_ID = type_ID;
     }
+    private String thumbnail;
 
+    public String getThumbnail() {
+        String[] split = getImages().split(";");
+        if (split.length >= 1) {
+            return split[0];
+        }
+        return "";
+    }
 }
