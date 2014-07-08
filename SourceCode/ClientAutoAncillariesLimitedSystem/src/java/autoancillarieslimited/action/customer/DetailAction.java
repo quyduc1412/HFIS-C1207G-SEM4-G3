@@ -14,7 +14,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @author Mr.HamHo
  */
 public class DetailAction extends ActionSupport {
-
+    Item item;
     private int id;
 
     public int getId() {
@@ -28,9 +28,17 @@ public class DetailAction extends ActionSupport {
     public DetailAction() {
     }
 
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
     @Override
     public String execute() throws Exception {
-        ProductDAO.getInstance().getByID(id, Item.class);
+        item = ProductDAO.getInstance().getByID(id, Item.class);
         return SUCCESS;
     }
 
