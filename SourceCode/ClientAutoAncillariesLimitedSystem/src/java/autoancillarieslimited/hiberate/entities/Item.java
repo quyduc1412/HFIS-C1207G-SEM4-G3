@@ -1,5 +1,4 @@
 package autoancillarieslimited.hiberate.entities;
-
 import java.io.Serializable;
 import java.util.Date;
 
