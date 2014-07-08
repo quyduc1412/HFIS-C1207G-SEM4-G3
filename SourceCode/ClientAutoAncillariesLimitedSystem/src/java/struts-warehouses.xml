@@ -1,0 +1,33 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="warehouses" extends="struts-default,json-default" namespace="/manager">
+        <action class="autoancillarieslimited.action.warehouses.GetRegionAction" name="getRegion">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.warehouses.AddWarehousesAction" name="addwarehouse">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.warehouses.DeleteWarehouseAction" name="deletewarehouse">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.warehouses.GetWareHouseAction" name="getwarehousebyid">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.warehouses.UpdateWareHousesAction" name="updatewarehouses">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.warehouses.GetAllWareHouses" name="getallwarehouses">
+            <result type="json">
+            </result>
+        </action>
+    </package>
+</struts>

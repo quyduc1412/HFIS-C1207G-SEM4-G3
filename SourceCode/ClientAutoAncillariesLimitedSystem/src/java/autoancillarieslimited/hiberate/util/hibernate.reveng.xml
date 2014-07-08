@@ -2,7 +2,4 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="AutoAncillariesLimitedDB" match-schema="dbo"/>
-  <table-filter match-name="TypeItem"/>
-  <table-filter match-name="Customer"/>
-  <table-filter match-name="Item"/>
 </hibernate-reverse-engineering>

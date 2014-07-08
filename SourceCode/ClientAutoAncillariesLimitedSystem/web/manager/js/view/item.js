@@ -10,10 +10,32 @@ $(document).ready(function() {
                 'description': 'P3',
                 'price': 'P4',
                 'date_Created': 'P5',
-                'images' : 'P6'
+                'images': 'P6'
             };
         }
     });
+    $('#message').fadeOut();
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    var onGetCategorySuccess = function(result) {
+        var data = "";
+        var param = getParameterByName("category");
+        data += "<option value='all'>All</option>";
+        $.each(result.list, function(index, value) {
+            if (param.indexOf(value.id) !== -1) {
+                data += "<option value='" + value.id + "' selected>" + value.nameType + "</option>";
+            } else {
+                data += "<option value='" + value.id + "'>" + value.nameType + "</option>";
+            }
+        });
+        $('#filterCategory').html(data);
+    };
+    _service.call('getcategory', '', onGetCategorySuccess);
+    var images_data = "";
     var onFillData = function(result) {
         $('#overlay').fadeIn();
         var item = new Item();
@@ -24,13 +46,14 @@ $(document).ready(function() {
         $('.dialog.additem #desciption').val(item.get('P3'));
         $('.dialog.additem #price').val(item.get('P4'));
         var images = item.get('P6');
+        images_data = images;
         var arr_image = images.split(';');
-        for(var i=0;i<arr_image.length;i++){
-            if(arr_image[i] !== ''){
-                $('.dialog.additem #images_form').append("<img src='../upload/"+arr_image[i]+"' alt='' style='width: 20%;float:left;display: inline-block'/>");
+        for (var i = 0; i < arr_image.length; i++) {
+            if (arr_image[i] !== '') {
+                $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + arr_image[i] + "' src='../upload/" + arr_image[i] + "' alt='' style='width: 20%;float:left;display: inline-block';height:122px;/>");
             }
         }
-        
+        $(document).trigger('RELOAD_IMAGES');
     };
     var getTypeItem = function(after, data2) {
         var onGetListSuccess = function(result) {
@@ -58,7 +81,7 @@ $(document).ready(function() {
         e.preventDefault();
         var data = $(this).attr("item_id");
         $("#overlay #context").load("views/dialog_item.html", function() {
-            $(document).trigger('DIALOG_LOADED', 2);
+            $(document).trigger('DIALOG_ITEM_LOADED', 2);
             $('.dialog.additem #title-dialog').html('Edit Item');
             var onGetSuccess = function(result) {
                 getTypeItem(onFillData, result);
@@ -70,15 +93,18 @@ $(document).ready(function() {
     $('#main a.add').on('click', function(e) {
         e.preventDefault();
         $("#overlay #context").load("views/dialog_item.html", function() {
-            $(document).trigger('DIALOG_LOADED', 1);
+            $(document).trigger('DIALOG_ITEM_LOADED', 1);
             $('.dialog.additem #title-dialog').html('Add Item');
             getTypeItem();
             $('#overlay').fadeIn();
         });
 
     });
-    $(document).on('DIALOG_LOADED', function(event, data_method) {
-        var images_data = "";
+    $(document).on('DIALOG_ITEM_LOADED', function(event, data_method) {
+        $("#form_dialog_item").validationEngine();
+        if (data_method === 1) {
+            images_data = "";
+        }
         $('#overlay .cancel').on('click', function(e) {
             e.preventDefault();
             $('#overlay').fadeOut();
@@ -88,16 +114,17 @@ $(document).ready(function() {
 //            formData: {"name":"Ravi","age":31},
             allowedTypes: "png,gif,jpg,jpeg",
             fileName: "myfile",
-            onSuccess:function(files,data,xhr)
+            onSuccess: function(files, data, xhr)
             {
-               $('.dialog.additem #images_form').append("<img src='../upload/"+data.myfileFileName+"' alt='' style='width: 20%;float:left;display: inline-block'/>");
-               images_data += data.myfileFileName + ";";
-               
+                $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + data.myfileFileName + "' src='../upload/" + data.myfileFileName + "' alt='' style='width: 20%;float:left;display: inline-block'/>");
+                images_data += data.myfileFileName + ";";
+                $(document).trigger('RELOAD_IMAGES');
             }
         });
         $('.dialog.additem .add').on('click', function(e) {
             e.preventDefault();
 
+            $("#form_dialog_item").validationEngine();
             var id = $('.dialog.additem #id').html();
             var name = $('.dialog.additem #name').val();
             var category = $('.dialog.additem #category').val();
@@ -113,35 +140,85 @@ $(document).ready(function() {
             data.set('description', desciption);
             data.set('category', category);
             data.set('price', price);
-            data.set('images',images_data);
+            data.set('images', images_data);
             var onInsertSuccess = function(result) {
                 $('#overlay').fadeOut();
-                $('#message').text('SUCCESS');
+                $('#message').text(result.data_response);
                 $('#message').fadeIn();
                 setTimeout(
                         function()
                         {
-                            $('#message').fadeOut()
-                        }, 5000);
+                            $('#message').fadeOut();
+                            if (result.code === 400) {
+                                location.reload();
+                            }
+                        }, 3000);
                 if (result.code === 400) {
                 }
             };
-            if (data_method === 1) {
-               _service.call('insertItem', data.toJsonString(), onInsertSuccess);
+
+            var valid = $("#form_dialog_item").validationEngine('validate');
+            if (valid === true) {
+                if (data_method === 1) {
+                    _service.call('insertItem', data.toJsonString(), onInsertSuccess);
+                } else {
+                    _service.call('updateItem', data.toJsonString(), onInsertSuccess);
+                }
             } else {
-               _service.call('updateItem', data.toJsonString(), onInsertSuccess);
+                $("#form_dialog_item").validationEngine();
             }
         });
     });
     $(document).on('COMFIRM_LOADED', function(event, data, item_id) {
         $('.half_w.dialog.confirm h3.title').html(data);
         $('.half_w.dialog.confirm .yes').on('click', function(e) {
-            _service.call('deleteItem', item_id, function() {
+            _service.call('deleteItem', item_id, function(result) {
                 $('#overlay').fadeOut();
+                $('#message').text(result.data_response);
+                $('#message').fadeIn();
+                setTimeout(
+                        function()
+                        {
+                            $('#message').fadeOut();
+                            if (result.code === 400) {
+                                location.reload();
+                            }
+                        }, 3000);
+                if (result.code === 400) {
+                }
             });
         });
         $('.half_w.dialog.confirm .no').on('click', function(e) {
             $('#overlay').fadeOut();
+        });
+    });
+
+
+    $(document).on('RELOAD_IMAGES', function(e) {
+        $('.deleteimg').on('click', function(e) {
+            var filename_delete = $(this).attr("name");
+            var DeleteRequest = Model.$extend({
+                mapping: function() {
+                    return {
+                        'id': 'P0',
+                        'filename': 'P1'
+                    };
+                }
+            });
+            var data = new DeleteRequest();
+            data.set('filename', filename_delete);
+            data.set('id', $('.dialog.additem #id').html());
+            _service.call_normal('deleteFile', data.toJsonString(), function(data) {
+                images_data = images_data.replace(data.data_response, "");
+                var arr_image = images_data.split(';');
+                $('.dialog.additem #images_form').html("");
+                for (var i = 0; i < arr_image.length; i++) {
+                    if (arr_image[i] !== '') {
+                        $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + arr_image[i] + "' src='../upload/" + arr_image[i] + "' alt='' style='width: 20%;float:left;display: inline-block'/>");
+                    }
+                }
+                $(document).trigger('RELOAD_IMAGES');
+            });
         });
     });
 });

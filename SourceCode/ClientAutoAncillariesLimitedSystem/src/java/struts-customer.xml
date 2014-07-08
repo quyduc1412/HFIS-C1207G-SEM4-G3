@@ -1,0 +1,25 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="customer" extends="struts-default,json-default" namespace="/manager">
+       <action class="autoancillarieslimited.action.customer.AddCustomerAction" name="insertcustomer">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.customer.GetCustomerAction" name="getcustomerbyid">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.customer.UpdateCustomerAction" name="updatecustomer">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.customer.DeleteCustomerAction" name="deletecustomer">
+            <result type="json">
+            </result>
+        </action>
+    </package>
+</struts>

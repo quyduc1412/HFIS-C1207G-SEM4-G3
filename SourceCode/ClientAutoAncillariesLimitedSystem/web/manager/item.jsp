@@ -12,16 +12,21 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
-        <title>SimpleAdmin</title>
+        <title>Manager Items Page</title>
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
-        <link href="js/uploadfile.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery1.9.1.min.js" type="text/javascript"></script>
+        <link href="js/uploadfile.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/jquery.json-2.4.js" type="text/javascript"></script>
         <script src="js/jquery.uploadfile.min.js" type="text/javascript"></script>
         <script src="js/classy.min.js" type="text/javascript"></script>
         <script src="js/model.js" type="text/javascript"></script>
         <script src="js/service.js" type="text/javascript"></script>
+        <script src="js/model/reponse.js" type="text/javascript"></script>
+        <script src="js/view/item.js" type="text/javascript"></script>
+        <script src="js/jquery.validationEngine-en.js" type="text/javascript"></script>
+        <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
+        <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script type="text/javascript">
             $(function() {
                 $(".box .h_title").not(this).next("ul").hide("normal");
@@ -31,8 +36,6 @@
                 });
             });
         </script>
-        <script src="js/model/reponse.js" type="text/javascript"></script>
-        <script src="js/view/item.js" type="text/javascript"></script>
         <style>
             #overlay{
                 width: 100%;
@@ -45,13 +48,13 @@
                 margin-left: auto;
                 margin-right: auto;
                 float: none;
-                
+
                 position: relative;
             }
             .dialog.half_w.confirm{
                 margin-top: 100px;
                 text-align: center;
-                
+
             }
             .dialog.half_w.confirm h3.title{
                 height: 30px;
@@ -66,7 +69,7 @@
         </style>
     </head>
     <body>
-        <div id="message" style="width: 100%;height: 30px;position: fixed"></div>
+        <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
         <div id="overlay">
             <div id="bg-overlay"></div>
             <!--<div class="comfirm dialog half_w"><button id="yes">Yes</button><button id="cancel">Cancel</button></div>-->
@@ -84,84 +87,22 @@
                         </div>
                     </div>
                 </div>
-                <div id="nav">
-                    <ul>
-                        <li class="upp"><a href="#">Main control</a>
-                            <ul>
-                                <li>&#8250; <a href="">Visit site</a></li>
-                                <li>&#8250; <a href="">Reports</a></li>
-                                <li>&#8250; <a href="">Add new page</a></li>
-                                <li>&#8250; <a href="">Site config</a></li>
-                            </ul>
-                        </li>
-                        <li class="upp"><a href="#">Manage content</a>
-                            <ul>
-                                <li>&#8250; <a href="">Show all pages</a></li>
-                                <li>&#8250; <a href="">Add new page</a></li>
-                                <li>&#8250; <a href="">Add new gallery</a></li>
-                                <li>&#8250; <a href="">Categories</a></li>
-                            </ul>
-                        </li>
-                        <li class="upp"><a href="#">Users</a>
-                            <ul>
-                                <li>&#8250; <a href="">Show all uses</a></li>
-                                <li>&#8250; <a href="">Add new user</a></li>
-                                <li>&#8250; <a href="">Lock users</a></li>
-                            </ul>
-                        </li>
-                        <li class="upp"><a href="#">Settings</a>
-                            <ul>
-                                <li>&#8250; <a href="">Site configuration</a></li>
-                                <li>&#8250; <a href="">Contact Form</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                <%@include file="navigation.jsp" %>
             </div>
 
             <div id="content">
-                <div id="sidebar">
-                    <div class="box">
-                        <div class="h_title">&#8250; Main control</div>
-                        <ul id="home">
-                            <li class="b1"><a class="icon view_page" href="">Visit site</a></li>
-                            <li class="b2"><a class="icon report" href="">Reports</a></li>
-                            <li class="b1"><a class="icon add_page" href="">Add new page</a></li>
-                            <li class="b2"><a class="icon config" href="">Site config</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="box">
-                        <div class="h_title">&#8250; Manage content</div>
-                        <ul>
-                            <li class="b1"><a class="icon page" href="">Show all pages</a></li>
-                            <li class="b2"><a class="icon add_page" href="">Add new page</a></li>
-                            <li class="b1"><a class="icon photo" href="">Add new gallery</a></li>
-                            <li class="b2"><a class="icon category" href="">Categories</a></li>
-                        </ul>
-                    </div>
-                    <div class="box">
-                        <div class="h_title">&#8250; Users</div>
-                        <ul>
-                            <li class="b1"><a class="icon users" href="">Show all users</a></li>
-                            <li class="b2"><a class="icon add_user" href="">Add new user</a></li>
-                            <li class="b1"><a class="icon block_users" href="">Lock users</a></li>
-                        </ul>
-                    </div>
-                    <div class="box">
-                        <div class="h_title">&#8250; Settings</div>
-                        <ul>
-                            <li class="b1"><a class="icon config" href="">Site configuration</a></li>
-                            <li class="b2"><a class="icon contact" href="">Contact Form</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <%@include file="sidebar.jsp" %>
                 <div id="main">
                     <div class="full_w">
-                        <div class="h_title">Manage pages - table</div>
-                        <h2>Lorem ipsum dolor sit ame</h2>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumyeirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diamvolupt</p>
-
+                        <div class="h_title">Manager Items Page</div>
+                        <h2>Manager Items Page</h2>
+                        <div>
+                            <form method="get">
+                                <div style="float: right;margin-right: 5px">
+                                    <a>Category</a><select name="category" id="filterCategory"></select><a>Name</a><input type="search" name="name" value="<d:property value="name"/>"/><input type="submit" value="Search" />
+                                </div>
+                            </form>
+                        </div>
                         <div class="entry">
                             <div class="sep"></div>
                         </div>
@@ -198,7 +139,7 @@
                             </tbody>
                         </table>
                         <div class="entry">
-                            <div class="pagination">
+<!--                            <div class="pagination">
                                 <span>« First</span>
                                 <span class="active">1</span>
                                 <a href="">2</a>
@@ -208,9 +149,9 @@
                                 <a href="">23</a>
                                 <a href="">24</a>
                                 <a href="">Last »</a>
-                            </div>
+                            </div>-->
                             <div class="sep"></div>		
-                            <a class="button add" href="">Add new page</a> <a class="button" href="">Categories</a> 
+                            <a class="button add" href="">New Item</a>
                         </div>
                     </div>
                 </div>

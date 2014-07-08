@@ -8,6 +8,7 @@ package autoancillarieslimited.action.item;
 
 import autoancillarieslimited.hiberate.dao.ProductDAO;
 import autoancillarieslimited.hiberate.entities.Item;
+import autoancillarieslimited.hiberate.util.StringUtils;
 import autoancillarieslimited.parser.ParserUtil;
 import com.opensymphony.xwork2.ActionSupport;
 import java.io.File;
@@ -53,12 +54,16 @@ public class AddItem extends ActionSupport{
     }
 
     public String insert() throws Exception {
+        try{
         if (data_request != null) {
             Item parserItem = ParserUtil.parserItem(data_request);
-//            Set<ImagesItem> image = new HashSet();
-//            image.add(new ImagesItem());
             ProductDAO.getInstance().insert(parserItem);
-            code = 400;
+            code = StringUtils.SUCCESS;
+            data_response = StringUtils.ADD_ITEM_SUCCESS;
+        }
+        }catch(Exception ex){
+            data_response = ex.getMessage();
+            code = StringUtils.FAILD;
         }
         return SUCCESS;
     }

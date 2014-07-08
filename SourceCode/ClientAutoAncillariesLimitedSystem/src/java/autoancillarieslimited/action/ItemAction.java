@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package autoancillarieslimited.action;
 
 import autoancillarieslimited.hiberate.dao.ProductDAO;
@@ -17,20 +16,49 @@ import java.util.List;
  * @author Duc
  */
 public class ItemAction extends ActionSupport {
+
     private List<Item> litstItem;
+    private String name;
+    private String category;
 
     public List<Item> getLitstItem() {
         return litstItem;
     }
-    
+
     public ItemAction() {
-        
-        
+
     }
-    
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
     public String execute() throws Exception {
-        litstItem = ProductDAO.getInstance().getItems();
+        Item filterItem = new Item();
+        if (name != null && category != null) {
+            filterItem.setName(name);
+            try {
+                int id_category = Integer.parseInt(category);
+                filterItem.setType_ID(id_category);
+            } catch (Exception ex) {
+            }
+            litstItem = ProductDAO.getInstance().getItems(filterItem);
+        } else {
+            litstItem = ProductDAO.getInstance().getItems();
+        }
         return SUCCESS;
     }
-    
+
 }

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package autoancillarieslimited.hiberate.dao;
 
+import autoancillarieslimited.hiberate.entities.Employee;
 import autoancillarieslimited.hiberate.entities.TypeItem;
 import autoancillarieslimited.hiberate.util.HibernateUtil;
 import java.util.List;
@@ -19,7 +19,7 @@ import org.hibernate.Transaction;
  * @author Duc
  * @param <T>
  */
-public class AbstractDao<T extends Object> implements IDao<T>{
+public class AbstractDao<T extends Object> implements IDao<T> {
 
     @Override
     public boolean insert(T object) {
@@ -44,14 +44,14 @@ public class AbstractDao<T extends Object> implements IDao<T>{
     }
 
     @Override
-    public boolean deleteByID(int id,Class clazz) {
+    public boolean deleteByID(int id, Class clazz) {
         Session session = null;
         Transaction beginTransaction = null;
         int executeUpdate = 0;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
-            Query setInteger = session.createQuery("delete from "+ clazz.getName() +" where id like ?").setInteger(0, id);
+            Query setInteger = session.createQuery("delete from " + clazz.getName() + " where id like ?").setInteger(0, id);
             executeUpdate = setInteger.executeUpdate();
             beginTransaction.commit();
         } catch (HibernateException ex) {
@@ -68,7 +68,7 @@ public class AbstractDao<T extends Object> implements IDao<T>{
     }
 
     @Override
-    public T getByID(int id,Class clazz) {
+    public T getByID(int id, Class clazz) {
         T item = null;
         Session session = null;
         Transaction beginTransaction = null;
@@ -115,5 +115,29 @@ public class AbstractDao<T extends Object> implements IDao<T>{
         }
         return true;
     }
-    
+
+    public List<T> getList(String tableName) {
+        List<T> set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = session.createQuery("from " + tableName + "").list();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
 }

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package autoancillarieslimited.action.item;
 
 import autoancillarieslimited.hiberate.dao.ProductDAO;
 import autoancillarieslimited.hiberate.entities.Item;
+import autoancillarieslimited.hiberate.util.StringUtils;
 import autoancillarieslimited.parser.ParserUtil;
 import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
@@ -16,8 +16,8 @@ import com.opensymphony.xwork2.ActionSupport;
  *
  * @author Duc
  */
-public class DeleteItem extends ActionSupport{
-    
+public class DeleteItem extends ActionSupport {
+
     private String data_request;
 
     private String data_response;
@@ -42,10 +42,17 @@ public class DeleteItem extends ActionSupport{
     public int getCode() {
         return code;
     }
-    public String delete() throws Exception {
-        if (data_request != null) {
-            ProductDAO.getInstance().deleteByID(Integer.parseInt(data_request), Item.class);
-            code = 400;
+
+    public String delete() {
+        try {
+            if (data_request != null) {
+                ProductDAO.getInstance().deleteByID(Integer.parseInt(data_request), Item.class);
+                code = 400;
+                data_response = StringUtils.DELETE_ITEM_SUCCESS;
+            }
+        } catch (Exception ex) {
+            code = StringUtils.FAILD;
+            data_response = ex.getMessage();
         }
         return SUCCESS;
     }

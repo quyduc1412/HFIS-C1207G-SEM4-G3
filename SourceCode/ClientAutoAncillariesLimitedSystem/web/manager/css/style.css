@@ -219,6 +219,9 @@ button:hover, .button:hover{
 	margin: 0;
 	padding: 10px 10px;
 }
+  form .element.two input{
+      width: 80% !important;
+}
   form label{
 	color: #575757;
 	display: block;
