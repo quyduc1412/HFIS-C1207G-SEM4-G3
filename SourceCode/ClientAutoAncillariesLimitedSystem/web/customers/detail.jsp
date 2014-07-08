@@ -82,11 +82,12 @@
 					<div class="article">
                                    
                                     <div>
-                                         <a href="#" class="figure"><img src='../upload/<s:property value="thumbnail"/>' width="169" height="152" alt=""></a>
-                                        <h3><s:property value="name" /></h3>
-                                        <p><s:property value="description" /></p>
-                                        <p><s:property value="typeItem.nameType" /></p>
-                                        <p><s:property value="price" /></p>
+                                         <a href="#" class="figure"><img src='../upload/<s:property value="item.thumbnail"/>' width="169" height="152" alt=""></a>
+                                        <h3><s:property value="item.name" /></h3>
+                                        <p><s:property value="item.description" /></p>
+                                        <p><s:property value="item.typeItem.nameType" /></p>
+                                        <p><s:property value="item.price" /></p>
+                                        <input type="submit" name="BtnComment" id="Btncomment" value="Order"/>
                                     </div>
 					</div>
 					<div class="comment">

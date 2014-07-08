@@ -103,7 +103,7 @@
                                         <p><s:property value="description" /></p>
                                         <p><s:property value="typeItem.nameType" /></p>
                                         <p><s:property value="price" /></p>
-                                         <a href="detail?id=">Detail</a>
+                                         <a href="detail?id=<s:property value="id" />">Detail</a>
                                     </div>
                                 </li>
                             </s:iterator>
