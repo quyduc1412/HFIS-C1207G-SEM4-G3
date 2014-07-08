@@ -25,7 +25,7 @@
             <result>customer.jsp</result>
         </action>
         <action class="autoancillarieslimited.action.LoginAction" name="login">
-            <result>customer.jsp</result>
+            <result>login.jsp</result>
         </action>
     </package>
     

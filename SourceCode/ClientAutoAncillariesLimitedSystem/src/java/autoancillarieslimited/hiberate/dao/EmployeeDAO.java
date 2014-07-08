@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package autoancillarieslimited.hiberate.dao;
 
 import autoancillarieslimited.hiberate.entities.Employee;
@@ -18,7 +17,8 @@ import org.hibernate.Transaction;
  *
  * @author Duc
  */
-public class EmployeeDAO extends AbstractDao<Employee>{
+public class EmployeeDAO extends AbstractDao<Employee> {
+
     private static EmployeeDAO INSTANCE;
 
     public static EmployeeDAO getInstance() {
@@ -27,8 +27,7 @@ public class EmployeeDAO extends AbstractDao<Employee>{
         }
         return INSTANCE;
     }
-    
-    
+
     public List<Employee> getEmployees(Employee filter) {
         List<Employee> set = null;
         Session session = null;
@@ -37,7 +36,7 @@ public class EmployeeDAO extends AbstractDao<Employee>{
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
             if (filter.getWareHouses_ID() != 0) {
-                set = session.createQuery("from Employee where Name like '%" + filter.getName() + "%' AND WareHouses_ID ='" + filter.getWareHouses_ID()+ "' ").list();
+                set = session.createQuery("from Employee where Name like '%" + filter.getName() + "%' AND WareHouses_ID ='" + filter.getWareHouses_ID() + "' ").list();
             } else {
                 set = session.createQuery("from Employee where Name like '%" + filter.getName() + "%'").list();
             }
@@ -57,7 +56,6 @@ public class EmployeeDAO extends AbstractDao<Employee>{
         return set;
     }
 
-    
     public List<Employee> getEmployees() {
         List<Employee> set = null;
         Session session = null;
@@ -80,5 +78,29 @@ public class EmployeeDAO extends AbstractDao<Employee>{
             }
         }
         return set;
+    }
+
+    public Employee checkLogin(String email, String password) {
+        Employee item = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            item = (Employee) session.createQuery("from Employee where Email like " + email + " AND Password like " + password + "").uniqueResult();
+            session.flush();
+            session.clear();
+            beginTransaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return item;
     }
 }
