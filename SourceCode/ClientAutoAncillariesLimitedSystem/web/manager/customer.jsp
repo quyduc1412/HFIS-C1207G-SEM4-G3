@@ -98,7 +98,7 @@
                         <div>
                             <form method="get">
                                 <div style="float: right;margin-right: 5px">
-                                    <a>Warehouse</a><select name="category" id="filterCategory"></select><a>Name</a><input type="search" name="name" value="<d:property value="name"/>"/><input type="submit" value="Search" />
+                                    <a>Name</a><input type="search" name="name" value="<d:property value="name"/>"/><input type="submit" value="Search" />
                                 </div>
                             </form>
                         </div>
