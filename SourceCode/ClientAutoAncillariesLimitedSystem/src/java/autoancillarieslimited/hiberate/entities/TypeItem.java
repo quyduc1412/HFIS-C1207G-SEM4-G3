@@ -50,6 +50,8 @@ public class TypeItem  implements java.io.Serializable {
     public void setItems(Set items) {
         this.items = items;
     }
+    
+    
 
 }
 

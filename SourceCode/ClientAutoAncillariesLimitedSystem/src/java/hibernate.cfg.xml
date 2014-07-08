@@ -3,7 +3,7 @@
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
-    <property name="hibernate.connection.url">jdbc:sqlserver://DUCNXQ\SQLEXPRESS;databaseName=AutoAncillariesLimitedDB</property>
+    <property name="hibernate.connection.url">jdbc:sqlserver://HANHAMHO\MRHAMHO;databaseName=AutoAncillariesLimitedDB</property>
     <property name="hibernate.connection.username">sa</property>
     <property name="hibernate.connection.password">123456</property>
     <mapping resource="autoancillarieslimited/hiberate/entities/Item.hbm.xml"/>

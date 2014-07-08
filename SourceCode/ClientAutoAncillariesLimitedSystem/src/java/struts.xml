@@ -41,4 +41,14 @@
             </result>
         </action>
     </package>
+    
+    
+    <package name="default1" extends="struts-default,json-default" namespace="/customers">
+        <action class="autoancillarieslimited.action.customer.HomeAction" name="home">
+            <result>newjsp.jsp</result>
+        </action>
+         <action class="autoancillarieslimited.action.customer.DetailAction" name="detail">
+            <result>detail.jsp</result>
+        </action>
+    </package>
 </struts>
