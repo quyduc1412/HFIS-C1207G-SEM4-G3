@@ -98,7 +98,8 @@ public class ProductDAO extends AbstractDao<Item> {
 //        }
 //        return true;
 //    }
- public List<Item> getItems() {
+
+    public List<Item> getItems() {
         List<Item> set = null;
         Session session = null;
         Transaction beginTransaction = null;
@@ -121,6 +122,7 @@ public class ProductDAO extends AbstractDao<Item> {
         }
         return set;
     }
+
     public List<Item> getItems(Item filter) {
         List<Item> set = null;
         Session session = null;
@@ -128,9 +130,9 @@ public class ProductDAO extends AbstractDao<Item> {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
-            if(filter.getType_ID() != 0){
-            set = session.createQuery("from Item where Name like '%" + filter.getName() + "%' AND Type_ID ='" + filter.getType_ID()+ "' ").list();
-            }else{
+            if (filter.getType_ID() != 0) {
+                set = session.createQuery("from Item where Name like '%" + filter.getName() + "%' AND Type_ID ='" + filter.getType_ID() + "' ").list();
+            } else {
                 set = session.createQuery("from Item where Name like '%" + filter.getName() + "%'").list();
             }
             session.flush();

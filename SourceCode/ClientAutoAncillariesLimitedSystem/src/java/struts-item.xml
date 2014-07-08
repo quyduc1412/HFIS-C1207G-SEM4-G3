@@ -4,6 +4,7 @@
 
 <struts>
     <!-- Configuration for the default package. -->
+    
     <package name="item" extends="struts-default,json-default" namespace="/manager">
         <action class="autoancillarieslimited.action.CategoryAction" name="getcategory">
             <result type="json">
@@ -38,5 +39,7 @@
             <result type="json">
             </result>
         </action>
+        
     </package>
+    
 </struts>
