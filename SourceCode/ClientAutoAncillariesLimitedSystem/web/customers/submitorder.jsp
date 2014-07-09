@@ -7,7 +7,7 @@
 <html>
     <head>
 
-        <%@taglib prefix="s" uri="/struts-tags"%>
+        <%@taglib prefix="d" uri="/struts-tags"%>
         <meta charset="UTF-8">
         <title>Blog - Car Repair Shop Website Template</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -30,8 +30,17 @@
         <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
         <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script src="js/shoppingcart.js" type="text/javascript"></script>
+        <style>
+            .content tr:nth-child(even){
+                background: #ffffff;
+            }
+            .content tr:nth-child(odd){
+                background: #f7f7f7;
+            }
+        </style>
     </head>
     <body>
+        <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
         <div id="header">
             <div>
                 <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
@@ -94,43 +103,39 @@
         <div id="body">
             <div class="content">
                 <div class="section">
-                    <div class="blog">
-                        <div class="article">
-                            <div>
-                                <a href="#" class="figure"><img src='../upload/<s:property value="item.thumbnail"/>' width="169" height="152" alt=""></a>
-                                <h3><s:property value="item.name" /></h3>
-                                <p><s:property value="item.description" /></p>
-                                <p><s:property value="item.typeItem.nameType" /></p>
-                                <p><s:property value="item.price" /></p>
-                                <input type="submit" name="Add To Cart" id="addtocart" value="">
-                            </div>
-                        </div>
-                        <div class="comment">
-                            <h4>one comment</h4>
-                            <div>
-                                <a href="#" class="figure"><img src="images/janedoe.jpg" alt="">jane doe</a>
-                                <p>
-                                    <span>july 27, 2023</span> This is a comment. Nunc sed porta neque. Sed dui elit, condimentum venenatis pretium ut, pellentesque eget nulla. Nulla facilisi. <a href="#" class="reply">reply</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="commentForm">
-                            <h4>leave a comment</h4>
-                            <form action="index.html">
-                                <div>
-                                    <label for="name"> <span>name</span>
-                                        <input type="text" name="name" id="name">
-                                    </label>
-                                    <label for="email"> <span>email</span>
-                                        <input type="text" name="email" id="email">
-                                    </label>
-                                </div>
-                                <label for="comment"> <span>comment</span>
-                                    <textarea name="comment" id="comment"></textarea>
-                                </label>
-                                <input type="submit" name="Btncomment" id="Btncomment" value="">
-                            </form>
-                        </div>
+                    <div style="width: 100%;text-align: center"><h3>Shopping Cart Details</h3></div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Price</th>
+                                <th scope="col" style="width: 65px;">Modify</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <d:iterator value="listCart">
+                                <tr>
+                                    <td class="align-center"><d:property value="item.id"/></td>
+                                    <td><d:property value="item.name"/></td>
+                                    <td><d:property value="item.description"/></td>
+                                    <td><d:property value="quantity"/></td>
+                                    <td class="align-center"><d:property value="item.typeItem.nameType"/></td>
+                                    <td><d:property value="item.price"/></td>
+                                    <td>
+                                        <a href="#" class="table-icon edit" item_id="<d:property value="item.id"/>" title="Edit"></a>
+                                        <a href="#" class="table-icon archive" item_id="<d:property value="item.id"/>" title="Archive"></a>
+                                        <a href="#" class="table-icon delete" item_id="<d:property value="item.id"/>" title="Delete"></a>
+                                    </td>
+                                </tr>
+                            </d:iterator>
+
+                        </tbody>
+                    </table>
+                    <div>Total: <d:property value="totalprice"/> <a>Choise Warehouses</a><select name="warehouse" id="warehouse"></select><a id="order_button">Order</a>
                     </div>
                 </div>
                 <%@include file="sidebar.jsp" %>

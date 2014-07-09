@@ -8,14 +8,18 @@ package autoancillarieslimited.action.customer;
 import autoancillarieslimited.hiberate.dao.ProductDAO;
 import autoancillarieslimited.hiberate.entities.Item;
 import com.opensymphony.xwork2.ActionSupport;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.struts2.interceptor.ServletResponseAware;
 
 /**
  *
  * @author Mr.HamHo
  */
-public class DetailAction extends ActionSupport {
-    Item item;
+public class DetailAction extends ActionSupport implements ServletResponseAware {
+
+    private Item item;
     private int id;
+    private HttpServletResponse httpServletResponse;
 
     public int getId() {
         return id;
@@ -38,8 +42,24 @@ public class DetailAction extends ActionSupport {
 
     @Override
     public String execute() throws Exception {
-        item = ProductDAO.getInstance().getByID(id, Item.class);
+        try {
+            if (id == 0) {
+                httpServletResponse.sendRedirect("home");
+            } else {
+                item = ProductDAO.getInstance().getByID(id, Item.class);
+                if (item == null) {
+                    httpServletResponse.sendRedirect("home");
+                }
+            }
+        } catch (Exception ex) {
+            httpServletResponse.sendRedirect("home");
+        }
         return SUCCESS;
+    }
+
+    @Override
+    public void setServletResponse(HttpServletResponse hsr) {
+        httpServletResponse = hsr;
     }
 
 }

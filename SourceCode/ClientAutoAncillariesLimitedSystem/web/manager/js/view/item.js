@@ -209,7 +209,9 @@ $(document).ready(function() {
             data.set('filename', filename_delete);
             data.set('id', $('.dialog.additem #id').html());
             _service.call_normal('deleteFile', data.toJsonString(), function(data) {
-                images_data = images_data.replace(data.data_response, "");
+                alert(images_data);
+                images_data = images_data.replace(data.data_response + ';', "");
+                alert(images_data);
                 var arr_image = images_data.split(';');
                 $('.dialog.additem #images_form').html("");
                 for (var i = 0; i < arr_image.length; i++) {

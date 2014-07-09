@@ -7,7 +7,7 @@
 <html>
     <head>
 
-        <%@taglib prefix="s" uri="/struts-tags"%>
+        <%@taglib prefix="d" uri="/struts-tags"%>
         <meta charset="UTF-8">
         <title>Blog - Car Repair Shop Website Template</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
@@ -30,8 +30,28 @@
         <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
         <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script src="js/shoppingcart.js" type="text/javascript"></script>
+        <script src="js/login.js" type="text/javascript"></script>
+        <style>
+            #body .content .section .booking span {
+                line-height: 24px;
+                padding: 10px 0 5px;
+                text-transform: capitalize;
+            }
+            #body .content .section .booking input {
+                background: url(../customers/images/interface.png) no-repeat;
+                border: 0;
+                height: 24px;
+                line-height: 24px;
+                padding: 0 5px;
+            }
+            #body .content .section .booking input {
+                background-position: 0 -382px;
+                width: 250px;
+            }
+        </style>
     </head>
     <body>
+        <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
         <div id="header">
             <div>
                 <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
@@ -94,46 +114,62 @@
         <div id="body">
             <div class="content">
                 <div class="section">
-                    <div class="blog">
-                        <div class="article">
+                    <div class="booking">
+                        <div class="formlogin" style="text-align: center;">
+                            <h3>Login to checkout</h3>
                             <div>
-                                <a href="#" class="figure"><img src='../upload/<s:property value="item.thumbnail"/>' width="169" height="152" alt=""></a>
-                                <h3><s:property value="item.name" /></h3>
-                                <p><s:property value="item.description" /></p>
-                                <p><s:property value="item.typeItem.nameType" /></p>
-                                <p><s:property value="item.price" /></p>
-                                <input type="submit" name="Add To Cart" id="addtocart" value="">
+                                Email :<input type="text" id="user"/>
                             </div>
-                        </div>
-                        <div class="comment">
-                            <h4>one comment</h4>
                             <div>
-                                <a href="#" class="figure"><img src="images/janedoe.jpg" alt="">jane doe</a>
-                                <p>
-                                    <span>july 27, 2023</span> This is a comment. Nunc sed porta neque. Sed dui elit, condimentum venenatis pretium ut, pellentesque eget nulla. Nulla facilisi. <a href="#" class="reply">reply</a>
-                                </p>
+                                Password :<input type="password" id="pass"/>
                             </div>
-                        </div>
-                        <div class="commentForm">
-                            <h4>leave a comment</h4>
-                            <form action="index.html">
-                                <div>
-                                    <label for="name"> <span>name</span>
-                                        <input type="text" name="name" id="name">
-                                    </label>
-                                    <label for="email"> <span>email</span>
-                                        <input type="text" name="email" id="email">
-                                    </label>
-                                </div>
-                                <label for="comment"> <span>comment</span>
-                                    <textarea name="comment" id="comment"></textarea>
-                                </label>
-                                <input type="submit" name="Btncomment" id="Btncomment" value="">
-                            </form>
+                            <div>
+                                <input type="submit" id="submit-login" value="Continue"/>
+                                <a>Register</a>
+                            </div>
+                            <div id="error-login"></div>
                         </div>
                     </div>
                 </div>
-                <%@include file="sidebar.jsp" %>
+                <div class="sidebar">
+                    <div class="post">
+                        <h3>Cart</h3>
+                    </div>
+                    <div class="categories">
+                        <h3>categories</h3>
+                        <ul>
+                            <li>
+                                <a href="blog-single.html">customize</a>
+                            </li>
+                            <li>
+                                <a href="http://www.freewebsitetemplates.com/">freewebsite templates</a>
+                            </li>
+                            <li>
+                                <a href="http://www.freewebsitetemplates.com/">free web design</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="archives">
+                        <h3>archive</h3>
+                        <ul>
+                            <li>
+                                <a href="blog-single.html">june 2023</a>
+                            </li>
+                            <li>
+                                <a href="blog-single.html">may 2023</a>
+                            </li>
+                            <li>
+                                <a href="blog-single.html">april 2023</a>
+                            </li>
+                            <li>
+                                <a href="blog-single.html">march 2023</a>
+                            </li>
+                            <li>
+                                <a href="blog-single.html">february 2023</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="footer">

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 8, 2014 9:56:02 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="autoancillarieslimited.hiberate.entities.ItemOrder" table="ItemOrder" schema="dbo" catalog="AutoAncillariesLimitedDB">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <property name="quantity" type="int">
+            <column name="Quantity" />
+        </property>
+        <many-to-one name="item" class="autoancillarieslimited.hiberate.entities.Item" fetch="select" lazy="false">
+            <column name="ID_Item" />
+        </many-to-one>
+        <many-to-one name="purchaseOrder" class="autoancillarieslimited.hiberate.entities.PurchaseOrder" fetch="select" lazy="false">
+            <column name="ID_BatchOrder" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
