@@ -44,9 +44,9 @@ $(document).ready(function() {
                 des = des.substring(0, 29) + "...";
             }
             totalprice += value.item.price * value.quantity;
-            data += "<li> <a href='detail?id=" + value.item.id + "' class='figure'><img style='width:50px;height:50px;' src='../upload/" + value.item.thumbnail + "' alt=''></a> <div> <span><a href='blog-single.html'>" + value.item.name + "</a></span> <p>" + des + "</p><a>Price :</a>" + value.item.price + " </div> </li>";
+            data += "<li> <a href='detail?id=" + value.item.id + "' class='figure'><img style='width:50px;height:50px;' src='../upload/" + value.item.thumbnail + "' alt=''></a> <div> <span><a href='blog-single.html'>" + value.item.name + "</a></span> <p>" + des + "</p><p><a>Price :</a>" + value.item.price + "</p><p><a>All Amout</a> "+value.quantity+"</p> </div> </li>";
         });
-        data += "<br/><a>Total price :" + totalprice + "</a><a href='submitorder'><input type='submit' id='checkOrder' value='Check Order'></a>";
+        data += "<p style='text-align: center;'><a>Total price :" + totalprice + "</a><a href='submitorder'><input type='submit' id='checkOrder' value='Check Order'></a></p>";
         data += "</ul>";
         if (result.listCart.length < 1) {
             data = "";
@@ -88,6 +88,8 @@ $(document).ready(function() {
                 alert(resuilt.code);
                 if (resuilt.code === 405) {
                     window.location.href = "login.jsp?message=" + resuilt.data_response;
+                }else{
+                    window.location.href = "historycart";
                 }
             };
             _service.call('finishorder', data, onFinished);

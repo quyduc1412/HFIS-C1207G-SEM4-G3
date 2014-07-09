@@ -21,8 +21,24 @@
         <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
         <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script src="js/shoppingcart.js" type="text/javascript"></script>
+        <script src="js/login.js" type="text/javascript"></script>
+        <style>
+            .button-detail{
+                background: url(img/detail_button.png) no-repeat;
+                width: 118px;
+                height: 32px;
+                display: block;
+                font-family: 'PT_Sans-Web-Regular';
+                font-size: 13px;
+                font-weight: normal;
+                margin: 0;
+                padding: 0 5px;border: 0;
+                color: #7a7a7a;
+            }
+        </style>
     </head>
     <body>
+        <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
         <div id="header">
             <div>
                 <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
@@ -36,20 +52,20 @@
         <div id="body">
             <div class="content">
                 <div class="section">
-<!--                    <div class="breadcrumb">
-                        <span>You are here:</span>
-                        <ul>
-                            <li>
-                                <a href="index.html">home</a>
-                            </li>
-                            <li>
-                                <a href="services.html">services</a>
-                            </li>
-                            <li>
-                                <a href="services.html">engine maintenance</a>
-                            </li>
-                        </ul>
-                    </div>-->
+                    <!--                    <div class="breadcrumb">
+                                            <span>You are here:</span>
+                                            <ul>
+                                                <li>
+                                                    <a href="index.html">home</a>
+                                                </li>
+                                                <li>
+                                                    <a href="services.html">services</a>
+                                                </li>
+                                                <li>
+                                                    <a href="services.html">engine maintenance</a>
+                                                </li>
+                                            </ul>
+                                        </div>-->
                     <div class="services">
                         <h2>Product</h2>
                         <ul>
@@ -61,11 +77,11 @@
                                         <p><s:property value="descriptionDisplay" /></p>
                                         <p><s:property value="typeItem.nameType" /></p>
                                         <p><s:property value="price" /></p>
-                                         <a href="detail?id=<s:property value="id" />">Detail</a>
+                                        <a href="detail?id=<s:property value="id" />"><button type="button" class="button-detail"></button></a>
                                     </div>
                                 </li>
                             </s:iterator>
-              
+
                             <li>
                                 <a href="#" class="figure"><img src="images/tool-box.jpg" alt=""></a>
                                 <div>

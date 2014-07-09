@@ -11,7 +11,7 @@
                 out.print("<div style='text-align: center;' id='formlogin'><br/><input type='text' id='user' name='username2'/><input id='pass' type='password' name='password2'/><br/><input type='submit' id='submit-login' value='Login'/><input type='submit' value='Register'/></div>");
             } else {
                 Customer user = (Customer) request.getSession().getAttribute("USER");
-                out.print("<div style='text-align: center;'>Webcome <a style='color:blue;'> " + user.getEmail()+ "<a> <a href='logout'>Logout</a></div>");
+                out.print("<div style='text-align: center;'>Webcome <a style='color:blue;'> " + user.getEmail() + "<a> <a href='logout'>Logout</a></div>");
                 out.print("<ul> <li> <a href='historycart'>Order History</a> </li> <li> <a href='#'>Profile</a> </li> <li> <a href='#'>Change Password</a> </li> </ul>");
             }
         %>

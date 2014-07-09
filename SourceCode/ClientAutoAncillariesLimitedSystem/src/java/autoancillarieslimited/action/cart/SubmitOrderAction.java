@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package autoancillarieslimited.action.cart;
 
 import autoancillarieslimited.hiberate.entities.Item;
@@ -17,7 +13,7 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class SubmitOrderAction extends ActionSupport  implements SessionAware {
     private double totalprice;
-    private double totalQuantity;
+    private int totalQuantity;
     
     private List<CartItem> listCart;
 
@@ -29,7 +25,7 @@ public class SubmitOrderAction extends ActionSupport  implements SessionAware {
         return totalprice;
     }
 
-    public double getTotalQuantity() {
+    public int getTotalQuantity() {
         return totalQuantity;
     }
     

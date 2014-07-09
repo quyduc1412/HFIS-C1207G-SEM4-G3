@@ -30,8 +30,9 @@
         <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
         <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script src="js/shoppingcart.js" type="text/javascript"></script>
+<script src="js/login.js" type="text/javascript"></script>
     </head>
-    <body>
+    <body><div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
         <div id="header">
             <div>
                 <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
@@ -52,9 +53,9 @@
                                 <a href="#" class="figure"><img src='../upload/<s:property value="item.thumbnail"/>' width="169" height="152" alt=""></a>
                                 <h3><s:property value="item.name" /></h3>
                                 <p><s:property value="item.description" /></p>
-                                <p><s:property value="item.typeItem.nameType" /></p>
-                                <p><s:property value="item.price" /></p>
-                                <input type="submit" name="Add To Cart" id="addtocart" value="" style="background: url(img/Add-to-Cart-Button.png) no-repeat;width: 139;height: 52px">
+                                <p>Category : <s:property value="item.typeItem.nameType" /></p>
+                                <p>Price : <s:property value="item.price" /></p>
+                                <input type="submit" name="Add To Cart" id="addtocart" value="" style="float: right;background: url(img/Add-to-Cart-Button.png) no-repeat;width: 120px;height: 32px">
                             </div>
                         </div>
                         <div class="comment">

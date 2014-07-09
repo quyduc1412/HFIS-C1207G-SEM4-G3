@@ -31,11 +31,12 @@
         <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script src="js/historycart.js" type="text/javascript"></script>
         <script src="js/shoppingcart.js" type="text/javascript"></script>
+        <script src="js/login.js" type="text/javascript"></script>
         <style>
-            .content tr:nth-child(even){
+            .content tr:nth-child(even),#context tr:nth-child(even){
                 background: #ffffff;
             }
-            .content tr:nth-child(odd){
+            .content tr:nth-child(odd),#context tr:nth-child(odd){
                 background: #f7f7f7;
             }
             #overlay{
@@ -60,7 +61,7 @@
             <div id="bg-overlay"></div>
             <!--<div class="comfirm dialog half_w"><button id="yes">Yes</button><button id="cancel">Cancel</button></div>-->
             <div id="context">
-                
+
             </div>
         </div>
         <div id="header">
@@ -83,7 +84,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Date Order</th>
                                 <th scope="col">Warehouses</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">Items</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Total Price</th>
                                 <th scope="col" style="width: 65px;">Modify</th>
@@ -96,7 +97,7 @@
                                     <td><d:property value="dateOrder"/></td>
                                     <td class="warehouse-details" idname="<d:property value="wareHouses.id"/>"><a href="#"><d:property value="wareHouses.name"/></a></td>
                                     <td><d:property value="quantity"/></td>
-                                    <td class="align-center"><d:property value="status"/></td>
+                                    <td class="align-center"><d:property value="statusString"/></td>
                                     <td><d:property value="totalPrice"/></td>
                                     <td>
 <!--                                        <a href="#" class="table-icon edit" item_id="<d:property value="item.id"/>" title="Edit"></a>

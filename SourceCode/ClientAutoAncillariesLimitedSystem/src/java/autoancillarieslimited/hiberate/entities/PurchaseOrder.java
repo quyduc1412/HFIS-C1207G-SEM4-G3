@@ -103,11 +103,10 @@ public class PurchaseOrder implements java.io.Serializable {
         statusString = "";
         switch (getStatus()) {
             case 0:
-                statusString = "";
+                statusString = "Pending";
                 break;
             case 1:
-                break;
-            case 2:
+                statusString = "Completed";
                 break;
             default:
                 break;
