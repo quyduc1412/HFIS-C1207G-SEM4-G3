@@ -289,6 +289,8 @@
 		</div>
 	</div>
 </body>
+=======
+>>>>>>> 873d20d60666fd904927c400fdc5a94069ece3f0
     <head>
 
         <%@taglib prefix="s" uri="/struts-tags"%>
