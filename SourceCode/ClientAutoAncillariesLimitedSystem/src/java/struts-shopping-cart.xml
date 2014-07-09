@@ -1,0 +1,36 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="shoppingcart" extends="struts-default,json-default" namespace="/customers">
+       <action class="autoancillarieslimited.action.cart.CartAction" name="inserttocart">
+            <result type="json">
+            </result>
+        </action>
+       <action class="autoancillarieslimited.action.cart.SubmitOrderAction" name="submitorder">
+            <result>submitorder.jsp</result>
+        </action>
+       <action class="autoancillarieslimited.action.cart.GetAllItemAction" name="getallcart">
+            <result type="json">
+            </result>
+        </action>
+       <action class="autoancillarieslimited.action.cart.RemoveItemCartAction" name="removecart">
+            <result type="json">
+            </result>
+        </action>
+       <action class="autoancillarieslimited.action.cart.FinishOrderAction" name="finishorder">
+            <result type="json">
+            </result>
+        </action>
+       <action class="autoancillarieslimited.action.cart.HistoryOrderAction" name="historycart">
+            <result>historyorder.jsp</result>
+        </action>
+       <action class="autoancillarieslimited.action.cart.GetItemByOrderIDAction" name="getitemorderbyidpurchase">
+            <result type="json">
+            </result>
+        </action>
+    </package>
+    
+</struts>

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package autoancillarieslimited.action.item;
 
 import autoancillarieslimited.hiberate.dao.ProductDAO;
@@ -17,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
  *
  * @author Duc
  */
-public class UpdateItem extends ActionSupport{
+public class UpdateItem extends ActionSupport {
 
     private String data_request;
 
@@ -44,24 +43,28 @@ public class UpdateItem extends ActionSupport{
         return code;
     }
 
-    public String update(){
-        try{
-        if (data_request != null) {
-            Item parserItem = ParserUtil.parserItem(data_request);
-            Item byID = ProductDAO.getInstance().getByID(parserItem.getId(), Item.class);
-            if(byID != null && parserItem != null){
-                byID.setPrice(parserItem.getPrice());
-                byID.setDescription(parserItem.getDescription());
-                byID.setName(parserItem.getName());
-                byID.setImages(parserItem.getImages());
-                ProductDAO.getInstance().update(byID);
-                byID.setTypeItem(parserItem.getTypeItem());
-                ProductDAO.getInstance().update(byID);
+    public String update() {
+        try {
+            if (data_request != null) {
+                Item parserItem = ParserUtil.parserItem(data_request);
+                Item byID = ProductDAO.getInstance().getByID(parserItem.getId(), Item.class);
+                if (byID != null && parserItem != null) {
+                    byID.setPrice(parserItem.getPrice());
+                    byID.setDescription(parserItem.getDescription());
+                    byID.setName(parserItem.getName());
+                    if (parserItem.getImages() != null) {
+                        byID.setImages(parserItem.getImages());
+                    } else {
+                        byID.setImages("");
+                    }
+                    ProductDAO.getInstance().update(byID);
+                    byID.setTypeItem(parserItem.getTypeItem());
+                    ProductDAO.getInstance().update(byID);
+                }
+                data_response = StringUtils.UPDATE_ITEM_SUCCESS;
+                code = StringUtils.SUCCESS;;
             }
-            data_response = StringUtils.UPDATE_ITEM_SUCCESS;
-            code = StringUtils.SUCCESS;;
-        }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             code = StringUtils.FAILD;
             data_response = ex.getMessage();
         }

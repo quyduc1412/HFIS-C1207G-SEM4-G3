@@ -1106,7 +1106,7 @@ body {
 	padding: 0 0 12px;
 	text-transform: capitalize;
 }
-#body .content .section .blog  input {
+#body .content .section .blog input {
 	background: url(../images/interface.png) no-repeat 0 -411px;
 	border: 0;
 	color: #7a7a7a;
@@ -1119,19 +1119,18 @@ body {
 	padding: 0 5px;
 	width: 211px;
 }
-#body .content .section .blog  #Btncomment {
+#body .content .section .blog #Btncomment {
 	background-position: -277px -440px;
 	cursor: pointer;
-	float: left;
 	height: 31px;
 	margin: 18px 0 0 375px;
 	padding: 0;
 	width: 164px;
 }
-#body .content .section .blog  #Btncomment:hover {
+#body .content .section .blog #Btncomment:hover {
 	background-position: -407px -568px;
 }
-#body .content .section .blog form textarea {
+#body .content .section .blog textarea {
 	background: url(../images/interface.png) no-repeat 0 -440px;
 	border: 0;
 	color: #7a7a7a;
@@ -1453,7 +1452,7 @@ body {
 	float: left;
 	margin: 0;
 	padding: 0;
-	width: 162px;
+	width: 150px;
 }
 #body .content .sidebar .post ul li div span {
 	display: block;
@@ -1877,4 +1876,47 @@ body {
 }
 #footer .section ul li a:hover {
 	text-decoration: underline;
+}
+
+table{ 
+	border-collapse: collapse; 
+	width: 100%; 
+}
+table th{ 
+	background: url(../img/bg_box_head.jpg) repeat-x;
+	color: #DACDCD;
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+	font-size: 11px; 
+	font-weight: bold; 
+	padding: 7px; 
+	text-shadow: 0px 1px #242424; 
+}
+table tr{ 
+	border-left: 1px solid #ffffff;
+	border-right: 1px solid #ffffff;
+}
+table td{ 
+	border-bottom: 1px solid #ffffff; 
+	border-top: 1px solid ffffff; 
+	color: #565656;
+	padding: 8px; 
+}
+table tr:hover td{ 
+	background: #fff8cf;
+	color: #000000; 
+}
+table .chb{ 
+	width: 20px; 
+}
+
+.table-icon { padding: 1px 8px; margin-right: 5px; }
+.edit.table-icon { background: url(../img/i_edit.png) no-repeat; }
+.delete.table-icon { background: url(../img/i_delete.png) no-repeat; }
+.archive.table-icon { background: url(../img/i_archive.png) no-repeat; }
+
+.pagination{
+	margin: 5px auto;
+	padding: 12px 0;
+	text-align: center;
 }

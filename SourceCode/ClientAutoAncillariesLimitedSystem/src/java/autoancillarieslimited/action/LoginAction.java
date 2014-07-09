@@ -7,26 +7,19 @@
 package autoancillarieslimited.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.struts2.interceptor.ServletResponseAware;
 
 /**
  *
  * @author Duc
  */
-public class LoginAction extends ActionSupport implements ServletResponseAware{
-    HttpServletResponse response;
+public class LoginAction extends ActionSupport{
+
     public LoginAction() {
     }
-    
+
+    @Override
     public String execute() throws Exception {
         return SUCCESS;
-    }
-    
-    @Override
-    public void setServletResponse(HttpServletResponse hsr) {
-        response = hsr;
-        
     }
     
 }

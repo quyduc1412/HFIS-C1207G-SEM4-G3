@@ -10,7 +10,9 @@
     <mapping resource="autoancillarieslimited/hiberate/entities/Item.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/Employee.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/Region.hbm.xml"/>
+    <mapping resource="autoancillarieslimited/hiberate/entities/PurchaseOrder.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/Customer.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/TypeItem.hbm.xml"/>
+    <mapping resource="autoancillarieslimited/hiberate/entities/ItemOrder.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

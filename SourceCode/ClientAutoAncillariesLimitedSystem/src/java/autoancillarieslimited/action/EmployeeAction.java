@@ -38,6 +38,7 @@ public class EmployeeAction extends ActionSupport {
 
     public EmployeeAction() {
     }
+    
 
     public String execute() throws Exception {
         list = EmployeeDAO.getInstance().getEmployees();
