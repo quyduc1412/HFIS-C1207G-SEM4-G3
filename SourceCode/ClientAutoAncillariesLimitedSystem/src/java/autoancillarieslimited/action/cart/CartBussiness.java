@@ -54,6 +54,14 @@ public class CartBussiness {
         return total;
     }
 
+    public int getTotalQuantity() {
+        int total = 0;
+        for (CartItem cartItem : list) {
+            total += cartItem.getQuantity();
+        }
+        return total;
+    }
+
     public int getCount() {
         return list.size();
     }

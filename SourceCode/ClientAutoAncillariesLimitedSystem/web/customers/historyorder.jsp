@@ -71,56 +71,7 @@
                     <input type="submit" name="searchBtn" id="searchBtn" value="">
                 </form>
             </div>
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="index.html">home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">about</a>
-                        <ul>
-                            <li>
-                                <a href="team.html">the team</a>
-                            </li>
-                            <li>
-                                <a href="testimonials.html">testimonials</a>
-                            </li>
-                            <li>
-                                <a href="gallery.html">gallery</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="services.html">services</a>
-                        <ul>
-                            <li>
-                                <a href="services.html">engine maintenance</a>
-                            </li>
-                            <li>
-                                <a href="services.html">wheel allignment</a>
-                            </li>
-                            <li>
-                                <a href="services.html">air condition services</a>
-                            </li>
-                            <li>
-                                <a href="services.html">transmission</a>
-                            </li>
-                            <li>
-                                <a href="promo.html">promos &amp; discounts</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="selected">
-                        <a href="blog.html">blog</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">contact</a>
-                    </li>
-                    <li class="booking">
-                        <a href="booking.html">book an appointment</a>
-                    </li>
-                </ul>
-            </div>
+            <%@include file="menubar.jsp" %>
         </div>
         <div id="body">
             <div class="content">
@@ -151,7 +102,7 @@
 <!--                                        <a href="#" class="table-icon edit" item_id="<d:property value="item.id"/>" title="Edit"></a>
                                         <a href="#" class="table-icon archive" item_id="<d:property value="item.id"/>" title="Archive"></a>
                                         <a href="#" class="table-icon delete" item_id="<d:property value="item.id"/>" title="Delete"></a>-->
-                                        <a class="details-order" idname="<d:property value="id"/>"> Details</a>
+                                        <a href="#" class="details-order" idname="<d:property value="id"/>"> Details</a>
                                     </td>
                                 </tr>
                             </d:iterator>

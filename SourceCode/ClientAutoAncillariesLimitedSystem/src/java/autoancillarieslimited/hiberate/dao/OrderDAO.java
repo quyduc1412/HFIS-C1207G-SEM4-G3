@@ -65,7 +65,6 @@ public class OrderDAO {
         }
         Set<ItemOrder> setItemOser = new HashSet<>();
         setItemOser.addAll(list);
-        order.setWareHouses(WareHousesDAO.getInstance().getByID(1, WareHouses.class));
         order.setDateOrder(new Date());
         order.setStatus(0);
         order.setItemOrders(setItemOser);

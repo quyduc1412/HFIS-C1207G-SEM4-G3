@@ -106,4 +106,13 @@ public class Item implements java.io.Serializable {
         }
         return "";
     }
+
+    public String getDescriptionDisplay() {
+        String display = description;
+        if(display!=null && display.length() > 100){
+            return display.substring(0,99) + "...";
+        }
+        return display;
+    }
+    
 }

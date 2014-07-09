@@ -13,7 +13,8 @@ $(document).ready(function() {
                 'address': 'P2',
                 'phone': 'P3',
                 'email': 'P4',
-                'region': 'P5'
+                'region': 'P5',
+                'region_name': 'P6'
             };
         }
     });
@@ -29,7 +30,6 @@ $(document).ready(function() {
         e.preventDefault();
         var data = $(this).attr("idname");
         $("#overlay #context").load("views/view_details_order.html", function() {
-            alert(data);
             $(document).trigger('DETAIL_ORDER_LOADED', data);
             $('#overlay').fadeIn();
         });
@@ -42,14 +42,12 @@ $(document).ready(function() {
                 if (des.length > 30) {
                     des = des.substring(0, 29) + "...";
                 }
-                data += "<tr> <td class='align-center'>" + value.item.id + "</td> <td>" + value.item.name + "</td> <td>" + des + "</td> <td>" + value.quantity + "</td> <td class='align-center'></td> <td>" + value.item.price + "</td> </tr>";
+                data += "<tr> <td class='align-center'>" + value.item.id + "</td> <td>" + value.item.name + "</td> <td>" + des + "</td> <td>" + value.quantity + "</td> <td class='align-center'>"+value.item.typeItem.nameType+"</td> <td>" + value.item.price + "</td> </tr>";
             });
-            alert(data);
             $('#body-details').html(data);
         };
         _service.call('getitemorderbyidpurchase', data_input, onGetSuccess);
         $('#close-dialog').on('click', function() {
-
             $('#overlay').fadeOut();
         });
     });
@@ -62,7 +60,7 @@ $(document).ready(function() {
             $('#details-warehouse td#address-warehouse').html(item.get('P2'));
             $('#details-warehouse td#name-phone').html(item.get('P3'));
             $('#details-warehouse td#name-email').html(item.get('P4'));
-            $('#details-warehouse td#name-region').html(item.get('P5'));
+            $('#details-warehouse td#name-region').html(item.get('P6'));
         };
         _service.call('../manager/getwarehousebyid', data, onGetSuccess);
         $('#close-dialog').on('click', function() {

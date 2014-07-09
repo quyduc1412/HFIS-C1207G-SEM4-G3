@@ -17,6 +17,7 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class SubmitOrderAction extends ActionSupport  implements SessionAware {
     private double totalprice;
+    private double totalQuantity;
     
     private List<CartItem> listCart;
 
@@ -28,6 +29,10 @@ public class SubmitOrderAction extends ActionSupport  implements SessionAware {
         return totalprice;
     }
 
+    public double getTotalQuantity() {
+        return totalQuantity;
+    }
+    
     
     public SubmitOrderAction() {
     }
@@ -42,6 +47,7 @@ public class SubmitOrderAction extends ActionSupport  implements SessionAware {
             }
             listCart = cart.getList();
             totalprice = cart.getTotalPrice();
+            totalQuantity = cart.getTotalQuantity();
             sessionAttributes.put("CART", cart);
         } catch (Exception ex) {
         }

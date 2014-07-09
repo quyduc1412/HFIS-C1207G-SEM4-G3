@@ -30,6 +30,7 @@
         <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
         <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script src="js/shoppingcart.js" type="text/javascript"></script>
+        
         <style>
             .content tr:nth-child(even){
                 background: #ffffff;
@@ -37,11 +38,31 @@
             .content tr:nth-child(odd){
                 background: #f7f7f7;
             }
+            #overlay{
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                z-index: 1000;
+                display: none;
+            }
+            #overlay #bg-overlay{
+                height: 100%;
+                width: 100%;
+                opacity: 0.7;
+                position: fixed;
+                background: url(img/overlay.png) repeat 0 0;
+            }
         </style>
     </head>
     <body>
         <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
-        <div id="header">
+        <div id="overlay">
+            <div id="bg-overlay"></div>
+            <!--<div class="comfirm dialog half_w"><button id="yes">Yes</button><button id="cancel">Cancel</button></div>-->
+            <div id="context">
+                
+            </div>
+        </div><div id="header">
             <div>
                 <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
                 <form action="index.html">
@@ -49,56 +70,7 @@
                     <input type="submit" name="searchBtn" id="searchBtn" value="">
                 </form>
             </div>
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="index.html">home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">about</a>
-                        <ul>
-                            <li>
-                                <a href="team.html">the team</a>
-                            </li>
-                            <li>
-                                <a href="testimonials.html">testimonials</a>
-                            </li>
-                            <li>
-                                <a href="gallery.html">gallery</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="services.html">services</a>
-                        <ul>
-                            <li>
-                                <a href="services.html">engine maintenance</a>
-                            </li>
-                            <li>
-                                <a href="services.html">wheel allignment</a>
-                            </li>
-                            <li>
-                                <a href="services.html">air condition services</a>
-                            </li>
-                            <li>
-                                <a href="services.html">transmission</a>
-                            </li>
-                            <li>
-                                <a href="promo.html">promos &amp; discounts</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="selected">
-                        <a href="blog.html">blog</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">contact</a>
-                    </li>
-                    <li class="booking">
-                        <a href="booking.html">book an appointment</a>
-                    </li>
-                </ul>
-            </div>
+            <%@include file="menubar.jsp" %>
         </div>
         <div id="body">
             <div class="content">
@@ -110,8 +82,8 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">Quantity</th>
                                 <th scope="col">Category</th>
+                                <th scope="col">Quantity</th>
                                 <th scope="col">Price</th>
                                 <th scope="col" style="width: 65px;">Modify</th>
                             </tr>
@@ -121,9 +93,9 @@
                                 <tr>
                                     <td class="align-center"><d:property value="item.id"/></td>
                                     <td><d:property value="item.name"/></td>
-                                    <td><d:property value="item.description"/></td>
-                                    <td><d:property value="quantity"/></td>
+                                    <td><d:property value="item.descriptionDisplay"/></td>
                                     <td class="align-center"><d:property value="item.typeItem.nameType"/></td>
+                                    <td><d:property value="quantity"/></td>
                                     <td><d:property value="item.price"/></td>
                                     <td>
                                         <a href="#" class="table-icon edit" item_id="<d:property value="item.id"/>" title="Edit"></a>
@@ -132,11 +104,17 @@
                                     </td>
                                 </tr>
                             </d:iterator>
-
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>Select Warehouses : <select name="warehouse" id="warehouse"></select></td>
+                                <td>Total</td>
+                                <td><d:property value="totalQuantity"/></td>
+                                <td><d:property value="totalprice"/></td>
+                                <td><input type="button" id="submit-order2" value="Submit"/></td>
+                            </tr>   
                         </tbody>
                     </table>
-                    <div>Total: <d:property value="totalprice"/> <a>Choise Warehouses</a><select name="warehouse" id="warehouse"></select><a id="order_button">Order</a>
-                    </div>
                 </div>
                 <%@include file="sidebar.jsp" %>
             </div>

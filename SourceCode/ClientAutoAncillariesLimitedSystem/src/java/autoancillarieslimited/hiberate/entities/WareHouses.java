@@ -131,6 +131,7 @@ public class WareHouses implements java.io.Serializable {
         jSONObject.put("P3", item.getPhone());
         jSONObject.put("P4", item.getEmail());
         jSONObject.put("P5", item.getRegion_ID());
+        jSONObject.put("P6", item.getRegion().getName());
         return jSONObject.toString();
     }
 

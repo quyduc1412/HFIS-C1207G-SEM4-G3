@@ -40,7 +40,7 @@
             </result>
         </action>
        <action class="autoancillarieslimited.action.LoginAction" name="login">
-           <result>checkout.jsp</result>
+           <result>login.jsp</result>
         </action>
         
     </package>

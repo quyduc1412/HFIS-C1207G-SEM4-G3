@@ -11,9 +11,16 @@
         <meta charset="UTF-8">
         <title>Services - Car Repair Shop Website Template</title>
         <link rel="stylesheet" href="css/style.css" type="text/css">
-        <!--[if lt IE 9]>
-                <link rel="stylesheet" type="text/css" href="css/ie.css">
-        <![endif]-->
+        <script src="js/jquery1.9.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery.json-2.4.js" type="text/javascript"></script>
+        <script src="js/jquery.uploadfile.min.js" type="text/javascript"></script>
+        <script src="js/classy.min.js" type="text/javascript"></script>
+        <script src="js/model.js" type="text/javascript"></script>
+        <script src="js/service.js" type="text/javascript"></script>
+        <script src="js/jquery.validationEngine-en.js" type="text/javascript"></script>
+        <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
+        <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
+        <script src="js/shoppingcart.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="header">
@@ -24,50 +31,12 @@
                     <input type="submit" name="searchBtn" id="searchBtn" value="">
                 </form>
             </div>
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="home">home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">about</a>
-                        <ul>
-                            <li>
-                                <a href="team.html">the team</a>
-                            </li>
-                            <li>
-                                <a href="testimonials.html">testimonials</a>
-                            </li>
-                            <li>
-                                <a href="gallery.html">gallery</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="selected">
-                        <a href="">categrory</a>
-                        <ul>
-                            <s:iterator value="listTypeItem" var="l">
-                                <li>
-                                    <a href=""><s:property value="nameType" /></a>
-                                </li>
-                                        
-                            </s:iterator>                                                       
-                        </ul>
-                    </li>
-                    
-                    <li>
-                        <a href="contact.html">contact</a>
-                    </li>
-                    <li class="booking">
-                        <a href="booking.html">book an appointment</a>
-                    </li>
-                </ul>
-            </div>
+            <%@include file="menubar.jsp" %>
         </div>
         <div id="body">
             <div class="content">
                 <div class="section">
-                    <div class="breadcrumb">
+<!--                    <div class="breadcrumb">
                         <span>You are here:</span>
                         <ul>
                             <li>
@@ -80,16 +49,16 @@
                                 <a href="services.html">engine maintenance</a>
                             </li>
                         </ul>
-                    </div>
+                    </div>-->
                     <div class="services">
-                        <h2>services</h2>
+                        <h2>Product</h2>
                         <ul>
                             <s:iterator value="litstItem" var="l">
                                 <li>
                                     <a href="#" class="figure"><img src='../upload/<s:property value="thumbnail"/>' width="169" height="152" alt=""></a>
                                     <div>
                                         <h3><s:property value="name" /></h3>
-                                        <p><s:property value="description" /></p>
+                                        <p><s:property value="descriptionDisplay" /></p>
                                         <p><s:property value="typeItem.nameType" /></p>
                                         <p><s:property value="price" /></p>
                                          <a href="detail?id=<s:property value="id" />">Detail</a>
@@ -109,52 +78,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="sidebar">
-                    <div class="navigation">
-                        <h3>Services</h3>
-                        <ul>
-                            <li class="selected">
-                                <a href="services.html">engine maintenance</a>
-                            </li>
-                            <li>
-                                <a href="services.html">wheel alignment</a>
-                            </li>
-                            <li>
-                                <a href="services.html">air condition services</a>
-                            </li>
-                            <li>
-                                <a href="services.html">transmission</a>
-                            </li>
-                            <li>
-                                <a href="promo.html">promos &amp; discounts</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="contact">
-                        <h3>contact information</h3>
-                        <ul>
-                            <li>
-                                <b>address:</b> <span>426 Grant Street Pine Hill, TX 75652</span>
-                            </li>
-                            <li>
-                                <b>phone:</b> <span>903-889-6313</span>
-                            </li>
-                            <li>
-                                <b>fax:</b> <span>903-889-6313</span>
-                            </li>
-                            <li>
-                                <b>email:</b> <span><a href="http://www.freewebsitetemplates.com/misc/contact">info@carrepairshop.com</a></span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="gallery">
-                        <h3>featured from gallery</h3>
-                        <a href="gallery.html" class="figure"><img src="images/featured.jpg" alt=""></a> <span><a href="gallery.html">Aenean interdum erat urna</a></span>
-                        <p>
-                            Nam lectus quam, dictum a vehicula ut, congue ac arcu. Sed vitae nisi ut nibh iaculis bibendums.
-                        </p>
-                    </div>
-                </div>
+                <%@include file="sidebar.jsp" %>
             </div>
         </div>
         <div id="footer">
