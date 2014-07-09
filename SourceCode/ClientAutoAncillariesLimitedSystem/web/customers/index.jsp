@@ -27,7 +27,7 @@
             <div class="navigation">
                 <ul>
                     <li>
-                        <a href="index.html">home</a>
+                        <a href="home">home</a>
                     </li>
                     <li>
                         <a href="about.html">about</a>
@@ -44,28 +44,17 @@
                         </ul>
                     </li>
                     <li class="selected">
-                        <a href="services.html">services</a>
+                        <a href="">categrory</a>
                         <ul>
-                            <li>
-                                <a href="services.html">engine maintenance</a>
-                            </li>
-                            <li>
-                                <a href="services.html">wheel allignment</a>
-                            </li>
-                            <li>
-                                <a href="services.html">air condition services</a>
-                            </li>
-                            <li>
-                                <a href="services.html">transmission</a>
-                            </li>
-                            <li>
-                                <a href="promo.html">promos &amp; discounts</a>
-                            </li>
+                            <s:iterator value="listTypeItem" var="l">
+                                <li>
+                                    <a href=""><s:property value="nameType" /></a>
+                                </li>
+                                        
+                            </s:iterator>                                                       
                         </ul>
                     </li>
-                    <li>
-                        <a href="blog.html">blog</a>
-                    </li>
+                    
                     <li>
                         <a href="contact.html">contact</a>
                     </li>

@@ -1106,7 +1106,7 @@ body {
 	padding: 0 0 12px;
 	text-transform: capitalize;
 }
-#body .content .section .blog form input {
+#body .content .section .blog  input {
 	background: url(../images/interface.png) no-repeat 0 -411px;
 	border: 0;
 	color: #7a7a7a;
@@ -1119,7 +1119,7 @@ body {
 	padding: 0 5px;
 	width: 211px;
 }
-#body .content .section .blog form #Btncomment {
+#body .content .section .blog  #Btncomment {
 	background-position: -277px -440px;
 	cursor: pointer;
 	float: left;
@@ -1128,7 +1128,7 @@ body {
 	padding: 0;
 	width: 164px;
 }
-#body .content .section .blog form #Btncomment:hover {
+#body .content .section .blog  #Btncomment:hover {
 	background-position: -407px -568px;
 }
 #body .content .section .blog form textarea {
