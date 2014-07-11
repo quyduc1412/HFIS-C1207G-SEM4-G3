@@ -152,7 +152,7 @@ $(document).ready(function() {
                             if (result.code === 400) {
                                 location.reload();
                             }
-                        }, 3000);
+                        }, 1000);
                 if (result.code === 400) {
                 }
             };
@@ -183,7 +183,7 @@ $(document).ready(function() {
                             if (result.code === 400) {
                                 location.reload();
                             }
-                        }, 3000);
+                        }, 1000);
                 if (result.code === 400) {
                 }
             });

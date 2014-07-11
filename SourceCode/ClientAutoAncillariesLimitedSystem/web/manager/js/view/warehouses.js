@@ -128,7 +128,7 @@ $(document).ready(function() {
                             if (result.code === 400) {
                                 location.reload();
                             }
-                        }, 3000);
+                        }, 2000);
                 if (result.code === 400) {
                 }
             };

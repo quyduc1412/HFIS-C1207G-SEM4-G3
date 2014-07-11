@@ -41,7 +41,7 @@
                     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
                 }
                 var message = getParameterByName("message");
-                $("#title-login").html(message);
+                $("#title-login").html(mes  sage);
             });
         </script>
     </head>

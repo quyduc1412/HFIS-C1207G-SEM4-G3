@@ -35,7 +35,7 @@
          <action class="autoancillarieslimited.action.customer.DetailAction" name="detail">
             <result>detail.jsp</result>
         </action>
-         <action class="autoancillarieslimited.action.LoginCustomerAction" name="logincustomer">
+         <action class="autoancillarieslimited.action.customer.LoginCustomerAction" name="logincustomer">
             <result type="json">
             </result>
         </action>
@@ -43,5 +43,8 @@
            <result>login.jsp</result>
         </action>
         
+       <action class="autoancillarieslimited.action.customer.LogoutCustomerAction" name="logout">
+           <result>login.jsp</result>
+        </action>
     </package>
 </struts>

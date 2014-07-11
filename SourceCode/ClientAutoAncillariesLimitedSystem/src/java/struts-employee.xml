@@ -21,5 +21,16 @@
             <result type="json">
             </result>
         </action>
+        <action class="autoancillarieslimited.action.employee.cart.ManagerOrderAction" name="managerorder">
+            <result>managerorder.jsp</result>
+        </action>
+        <action class="autoancillarieslimited.action.employee.CheckLogin" name="loginemployee">
+            <result type="json">
+            </result>
+        </action>
+        <action class="autoancillarieslimited.action.cart.ChangeStatusOrderAction" name="changestatusorder">
+            <result type="json">
+            </result>
+        </action>
     </package>
 </struts>

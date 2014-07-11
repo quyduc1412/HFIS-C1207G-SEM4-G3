@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package autoancillarieslimited.action;
+
+package autoancillarieslimited.action.cart;
 
 import autoancillarieslimited.hiberate.dao.CustomerDAO;
+import autoancillarieslimited.hiberate.dao.PurchaseOrderDAO;
 import autoancillarieslimited.hiberate.entities.Customer;
+import autoancillarieslimited.hiberate.entities.PurchaseOrder;
+import static com.opensymphony.xwork2.Action.SUCCESS;
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.Map;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.struts2.interceptor.ServletResponseAware;
-import org.apache.struts2.interceptor.SessionAware;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
@@ -19,8 +19,7 @@ import org.json.simple.parser.JSONParser;
  *
  * @author Duc
  */
-public class LoginCustomerAction extends ActionSupport implements ServletResponseAware, SessionAware {
-
+public class ChangeStatusOrderAction extends ActionSupport {
     private String data_request;
 
     private String data_response;
@@ -42,22 +41,20 @@ public class LoginCustomerAction extends ActionSupport implements ServletRespons
     public int getCode() {
         return code;
     }
-    private HttpServletResponse response;
-    private Map<String, Object> map;
-
-    public LoginCustomerAction() {
+    public ChangeStatusOrderAction() {
     }
-
-    public String execute() {
+    
+    public String execute() throws Exception {
         try {
             JSONParser parser = new JSONParser();
             Object obj = parser.parse(data_request);
             JSONObject jsonObject = (JSONObject) obj;
-            String email = (String) jsonObject.get("P0");
-            String password = (String) jsonObject.get("P1");
-            Customer checkLogin = CustomerDAO.getInstance().checkLogin(email, password);
-            if (checkLogin != null) {
-                map.put("USER", checkLogin);
+            int id_order = Integer.parseInt((String) jsonObject.get("P0"));
+            int status = Integer.parseInt((String) jsonObject.get("P1"));
+            PurchaseOrder byID = PurchaseOrderDAO.getInstance().getByID(id_order, PurchaseOrder.class);
+            if (byID != null) {
+                byID.setStatus(status);
+                PurchaseOrderDAO.getInstance().update(byID);
                 code = 400;
             } else {
                 data_response = "Login faild. Check Email or Password !";
@@ -69,16 +66,5 @@ public class LoginCustomerAction extends ActionSupport implements ServletRespons
         }
         return SUCCESS;
     }
-
-    @Override
-    public void setServletResponse(HttpServletResponse hsr) {
-        response = hsr;
-
-    }
-
-    @Override
-    public void setSession(Map<String, Object> map) {
-        this.map = map;
-    }
-
+    
 }

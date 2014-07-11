@@ -20,9 +20,12 @@
            
         </li>
 
-        <li class="selected">
-            <a href="blog.html">blog</a>
-        </li>
+        <%
+            if (request.getSession().getAttribute("USER") == null) {
+                out.print("<li><a href='login.jsp'>Login</a></li>");
+            } else {
+            }
+        %>
         <li>
             <a href="contact.html">contact</a>
         </li>

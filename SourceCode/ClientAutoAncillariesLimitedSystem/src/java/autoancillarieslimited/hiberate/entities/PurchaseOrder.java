@@ -1,6 +1,7 @@
 package autoancillarieslimited.hiberate.entities;
 // Generated Jul 8, 2014 9:56:00 PM by Hibernate Tools 3.6.0
 
+import autoancillarieslimited.hiberate.dao.CustomerDAO;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,13 @@ public class PurchaseOrder implements java.io.Serializable {
     private WareHouses wareHouses;
     private Date dateOrder;
     private Integer idCustomer;
+    private Customer customer;
+
+    public Customer getCustomer() {
+        customer = CustomerDAO.getInstance().getByID(idCustomer, Customer.class);
+        return customer;
+    }
+
     private Integer status;
     private Set<ItemOrder> itemOrders = new HashSet(0);
 
@@ -106,9 +114,13 @@ public class PurchaseOrder implements java.io.Serializable {
                 statusString = "Pending";
                 break;
             case 1:
+                statusString = "Cancel";
+                break;
+            case 2:
                 statusString = "Completed";
                 break;
             default:
+                statusString = "Pending";
                 break;
         }
         return statusString;

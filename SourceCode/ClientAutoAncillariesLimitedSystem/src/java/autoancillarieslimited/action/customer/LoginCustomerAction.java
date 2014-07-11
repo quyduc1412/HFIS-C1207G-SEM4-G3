@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package autoancillarieslimited.action.employee;
+package autoancillarieslimited.action.customer;
 
-import autoancillarieslimited.hiberate.dao.EmployeeDAO;
-import autoancillarieslimited.hiberate.entities.Employee;
+import autoancillarieslimited.hiberate.dao.CustomerDAO;
+import autoancillarieslimited.hiberate.entities.Customer;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +19,7 @@ import org.json.simple.parser.JSONParser;
  *
  * @author Duc
  */
-public class CheckLogin extends ActionSupport implements ServletResponseAware, SessionAware {
+public class LoginCustomerAction extends ActionSupport implements ServletResponseAware, SessionAware {
 
     private String data_request;
 
@@ -42,26 +42,30 @@ public class CheckLogin extends ActionSupport implements ServletResponseAware, S
     public int getCode() {
         return code;
     }
-
     private HttpServletResponse response;
     private Map<String, Object> map;
 
-    public CheckLogin() {
+    public LoginCustomerAction() {
     }
 
-    public String execute() throws Exception {
-        JSONParser parser = new JSONParser();
-        Object obj = parser.parse(data_request);
-        JSONObject jsonObject = (JSONObject) obj;
-        String user = (String) jsonObject.get("P0");
-        String pass = (String) jsonObject.get("P1");
-        Employee checkLogin = EmployeeDAO.getInstance().checkLogin(user, pass);
-        if (checkLogin != null) {
-            code = 400;
-            map.put("USER-EMPLOYEE", checkLogin);
-        } else {
+    public String execute() {
+        try {
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(data_request);
+            JSONObject jsonObject = (JSONObject) obj;
+            String email = (String) jsonObject.get("P0");
+            String password = (String) jsonObject.get("P1");
+            Customer checkLogin = CustomerDAO.getInstance().checkLogin(email, password);
+            if (checkLogin != null) {
+                map.put("USER", checkLogin);
+                code = 400;
+            } else {
+                data_response = "Login faild. Check Email or Password !";
+                code = 405;
+            }
+        } catch (Exception ex) {
+            data_response = ex.getMessage();
             code = 405;
-            data_response = "Login Faild. Check your email or password!";
         }
         return SUCCESS;
     }
@@ -76,4 +80,5 @@ public class CheckLogin extends ActionSupport implements ServletResponseAware, S
     public void setSession(Map<String, Object> map) {
         this.map = map;
     }
+
 }

@@ -87,7 +87,7 @@ public class EmployeeDAO extends AbstractDao<Employee> {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
-            item = (Employee) session.createQuery("from Employee where Email like " + email + " AND Password like " + password + "").uniqueResult();
+            item = (Employee) session.createQuery("from Employee where Email like '" + email + "' AND Password like '" + password + "'").uniqueResult();
             session.flush();
             session.clear();
             beginTransaction.commit();

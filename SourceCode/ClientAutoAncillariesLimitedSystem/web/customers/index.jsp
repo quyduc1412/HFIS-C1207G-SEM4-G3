@@ -81,16 +81,6 @@
                                     </div>
                                 </li>
                             </s:iterator>
-
-                            <li>
-                                <a href="#" class="figure"><img src="images/tool-box.jpg" alt=""></a>
-                                <div>
-                                    <h3>Quisque consectetur</h3>
-                                    <p>
-                                        If you're having problems editing this website template, then don't hesitate to ask for help on the <a href="http://www.freewebsitetemplates.com/forums/">Forums</a>. Morbi eros diam, placerat in elementum et, dictum at tellus. Fusce eleifend convallis risus vel malesuada.
-                                    </p>
-                                </div>
-                            </li>
                         </ul>
                     </div>
                 </div>

@@ -86,7 +86,7 @@
                                 <th scope="col">Warehouses</th>
                                 <th scope="col">Items</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Total Price</th>
+                                <th scope="col">Price</th>
                                 <th scope="col" style="width: 65px;">Modify</th>
                             </tr>
                         </thead>
