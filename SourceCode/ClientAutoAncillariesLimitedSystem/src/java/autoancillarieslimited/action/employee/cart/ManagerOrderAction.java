@@ -74,8 +74,13 @@ public class ManagerOrderAction extends ActionSupport implements ServletResponse
         } else {
             Employee e = (Employee) map.get("USER-EMPLOYEE");
             try {
-                if (((datefrom == null || dateto == null) || (datefrom.equalsIgnoreCase("") || dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)) {
+                if(((datefrom == null && dateto == null) && (datefrom.equalsIgnoreCase("") || dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)){
                     list = PurchaseOrderDAO.getInstance().getListByIDWarehouse(e.getWareHouses().getId(), status);
+                    System.out.println("METHOD 0");
+                    
+                }
+                if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)) {
+                    list = PurchaseOrderDAO.getInstance().getListByIDWarehouse(e.getWareHouses().getId(), datefrom, dateto, status);
                     System.out.println("METHOD 1");
                 } else if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase("")))) {
                     list = PurchaseOrderDAO.getInstance().getListByIDWarehouse(e.getWareHouses().getId(), datefrom, dateto);

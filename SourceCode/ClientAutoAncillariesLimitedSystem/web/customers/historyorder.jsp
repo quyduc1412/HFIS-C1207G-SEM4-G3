@@ -29,6 +29,9 @@
         <script src="js/jquery.validationEngine-en.js" type="text/javascript"></script>
         <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
         <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
+        <link href="../manager/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../manager/jquery-ui-1.11.0/jquery-ui.min.js" type="text/javascript"></script>
+        <link href="../manager/jquery-ui-1.11.0/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
         <script src="js/historycart.js" type="text/javascript"></script>
         <script src="js/shoppingcart.js" type="text/javascript"></script>
         <script src="js/login.js" type="text/javascript"></script>
@@ -77,7 +80,15 @@
         <div id="body">
             <div class="content">
                 <div class="section">
-                    <div style="width: 100%;text-align: center"><h3>Shopping Cart History</h3></div>
+                    <div style="width: 100%;text-align: center"><h3>Shopping Cart History</h3></div><div>
+                        <form method="get">
+                            <div style="float: right;margin-right: 5px">
+                                <a>From</a><input name="datefrom" type="text" id="datefrom" value="<d:property value="datefrom"/>"/>
+                                <a>To</a><input name="dateto" type="text" id="dateto" value="<d:property value="dateto"/>"/>
+                                <a>Name</a><select name="status"><option value="-1">All</option><option value="0">Pending</option><option value="1">Watting</option><option value="2">Completed</option></select><input type="submit" value="Search" />
+                            </div>
+                        </form>
+                    </div>
                     <table>
                         <thead>
                             <tr>

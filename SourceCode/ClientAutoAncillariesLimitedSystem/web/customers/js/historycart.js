@@ -67,4 +67,8 @@ $(document).ready(function() {
             $('#overlay').fadeOut();
         });
     });
+    $(function() {
+        $("#datefrom").datepicker();
+        $("#dateto").datepicker();
+    });
 });

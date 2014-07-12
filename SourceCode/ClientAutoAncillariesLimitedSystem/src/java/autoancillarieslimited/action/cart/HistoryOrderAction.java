@@ -25,6 +25,30 @@ public class HistoryOrderAction extends ActionSupport implements SessionAware, S
 
     private HttpServletResponse response;
     private Map<String, Object> sessionAttributes = null;
+    private String datefrom;
+    private String dateto;
+    private String status;
+   
+
+    public String getDatefrom() {
+        return datefrom;
+    }
+
+    public String getDateto() {
+        return dateto;
+    }
+    
+    public void setDatefrom(String datefrom) {
+        this.datefrom = datefrom;
+    }
+
+    public void setDateto(String dateto) {
+        this.dateto = dateto;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public List<PurchaseOrder> getList() {
         return list;
@@ -38,7 +62,25 @@ public class HistoryOrderAction extends ActionSupport implements SessionAware, S
             response.sendRedirect("home");
         } else {
             Customer customer = (Customer) sessionAttributes.get("USER");
-            list = PurchaseOrderDAO.getInstance().getListByIDCustomer(customer.getId());
+            try {
+                if (((datefrom == null && dateto == null) && (datefrom.equalsIgnoreCase("") || dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)) {
+                    list = PurchaseOrderDAO.getInstance().getListByIDCustomer(customer.getId(), status);
+                    System.out.println("METHOD 0");
+                }
+                if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)) {
+                    list = PurchaseOrderDAO.getInstance().getListByIDCustomer(customer.getId(), datefrom, dateto, status);
+                    System.out.println("METHOD 1");
+                } else if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase("")))) {
+                    list = PurchaseOrderDAO.getInstance().getListByIDCustomer(customer.getId(), datefrom, dateto);
+                    System.out.println("METHOD 2");
+                } else {
+                    list = PurchaseOrderDAO.getInstance().getListByIDCustomer(customer.getId());
+                    System.out.println("METHOD 3");
+                }
+            } catch (Exception ex) {
+                list = PurchaseOrderDAO.getInstance().getListByIDCustomer(customer.getId());
+                System.out.println("METHOD 4");
+            }
         }
         return SUCCESS;
     }

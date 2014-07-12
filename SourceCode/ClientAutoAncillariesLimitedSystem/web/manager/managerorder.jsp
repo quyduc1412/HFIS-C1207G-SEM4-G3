@@ -79,20 +79,7 @@
             <div id="context"></div>
         </div>
         <div class="wrap">
-            <div id="header">
-                <div id="top">
-                    <div class="left">
-                        <p>Welcome, <strong>Paweł B.</strong> [ <a href="">logout</a> ]</p>
-                    </div>
-                    <div class="right">
-                        <div class="align-right">
-                            <p>Last login: <strong>23-04-2012 23:12</strong></p>
-                        </div>
-                    </div>
-                </div>
-                <%@include file="navigation.jsp" %>
-            </div>
-
+            <%@include file="employeeheader.jsp" %>
             <div id="content">
                 <div id="main" style="width: 100% !important">
                     <div class="full_w">
@@ -101,8 +88,8 @@
                         <div>
                             <form method="get">
                                 <div style="float: right;margin-right: 5px">
-                                    <a>From</a><input name="datefrom" type="text" id="datefrom"/>
-                                    <a>To</a><input name="dateto" type="text" id="dateto"/>
+                                <a>From</a><input name="datefrom" type="text" id="datefrom" value="<d:property value="datefrom"/>"/>
+                                <a>To</a><input name="dateto" type="text" id="dateto" value="<d:property value="dateto"/>"/>
                                     <a>Name</a><select name="status"><option value="-1">All</option><option value="0">Pending</option><option value="1">Watting</option><option value="2">Completed</option></select><input type="submit" value="Search" />
                                 </div>
                             </form>
