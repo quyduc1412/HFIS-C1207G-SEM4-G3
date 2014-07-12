@@ -101,7 +101,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Warehouse</th>
                                     <th scope="col">Date Order</th>
                                     <th scope="col">Customer</th>
                                     <th scope="col">Status</th>
@@ -112,8 +111,8 @@
                             <tbody>
                                 <d:iterator value="list">
                                     <tr>
-                                        <td class="align-center"><d:property value="id"/></td>
-                                        <td class="align-center warehouse-details" idname="<d:property value="wareHouses.id"/>"><a href="#"><d:property value="wareHouses.name"/></a></td>
+                                        <td class="align-center full-order" idcustomer="<d:property value="customer.id"/>" status="<d:property value="statusString"/>" idorder="<d:property value="id"/>"><a href="#"><d:property value="id"/></a></td>
+                                        <!--<td class="align-center warehouse-details" idname="<d:property value="wareHouses.id"/>"><a href="#"><d:property value="wareHouses.name"/></a></td>-->
                                         <td class="align-center"><d:property value="dateOrder"/></td>
                                         <td class="align-center customer-detail" idname="<d:property value="customer.id"/>"><a href="#"><d:property value="customer.email"/><a class="table-icon archive" title="Archive"></a></a></td>
                                         <td class="align-center details-status" idname="<d:property value="id"/>" ><a href="#"><d:property value="statusString"/><a class="table-icon edit" title="Edit"></a></a></a></td>
