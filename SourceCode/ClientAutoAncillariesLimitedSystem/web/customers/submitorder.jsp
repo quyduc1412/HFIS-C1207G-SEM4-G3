@@ -92,7 +92,7 @@
                             <d:iterator value="listCart">
                                 <tr>
                                     <td class="align-center"><d:property value="item.id"/></td>
-                                    <td><d:property value="item.name"/></td>
+                                    <td><a href="detail?id=<d:property value="item.id"/>"><d:property value="item.name"/></a></td>
                                     <td><d:property value="item.descriptionDisplay"/></td>
                                     <td class="align-center"><d:property value="item.typeItem.nameType"/></td>
                                     <td><d:property value="quantity"/></td>

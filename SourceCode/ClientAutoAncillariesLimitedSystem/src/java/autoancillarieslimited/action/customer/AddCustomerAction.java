@@ -47,10 +47,15 @@ public class AddCustomerAction extends ActionSupport {
     public String execute() throws Exception {
         try {
             Customer c = Customer.parserCustomerFromJSON(data_request);
-            if (c != null) {
-                CustomerDAO.getInstance().insert(c);
-                code = StringUtils.SUCCESS;
-                data_response = StringUtils.ADD_EMPLOYEE_SUCCESS;
+            if (CustomerDAO.getInstance().checkEmail(c.getEmail())) {
+                if (c != null) {
+                    CustomerDAO.getInstance().insert(c);
+                    code = StringUtils.SUCCESS;
+                    data_response = StringUtils.ADD_EMPLOYEE_SUCCESS;
+                }
+            } else {
+                data_response = "Email is registered";
+                code = StringUtils.FAILD;
             }
         } catch (Exception ex) {
             data_response = StringUtils.ADD_EMPLOYEE_FAILD + " " + ex.getMessage();

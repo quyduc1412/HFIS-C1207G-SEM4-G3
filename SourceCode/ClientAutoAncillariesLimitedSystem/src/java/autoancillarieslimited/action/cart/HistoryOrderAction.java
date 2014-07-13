@@ -28,7 +28,6 @@ public class HistoryOrderAction extends ActionSupport implements SessionAware, S
     private String datefrom;
     private String dateto;
     private String status;
-   
 
     public String getDatefrom() {
         return datefrom;
@@ -37,7 +36,7 @@ public class HistoryOrderAction extends ActionSupport implements SessionAware, S
     public String getDateto() {
         return dateto;
     }
-    
+
     public void setDatefrom(String datefrom) {
         this.datefrom = datefrom;
     }
@@ -63,11 +62,10 @@ public class HistoryOrderAction extends ActionSupport implements SessionAware, S
         } else {
             Customer customer = (Customer) sessionAttributes.get("USER");
             try {
-                if (((datefrom == null && dateto == null) && (datefrom.equalsIgnoreCase("") || dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)) {
+                if (((datefrom == null && dateto == null) || (datefrom.equalsIgnoreCase("") || dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)) {
                     list = PurchaseOrderDAO.getInstance().getListByIDCustomer(customer.getId(), status);
                     System.out.println("METHOD 0");
-                }
-                if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)) {
+                } else if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)) {
                     list = PurchaseOrderDAO.getInstance().getListByIDCustomer(customer.getId(), datefrom, dateto, status);
                     System.out.println("METHOD 1");
                 } else if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase("")))) {

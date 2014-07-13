@@ -35,6 +35,11 @@
                 padding: 0 5px;border: 0;
                 color: #7a7a7a;
             }
+            .pageclass{
+                padding: 2px;
+                margin-left: 2px;
+                margin-right: 2px;
+            }
         </style>
     </head>
     <body>
@@ -42,8 +47,8 @@
         <div id="header">
             <div>
                 <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
-                <form action="index.html">
-                    <input type="text" name="search" id="search" value="">
+                <form action="">
+                    <input type="text" name="name" id="search" value="">
                     <input type="submit" name="searchBtn" id="searchBtn" value="">
                 </form>
             </div>
@@ -82,6 +87,7 @@
                                 </li>
                             </s:iterator>
                         </ul>
+                        <s:property value="pagecontent" escape="false"/>
                     </div>
                 </div>
                 <%@include file="sidebar.jsp" %>

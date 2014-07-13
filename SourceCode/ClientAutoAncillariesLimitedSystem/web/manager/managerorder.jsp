@@ -83,13 +83,13 @@
             <div id="content">
                 <div id="main" style="width: 100% !important">
                     <div class="full_w">
-                        <div class="h_title">Manager Customer Page</div>
+                        <div class="h_title">Manager Order</div>
                         <h2>Manager Employee Page</h2>
                         <div>
                             <form method="get">
                                 <div style="float: right;margin-right: 5px">
-                                <a>From</a><input name="datefrom" type="text" id="datefrom" value="<d:property value="datefrom"/>"/>
-                                <a>To</a><input name="dateto" type="text" id="dateto" value="<d:property value="dateto"/>"/>
+                                    <a>From</a><input name="datefrom" type="text" id="datefrom" value="<d:property value="datefrom"/>"/>
+                                    <a>To</a><input name="dateto" type="text" id="dateto" value="<d:property value="dateto"/>"/>
                                     <a>Name</a><select name="status"><option value="-1">All</option><option value="0">Pending</option><option value="1">Watting</option><option value="2">Completed</option></select><input type="submit" value="Search" />
                                 </div>
                             </form>
@@ -100,7 +100,7 @@
                         <table style="width: 100% !important;margin:0px !important">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
+                                    <th scope="col">ID Order</th>
                                     <th scope="col">Date Order</th>
                                     <th scope="col">Customer</th>
                                     <th scope="col">Status</th>
@@ -111,7 +111,7 @@
                             <tbody>
                                 <d:iterator value="list">
                                     <tr>
-                                        <td class="align-center full-order" idcustomer="<d:property value="customer.id"/>" status="<d:property value="statusString"/>" idorder="<d:property value="id"/>"><a href="#"><d:property value="id"/></a></td>
+                                        <td class="align-center full-order" idcustomer="<d:property value="customer.id"/>" status="<d:property value="statusString"/>" idorder="<d:property value="id"/>"><a href="#">Order ID <d:property value="id"/></a></td>
                                         <!--<td class="align-center warehouse-details" idname="<d:property value="wareHouses.id"/>"><a href="#"><d:property value="wareHouses.name"/></a></td>-->
                                         <td class="align-center"><d:property value="dateOrder"/></td>
                                         <td class="align-center customer-detail" idname="<d:property value="customer.id"/>"><a href="#"><d:property value="customer.email"/><a class="table-icon archive" title="Archive"></a></a></td>

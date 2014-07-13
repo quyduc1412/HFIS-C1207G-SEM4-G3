@@ -10,14 +10,18 @@
             <a href="home">home</a>
         </li>
         <li>
-            <a href="services.html">Product</a>
+            <a href="#">Product</a>
             <ul id="productmenu">
-                
+
             </ul>
         </li>
         <li>
-            <a href="register">Register</a>
-           
+            <%
+                if (request.getSession().getAttribute("USER") == null) {
+                    out.print("<li><a href='register.jsp'>Register</a></li>");
+                } else {
+                }
+            %>
         </li>
 
         <%
@@ -43,7 +47,7 @@
         var onGetCategorySuccess = function(result) {
             var data = "";
             $.each(result.list, function(index, value) {
-                data += "<li> <a href='home?category="+value.id+"'>" + value.nameType + "</a> </li>";
+                data += "<li> <a href='home?category=" + value.id + "'>" + value.nameType + "</a> </li>";
             });
             $('#productmenu').html(data);
             $('#menu-category').html(data);

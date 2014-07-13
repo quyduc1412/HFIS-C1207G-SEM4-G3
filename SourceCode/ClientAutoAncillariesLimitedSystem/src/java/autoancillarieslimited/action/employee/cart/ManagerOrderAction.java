@@ -31,6 +31,18 @@ public class ManagerOrderAction extends ActionSupport implements ServletResponse
     private String dateto;
     private String status;
 
+    public String getDatefrom() {
+        return datefrom;
+    }
+
+    public String getDateto() {
+        return dateto;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+    
     public void setDatefrom(String datefrom) {
         this.datefrom = datefrom;
     }

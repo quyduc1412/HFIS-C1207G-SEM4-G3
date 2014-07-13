@@ -16,6 +16,7 @@ import org.hibernate.Transaction;
  * @author Duc
  */
 public class CustomerDAO extends AbstractDao<Customer> {
+
     private static CustomerDAO INSTANCE;
 
     public static CustomerDAO getInstance() {
@@ -24,6 +25,7 @@ public class CustomerDAO extends AbstractDao<Customer> {
         }
         return INSTANCE;
     }
+
     public Customer checkLogin(String email, String password) {
         Customer item = null;
         Session session = null;
@@ -46,5 +48,32 @@ public class CustomerDAO extends AbstractDao<Customer> {
             }
         }
         return item;
+    }
+
+    public boolean checkEmail(String email) {
+        Customer item = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            item = (Customer) session.createQuery("from Customer where Email like '" + email + "'").uniqueResult();
+            session.flush();
+            session.clear();
+            beginTransaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        if (item != null) {
+            return false;
+        }
+        return true;
     }
 }

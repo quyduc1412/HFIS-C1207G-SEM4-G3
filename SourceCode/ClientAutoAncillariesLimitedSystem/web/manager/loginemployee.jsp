@@ -26,6 +26,11 @@
         <script src="js/loginemployee.js" type="text/javascript"></script>
     </head>
     <body>
+        <% 
+            if(session.getAttribute("USER-EMPLOYEE")!=null){
+                response.sendRedirect("managerorder");
+            }
+        %>
         <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white;top: 0;"></div>
         <div class="wrap">
             <div id="content">

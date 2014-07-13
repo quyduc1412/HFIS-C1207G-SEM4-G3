@@ -20,6 +20,7 @@ import org.hibernate.Transaction;
  */
 public class ProductDAO extends AbstractDao<Item> {
 
+    private static final int pageSize = 5;
     private static ProductDAO INSTANCE;
 
     public static ProductDAO getInstance() {
@@ -99,6 +100,30 @@ public class ProductDAO extends AbstractDao<Item> {
 //        return true;
 //    }
 
+    public List<Item> getItems(int pageNumber) {
+        List<Item> set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = session.createQuery("from Item").setFirstResult((pageNumber - 1) * pageSize).setMaxResults(pageSize).list();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
     public List<Item> getItems() {
         List<Item> set = null;
         Session session = null;
@@ -149,6 +174,38 @@ public class ProductDAO extends AbstractDao<Item> {
             }
         }
         return set;
+    }
+
+    public static void main(String[] args) {
+        System.out.println((ProductDAO.getInstance().getCountItems()) + "AAAAAAA");
+    }
+
+    public Long getCountItems() {
+        Long set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = (Long) session.createQuery("select count(*) from Item").uniqueResult();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        long countPage = set / pageSize;
+        if(set % pageSize >0){
+            countPage++;
+        }
+        return countPage;
     }
 
     public List<TypeItem> getTypeItem() {
