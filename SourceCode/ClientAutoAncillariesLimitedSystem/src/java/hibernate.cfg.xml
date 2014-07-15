@@ -14,5 +14,6 @@
     <mapping resource="autoancillarieslimited/hiberate/entities/Customer.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/TypeItem.hbm.xml"/>
     <mapping resource="autoancillarieslimited/hiberate/entities/ItemOrder.hbm.xml"/>
+    <mapping resource="autoancillarieslimited/hiberate/entities/Admin.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

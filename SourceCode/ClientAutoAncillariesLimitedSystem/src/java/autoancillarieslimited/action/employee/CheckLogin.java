@@ -6,6 +6,7 @@
 package autoancillarieslimited.action.employee;
 
 import autoancillarieslimited.hiberate.dao.EmployeeDAO;
+import autoancillarieslimited.hiberate.entities.Admin;
 import autoancillarieslimited.hiberate.entities.Employee;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
@@ -56,7 +57,12 @@ public class CheckLogin extends ActionSupport implements ServletResponseAware, S
         String user = (String) jsonObject.get("P0");
         String pass = (String) jsonObject.get("P1");
         Employee checkLogin = EmployeeDAO.getInstance().checkLogin(user, pass);
-        if (checkLogin != null) {
+        Admin checkLoginAdmin = EmployeeDAO.getInstance().checkLoginAdmin(user, pass);
+        if (checkLoginAdmin != null) {
+            code = 401;
+            map.put("USER-ADMIN", checkLoginAdmin);
+            return SUCCESS;
+        } else if (checkLogin != null) {
             code = 400;
             map.put("USER-EMPLOYEE", checkLogin);
         } else {

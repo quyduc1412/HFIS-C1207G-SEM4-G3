@@ -63,13 +63,6 @@
                 
             </div>
         </div><div id="header">
-            <div>
-                <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
-                <form action="index.html">
-                    <input type="text" name="search" id="search" value="">
-                    <input type="submit" name="searchBtn" id="searchBtn" value="">
-                </form>
-            </div>
             <%@include file="menubar.jsp" %>
         </div>
         <div id="body">

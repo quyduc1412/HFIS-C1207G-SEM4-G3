@@ -12,7 +12,7 @@
             } else {
                 Customer user = (Customer) request.getSession().getAttribute("USER");
                 out.print("<div style='text-align: center;'>Webcome <a style='color:blue;'> " + user.getEmail() + "<a> <a href='logout'>Logout</a></div>");
-                out.print("<ul> <li> <a href='historycart'>Order History</a> </li> <li> <a href='#'>Profile</a> </li> <li> <a href='#'>Change Password</a> </li> </ul>");
+                out.print("<ul> <li> <a href='historycart'>Order History</a> </li> <li> <a href='profile'>Profile</a> </li> <li> <a href='#'>Change Password</a> </li> </ul>");
             }
         %>
     </div>

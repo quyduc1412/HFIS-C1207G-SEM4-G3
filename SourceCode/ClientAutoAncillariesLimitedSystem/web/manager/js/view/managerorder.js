@@ -87,6 +87,14 @@ $(document).ready(function() {
         });
     });
 
+    $('.warehouse-details').on('click', function(e) {
+        e.preventDefault();
+        var data = $(this).attr("idname");
+        $("#overlay #context").load("views/view_details_warehouse.html", function() {
+            $(document).trigger('DETAIL_WAREHOUSES_LOADED', data);
+            $('#overlay').fadeIn();
+        });
+    });
     $(document).on('DETAIL_WAREHOUSES_LOADED', function(event, data) {
         var onGetSuccess = function(result) {
             var item = new WareHouses();
@@ -97,7 +105,7 @@ $(document).ready(function() {
             $('#details-warehouse td#name-email').html(item.get('P4'));
             $('#details-warehouse td#name-region').html(item.get('P6'));
         };
-        _service.call('../manager/getwarehousebyid', data, onGetSuccess);
+        _service.call('getwarehousebyid', data, onGetSuccess);
         $('#close-dialog').on('click', function() {
             $('#overlay').fadeOut();
         });

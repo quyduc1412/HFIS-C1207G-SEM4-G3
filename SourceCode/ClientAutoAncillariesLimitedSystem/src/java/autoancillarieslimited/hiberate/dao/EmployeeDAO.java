@@ -5,6 +5,7 @@
  */
 package autoancillarieslimited.hiberate.dao;
 
+import autoancillarieslimited.hiberate.entities.Admin;
 import autoancillarieslimited.hiberate.entities.Employee;
 import autoancillarieslimited.hiberate.entities.WareHouses;
 import autoancillarieslimited.hiberate.util.HibernateUtil;
@@ -88,6 +89,32 @@ public class EmployeeDAO extends AbstractDao<Employee> {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
             item = (Employee) session.createQuery("from Employee where Email like '" + email + "' AND Password like '" + password + "'").uniqueResult();
+            session.flush();
+            session.clear();
+            beginTransaction.commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return item;
+    }
+    public static void main(String[] args) {
+        System.out.println(EmployeeDAO.getInstance().checkLoginAdmin("admin@gmail.com", "123456").getEmail());
+    }
+    public Admin checkLoginAdmin(String email, String password) {
+        Admin item = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            item = (Admin) session.createQuery("from Admin where Email like '" + email + "' AND PassWord like '" + password + "'").uniqueResult();
             session.flush();
             session.clear();
             beginTransaction.commit();

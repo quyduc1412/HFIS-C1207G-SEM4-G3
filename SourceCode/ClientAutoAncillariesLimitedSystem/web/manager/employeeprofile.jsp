@@ -36,6 +36,7 @@
                 });
             });
         </script>
+        <script src="js/view/employeeprofile.js" type="text/javascript"></script>
         <style>
             #overlay{
                 width: 100%;
@@ -76,59 +77,49 @@
             <div id="context"></div>
         </div>
         <div class="wrap">
-            <div id="header">
-                <%@include file="navigation.jsp" %>
-            </div>
+            <%@include file="employeeheader.jsp" %>
+
             <div id="content">
                 <%@include file="sidebar.jsp" %>
                 <div id="main">
                     <div class="full_w">
-                        <div class="h_title">Manager Items Page</div>
-                        <h2>Manager Items Page</h2>
-                        <div>
-                            <form method="get">
-                                <div style="float: right;margin-right: 5px">
-                                    <a>Category</a><select name="category" id="filterCategory"></select><a>Name</a><input type="search" name="name" value="<d:property value="name"/>"/><input type="submit" value="Search" />
-                                </div>
-                            </form>
-                        </div>
+                        <div class="h_title">Employee Profile</div>
+                        <h2>Employee Profile</h2>
                         <div class="entry">
                             <div class="sep"></div>
                         </div>
                         <table>
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Date Created</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col" style="width: 65px;">Modify</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <d:iterator value="litstItem">
-                                    <tr>
-                                        <td class="align-center"><d:property value="id"/></td>
-                                        <td><d:property value="name"/></td>
-                                        <td><d:property value="description"/></td>
-                                        <td><d:property value="date_Created"/></td>
-                                        <td class="align-center"><d:property value="typeItem.nameType"/></td>
-                                        <td><d:property value="price"/></td>
-                                        <td>
-                                            <a href="#" class="table-icon edit" item_id="<d:property value="id"/>" title="Edit"></a>
-                                            <a href="#" class="table-icon archive" item_id="<d:property value="id"/>" title="Archive"></a>
-                                            <a href="#" class="table-icon delete" item_id="<d:property value="id"/>" title="Delete"></a>
-                                        </td>
-                                    </tr>
-                                </d:iterator>
-
-                            </tbody>
+                            <tr>
+                                <td>Email :</td><td><d:property value="employee.email"/></td>
+                            </tr>
+                            <tr>
+                                <td>Name :</td><td><d:property value="employee.name"/></td>
+                            </tr>
+                            <tr>
+                                <td>Address :</td><td><d:property value="employee.address"/></td>
+                            </tr>
+                            <tr>
+                                <td>Phone :</td><td><d:property value="employee.phone"/></td>
+                            </tr>
+                            <tr>
+                                <td>Warehouses :</td><td><a style="color: blue" idwarehouse="<d:property value="employee.wareHouses.id"/>" id="warehouse-detail">Warehouse Detail</a></td>
+                            </tr>
+                            <tr>
+                                <td>Change Password :</td><td><a style="color: blue">Click Here To Change Password</a></td>
+                            </tr>
                         </table>
                         <div class="entry">
-                            <d:property value="pagecontent" escape="false"/>
+                            <!--                            <div class="pagination">
+                                                            <span>« First</span>
+                                                            <span class="active">1</span>
+                                                            <a href="">2</a>
+                                                            <a href="">3</a>
+                                                            <a href="">4</a>
+                                                            <span>...</span>
+                                                            <a href="">23</a>
+                                                            <a href="">24</a>
+                                                            <a href="">Last »</a>
+                                                        </div>-->
                             <div class="sep"></div>		
                             <a class="button add" href="">New Item</a>
                         </div>

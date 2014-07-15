@@ -26,15 +26,10 @@ public class HomeAction extends ActionSupport {
     private List<TypeItem> listTypeItem;
     private String idTypeItem;
     private int page;
-    private Long count;
     private String pagecontent;
 
     public String getPagecontent() {
         return pagecontent;
-    }
-
-    public Long getCount() {
-        return count;
     }
 
     public void setPage(int page) {
@@ -75,34 +70,54 @@ public class HomeAction extends ActionSupport {
     @Override
     public String execute() throws Exception {
         Item filterItem = new Item();
+        if (page == 0) {
+            page = 1;
+        }
         if (name != null || category != null) {
-            if(name==null){
+            if (name == null) {
                 filterItem.setName("");
-            }else{
+            } else {
                 filterItem.setName(name);
             }
             try {
                 int id_category = Integer.parseInt(category);
                 filterItem.setType_ID(id_category);
             } catch (Exception ex) {
-                litstItem = ProductDAO.getInstance().getItems(filterItem);
+                litstItem = ProductDAO.getInstance().getItems(filterItem, page);
             }
-            litstItem = ProductDAO.getInstance().getItems(filterItem);
+            litstItem = ProductDAO.getInstance().getItems(filterItem, page);
         } else {
             if (page == 0) {
                 page = 1;
             }
             litstItem = ProductDAO.getInstance().getItems(page);
-            count = ProductDAO.getInstance().getCountItems();
-            pagecontent = "<div>Page";
-            for (int i = 1; i <= count; i++) {
-                pagecontent += "<a class='pageclass' href='home?page=" + i + "'>" + i + "</a>";
-            }
-            pagecontent += "</div>";
         }
-
         listTypeItem = ProductDAO.getInstance().getTypeItem();
+        setPageNav();
         return SUCCESS;
     }
 
+    private void setPageNav() {
+        pagecontent = new String();
+        pagecontent += "<div class='pagination'> Page ";
+        Long count = ProductDAO.getInstance().getCountItems(category, name);
+        if (category != null && name != null) {
+            for (int i = 1; i <= count; i++) {
+                pagecontent += "<a class='pageclass' href='home?page=" + i + "&category=" + category + "&name=" + name + " '>" + i + "</a>";
+            }
+        } else if (category != null) {
+            for (int i = 1; i <= count; i++) {
+                pagecontent += "<a class='pageclass' href='home?page=" + i + "&category=" + category + "'>" + i + "</a>";
+            }
+        } else if (name != null) {
+            for (int i = 1; i <= count; i++) {
+                pagecontent += "<a class='pageclass' href='home?page=" + i + "&name=" + name + " '>" + i + "</a>";
+            }
+        } else {
+            for (int i = 1; i <= count; i++) {
+                pagecontent += "<a class='pageclass' href='home?page=" + i + "'>" + i + "</a>";
+            }
+        }
+        pagecontent += "</div>";
+    }
 }

@@ -4,7 +4,7 @@
         <%
             if (request.getSession().getAttribute("USER-EMPLOYEE") != null) {
                 Employee e = (Employee) request.getSession().getAttribute("USER-EMPLOYEE");
-                out.print("<div class='left'> <p>Welcome, <strong>" + e.getEmail() + "</strong> [ <a href='logout.jsp'>Logout</a> ]</p> </div>");
+                out.print("<div class='left'> <p>Welcome, <strong>" + e.getEmail() + "</strong> [ <a href='profileemployee'>Profile</a> ][ <a href='logout.jsp'>Logout</a> ]</p> </div>");
             } else {
                 response.sendRedirect("loginemployee.jsp");
             }

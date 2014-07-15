@@ -73,46 +73,48 @@
         <div id="body">
             <div class="content">
                 <div class="section">
-                    <div style="width: 100%;text-align: center"><h3>Shopping Cart History</h3></div><div>
-                        <form method="get">
-                            <div style="float: right;margin-right: 5px">
-                                <a>From</a><input name="datefrom" type="text" id="datefrom" value="<d:property value="datefrom"/>"/>
-                                <a>To</a><input name="dateto" type="text" id="dateto" value="<d:property value="dateto"/>"/>
-                                <a>Name</a><select name="status"><option value="-1">All</option><option value="0">Pending</option><option value="1">Watting</option><option value="2">Completed</option></select><input type="submit" value="Search" />
-                            </div>
-                        </form>
-                    </div>
+                    <div style="width: 100%;text-align: center"><h3>Profile</h3></div>
                     <table>
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Date Order</th>
-                                <th scope="col">Warehouses</th>
-                                <th scope="col">Items</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Price</th>
-                                <th scope="col" style="width: 65px;">Modify</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <d:iterator value="list">
-                                <tr>
-                                    <td class="align-center"><d:property value="id"/></td>
-                                    <td><d:property value="dateOrder"/></td>
-                                    <td class="warehouse-details" idname="<d:property value="wareHouses.id"/>"><a href="#"><d:property value="wareHouses.name"/></a></td>
-                                    <td><d:property value="quantity"/></td>
-                                    <td class="align-center"><d:property value="statusString"/></td>
-                                    <td><d:property value="totalPrice"/></td>
-                                    <td>
-<!--                                        <a href="#" class="table-icon edit" item_id="<d:property value="item.id"/>" title="Edit"></a>
-                                        <a href="#" class="table-icon archive" item_id="<d:property value="item.id"/>" title="Archive"></a>
-                                        <a href="#" class="table-icon delete" item_id="<d:property value="item.id"/>" title="Delete"></a>-->
-                                        <a href="#" class="details-order" idname="<d:property value="id"/>"> Details</a>
-                                    </td>
-                                </tr>
-                            </d:iterator>
+                        <tr>
+                            <td>Email</td>
+                            <td><d:property value="customer.email"/></td>
+                        </tr>
+                        <tr>
+                            <td>First Name</td>
+                            <td><input type="text" value="<d:property value="customer.firstName"/>"/></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Last Name</td>
+                            <td><input type="text" value="<d:property value="customer.lastName"/>"/></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td><select id="gender"><option value="0">Male</option><option value="1">Female</option></select></td>
+                        </tr>
+                        <tr>
+                            <td>Password</td>
+                            <td><a href="#">Click here to change password</a></td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td><input  type="text" value="<d:property value="customer.phoneNumber"/>"/></td>
+                        </tr>
 
-                        </tbody>
+                        <tr>
+                            <td>Address</td>
+                            <td><input type="text" value="<d:property value="customer.address"/>"/>  </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>City</td>
+                            <td><d:property value="customer.city"/></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Country</td>
+                            <td><d:property value="customer.country"/></td>
+                        </tr>
                     </table>
                 </div>
                 <%@include file="sidebar.jsp" %>

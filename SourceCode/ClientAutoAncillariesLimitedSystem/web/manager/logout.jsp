@@ -13,13 +13,14 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <% 
-            if(session.getAttribute("USER-EMPLOYEE")==null){
-                response.sendRedirect("loginemployee.jsp");
-            }else{
+        <%
+            if (session.getAttribute("USER-EMPLOYEE") != null) {
                 session.setAttribute("USER-EMPLOYEE", null);
-                response.sendRedirect("loginemployee.jsp");
             }
+            if(session.getAttribute("USER-ADMIN") !=null ){
+                session.setAttribute("USER-ADMIN", null);
+            }
+            response.sendRedirect("loginemployee.jsp");
         %>
     </body>
 </html>

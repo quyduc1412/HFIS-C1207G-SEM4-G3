@@ -35,7 +35,10 @@
         <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
         <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script src="js/model/reponse.js" type="text/javascript"></script>
-        <script src="js/view/customer.js" type="text/javascript"></script>
+        <link href="themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="jquery-ui-1.11.0/jquery-ui.min.js" type="text/javascript"></script>
+        <link href="jquery-ui-1.11.0/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/view/managerorder.js" type="text/javascript"></script>  
         <style>
             #overlay{
                 width: 100%;
@@ -69,7 +72,7 @@
         </style>
     </head>
     <body>
-         <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
+        <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
         <div id="overlay">
             <div id="bg-overlay"></div>
             <!--<div class="comfirm dialog half_w"><button id="yes">Yes</button><button id="cancel">Cancel</button></div>-->
@@ -79,78 +82,53 @@
             <div id="header">
                 <%@include file="navigation.jsp" %>
             </div>
-
             <div id="content">
                 <div id="main" style="width: 100% !important">
                     <div class="full_w">
-                        <div class="h_title">Manager Customer Page</div>
+                        <div class="h_title">Manager Order</div>
                         <h2>Manager Employee Page</h2>
                         <div>
                             <form method="get">
                                 <div style="float: right;margin-right: 5px">
-                                    <a>Name</a><input type="search" name="name" value="<d:property value="name"/>"/><input type="submit" value="Search" />
+                                    <a>From</a><input name="datefrom" type="text" id="datefrom" value="<d:property value="datefrom"/>"/>
+                                    <a>To</a><input name="dateto" type="text" id="dateto" value="<d:property value="dateto"/>"/>
+                                    <a>Name</a><select name="status"><option value="-1">All</option><option value="0">Pending</option><option value="1">Watting</option><option value="2">Completed</option></select><input type="submit" value="Search" />
                                 </div>
                             </form>
                         </div>
                         <div class="entry">
                             <div class="sep"></div>
                         </div>
-                                <table style="width: 100% !important;margin:0px !important">
+                        <table style="width: 100% !important;margin:0px !important">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
-                                    <th scope="col">Password</th>
-                                    <th scope="col">Phone Number</th>
-                                    <th scope="col">Gender</th>
-                                    <th scope="col">Address</th>
-                                    <th scope="col">City</th>
-                                    <th scope="col">Country</th>
+                                    <th scope="col">ID Order</th>
+                                    <th scope="col">Warehouse</th>
+                                    <th scope="col">Date Order</th>
+                                    <th scope="col">Customer</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col" style="width: 65px;">Modify</th>
+                                    <th scope="col">Detail</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <d:iterator value="list">
                                     <tr>
-                                        <td class="align-center"><d:property value="id"/></td>
-                                        <td class="align-center"><d:property value="email"/></td>
-                                        <td class="align-center"><d:property value="firstName"/></td>
-                                        <td class="align-center"><d:property value="lastName"/></td>
-                                        <td class="align-center"><d:property value="passWord"/></td>
-                                        <td class="align-center"><d:property value="phoneNumber"/></td> 
-                                        <td class="align-center"><d:property value="gender"/></td> 
-                                        <td class="align-center"><d:property value="address"/></td> 
-                                        <td class="align-center"><d:property value="city"/></td> 
-                                        <td class="align-center"><d:property value="country"/></td> 
-                                        <td class="align-center"><d:property value="status"/></td> 
-                                        <td>
-                                            <a href="#" class="table-icon edit" item_id="<d:property value="id"/>" title="Edit"></a>
-                                            <a href="#" class="table-icon archive" item_id="<d:property value="id"/>" title="Archive"></a>
-                                            <a href="#" class="table-icon delete" item_id="<d:property value="id"/>" title="Delete"></a>
-                                        </td>
+                                        <td class="align-center full-order" idcustomer="<d:property value="customer.id"/>" status="<d:property value="statusString"/>" idorder="<d:property value="id"/>"><a href="#">Order ID <d:property value="id"/></a></td>
+                                        <td class="align-center warehouse-details" idname="<d:property value="wareHouses.id"/>"><a href="#"><d:property value="wareHouses.name"/></a></td>
+                                        <td class="align-center"><d:property value="dateOrder"/></td>
+                                        <td class="align-center customer-detail" idname="<d:property value="customer.id"/>"><a href="#"><d:property value="customer.email"/><a class="table-icon archive" title="Archive"></a></a></td>
+                                        <td class="align-center details-status" idname="<d:property value="id"/>" ><a href="#"><d:property value="statusString"/><a class="table-icon edit" title="Edit"></a></a></a></td>
+                                        <td class="align-center details-order" idname="<d:property value="id"/>"><a href="#">Detail</a><a class="table-icon archive" title="Archive"></a></td> 
                                     </tr>
                                 </d:iterator>
 
                             </tbody>
                         </table>
                         <div class="entry">
-<!--                            <div class="pagination">
-                                <span>« First</span>
-                                <span class="active">1</span>
-                                <a href="">2</a>
-                                <a href="">3</a>
-                                <a href="">4</a>
-                                <span>...</span>
-                                <a href="">23</a>
-                                <a href="">24</a>
-                                <a href="">Last »</a>
-                            </div>-->
-                            <div class="sep"></div>		
-                            <a class="button add" href="">New Customer</a> <a class="button" href="warehouses">Manager Warehouse</a> 
+                            <div class="sep">
+                                <d:property value="pagecontent" escape="false"/>
+                            </div>		
                         </div>
                     </div>
                 </div>

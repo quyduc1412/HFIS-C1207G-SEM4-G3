@@ -34,13 +34,6 @@
     </head>
     <body><div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
         <div id="header">
-            <div>
-                <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
-                <form action="index.html">
-                    <input type="text" name="search" id="search" value="">
-                    <input type="submit" name="searchBtn" id="searchBtn" value="">
-                </form>
-            </div>
             <%@include file="menubar.jsp" %>
         </div>
         <div id="body">

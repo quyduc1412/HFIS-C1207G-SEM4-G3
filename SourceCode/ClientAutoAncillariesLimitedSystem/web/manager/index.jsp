@@ -28,16 +28,6 @@
     <body>
         <div class="wrap">
             <div id="header">
-                <div id="top">
-                    <div class="left">
-                        <p>Welcome, <strong>Paweł B.</strong> [ <a href="">logout</a> ]</p>
-                    </div>
-                    <div class="right">
-                        <div class="align-right">
-                            <p>Last login: <strong>23-04-2012 23:12</strong></p>
-                        </div>
-                    </div>
-                </div>
                 <%@include file="navigation.jsp" %>
             </div>
 

@@ -4,6 +4,13 @@
     Author     : Duc
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<div>
+    <a href="index.html" class="logo"><img src="images/logo.png" alt=""></a>
+    <form action="">
+        <input type="text" name="name" id="search" value="">
+        <input type="submit" name="searchBtn" id="searchBtn" value="">
+    </form>
+</div>
 <div class="navigation">
     <ul>
         <li>

@@ -46,5 +46,8 @@
        <action class="autoancillarieslimited.action.customer.LogoutCustomerAction" name="logout">
            <result>login.jsp</result>
         </action>
+       <action class="autoancillarieslimited.action.customer.ProfileCustomerAction" name="profile">
+           <result>profile.jsp</result>
+        </action>
     </package>
 </struts>

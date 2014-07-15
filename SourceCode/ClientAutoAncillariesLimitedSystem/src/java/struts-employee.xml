@@ -24,6 +24,12 @@
         <action class="autoancillarieslimited.action.employee.cart.ManagerOrderAction" name="managerorder">
             <result>managerorder.jsp</result>
         </action>
+        <action class="autoancillarieslimited.action.employee.cart.ManagerOrderAdminAction" name="managerorderadmin">
+            <result>managerorderadmin.jsp</result>
+        </action>
+        <action class="autoancillarieslimited.action.employee.ProfileEmployee" name="profileemployee">
+            <result>employeeprofile.jsp</result>
+        </action>
         <action class="autoancillarieslimited.action.employee.CheckLogin" name="loginemployee">
             <result type="json">
             </result>

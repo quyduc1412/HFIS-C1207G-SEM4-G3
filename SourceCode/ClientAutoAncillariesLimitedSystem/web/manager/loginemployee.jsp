@@ -29,6 +29,8 @@
         <% 
             if(session.getAttribute("USER-EMPLOYEE")!=null){
                 response.sendRedirect("managerorder");
+            }else if(session.getAttribute("USER-ADMIN")!=null){
+                response.sendRedirect("item");
             }
         %>
         <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white;top: 0;"></div>

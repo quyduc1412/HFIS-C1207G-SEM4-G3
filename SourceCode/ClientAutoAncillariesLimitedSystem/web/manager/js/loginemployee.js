@@ -15,8 +15,11 @@ $(document).ready(function() {
         }
     });
     var onLoginSuccess = function(result) {
+        alert(result.code);
         if (result.code === 400) {
             window.location = 'managerorder';
+        } else if (result.code === 401) {
+            window.location = 'item';
         } else {
             $('#message').text(result.data_response);
             $('#message').fadeIn();
@@ -46,6 +49,6 @@ $(document).ready(function() {
         data.set('password', $('#address2').val());
         _service.call('logincustomer', data.toJsonString(), onLoginSuccess);
     });
-    
+
 });
 
