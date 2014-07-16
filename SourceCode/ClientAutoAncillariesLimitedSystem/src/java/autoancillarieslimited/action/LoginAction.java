@@ -16,6 +16,7 @@ import org.apache.struts2.interceptor.SessionAware;
  *
  * @author Duc
  */
+
 public class LoginAction extends ActionSupport implements ServletResponseAware,SessionAware{
     private HttpServletResponse httpServletResponse;
     private Map<String, Object> sessionAttributes = null;

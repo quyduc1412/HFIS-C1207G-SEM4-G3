@@ -55,4 +55,5 @@ public class GetCustomerAction extends ActionSupport {
         return SUCCESS;
     }
 
+
 }
