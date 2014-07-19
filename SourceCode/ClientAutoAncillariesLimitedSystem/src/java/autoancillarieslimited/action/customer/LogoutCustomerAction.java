@@ -36,6 +36,7 @@ public class LogoutCustomerAction extends ActionSupport implements ServletRespon
 
     }
 
+
     @Override
     public void setSession(Map<String, Object> map) {
         this.map = map;
