@@ -116,7 +116,7 @@ $(document).ready(function() {
             fileName: "myfile",
             onSuccess: function(files, data, xhr)
             {
-                $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + data.myfileFileName + "' src='../upload/" + data.myfileFileName + "' alt='' style='width: 20%;float:left;display: inline-block'/>");
+                $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + data.myfileFileName + "' src='../upload/" + data.myfileFileName + "' alt='' style='width: 20%;float:left;display: inline-block;height:122px;'/>");
                 images_data += data.myfileFileName + ";";
                 $(document).trigger('RELOAD_IMAGES');
             }
@@ -214,7 +214,7 @@ $(document).ready(function() {
                 $('.dialog.additem #images_form').html("");
                 for (var i = 0; i < arr_image.length; i++) {
                     if (arr_image[i] !== '') {
-                        $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + arr_image[i] + "' src='../upload/" + arr_image[i] + "' alt='' style='width: 20%;float:left;display: inline-block'/>");
+                        $('.dialog.additem #images_form').append("<img class='deleteimg' name='" + arr_image[i] + "' src='../upload/" + arr_image[i] + "' alt='' style='width: 20%;float:left;display: inline-block;height:122px;'/>");
                     }
                 }
                 $(document).trigger('RELOAD_IMAGES');

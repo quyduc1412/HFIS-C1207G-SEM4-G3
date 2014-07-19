@@ -245,14 +245,14 @@ public class PurchaseOrderDAO extends AbstractDao<PurchaseOrder> {
         return set;
     }
 
-    public List<PurchaseOrder> getListByAdmin(String dateFrom, String dateTo, String status) {
+    public List<PurchaseOrder> getListByAdmin(String dateFrom, String dateTo, String status, String warehouse,int pageNumber ) {
         List<PurchaseOrder> set = null;
         Session session = null;
         Transaction beginTransaction = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
-            set = session.createQuery("from PurchaseOrder where Status like '" + status + "' AND Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").list();
+            set = session.createQuery("from PurchaseOrder where ID_Warehouse like '" + warehouse + "' AND Status like '" + status + "' AND Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").setFirstResult((pageNumber - 1) * pageSize).setMaxResults(pageSize).list();
             session.flush();
             session.clear();
             session.getTransaction().commit();
@@ -269,14 +269,14 @@ public class PurchaseOrderDAO extends AbstractDao<PurchaseOrder> {
         return set;
     }
 
-    public List<PurchaseOrder> getListByAdmin(String status) {
+    public List<PurchaseOrder> getListByAdmin(String status,int pageNumber) {
         List<PurchaseOrder> set = null;
         Session session = null;
         Transaction beginTransaction = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
-            set = session.createQuery("from PurchaseOrder where Status like '" + status + "'").list();
+            set = session.createQuery("from PurchaseOrder where Status like '" + status + "'").setFirstResult((pageNumber - 1) * pageSize).setMaxResults(pageSize).list();
             session.flush();
             session.clear();
             session.getTransaction().commit();
@@ -293,14 +293,14 @@ public class PurchaseOrderDAO extends AbstractDao<PurchaseOrder> {
         return set;
     }
 
-    public List<PurchaseOrder> getListByAdmin(String dateFrom, String dateTo) {
+    public List<PurchaseOrder> getListByAdmin(String dateFrom, String dateTo, String warehouse,int pageNumber) {
         List<PurchaseOrder> set = null;
         Session session = null;
         Transaction beginTransaction = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
-            set = session.createQuery("from PurchaseOrder where Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").list();
+            set = session.createQuery("from PurchaseOrder where ID_Warehouse like '" + warehouse + "' AND Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").setFirstResult((pageNumber - 1) * pageSize).setMaxResults(pageSize).list();
             session.flush();
             session.clear();
             session.getTransaction().commit();
@@ -317,21 +317,49 @@ public class PurchaseOrderDAO extends AbstractDao<PurchaseOrder> {
         return set;
     }
 
-    public Long getCountOrder(String dateFrom, String dateTo, String status) {
+    public List<PurchaseOrder> getListByAdmin(String dateFrom, String dateTo,int pageNumber) {
+        List<PurchaseOrder> set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = session.createQuery("from PurchaseOrder where Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").setFirstResult((pageNumber - 1) * pageSize).setMaxResults(pageSize).list();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
+    public Long getCountOrder(String dateFrom, String dateTo, String status, String warehouse) {
         Long set = null;
         Session session = null;
         Transaction beginTransaction = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
-            if (dateFrom != null && dateTo != null && !dateFrom.equals("") && !dateTo.equals("") && status != null) {
-                if (Integer.parseInt(status) != -1) {
-                    set = (Long) session.createQuery("select count(*) from PurchaseOrder where Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "' AND Status like '" + status + "'").uniqueResult();
-                }else{
-                    set = (Long) session.createQuery("select count(*) from PurchaseOrder where Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").uniqueResult();
-                }
+            if (dateFrom != null && dateTo != null && !dateFrom.equals("") && !dateTo.equals("") && status != null && warehouse!=null && !warehouse.equals("all")) {
+                set = (Long) session.createQuery("select count(*) from PurchaseOrder where ID_Warehouse like '" + warehouse + "' AND Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "' AND Status like '" + status + "'").uniqueResult();
             } else {
-                set = (Long) session.createQuery("select count(*) from PurchaseOrder").uniqueResult();
+                if (dateFrom != null && dateTo != null && !dateFrom.equals("") && !dateTo.equals("") && status != null) {
+                    if (Integer.parseInt(status) != -1) {
+                        set = (Long) session.createQuery("select count(*) from PurchaseOrder where Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "' AND Status like '" + status + "'").uniqueResult();
+                    } else {
+                        set = (Long) session.createQuery("select count(*) from PurchaseOrder where Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").uniqueResult();
+                    }
+                } else {
+                    set = (Long) session.createQuery("select count(*) from PurchaseOrder").uniqueResult();
+                }
             }
             session.flush();
             session.clear();

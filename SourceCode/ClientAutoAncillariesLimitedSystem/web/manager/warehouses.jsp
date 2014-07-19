@@ -13,6 +13,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
         <title>Manager Warehourses Page</title>
+        <link rel="shortcut icon" href="img/au-icon.png">
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
         <link href="js/uploadfile.min.css" rel="stylesheet" type="text/css"/>
@@ -118,10 +119,8 @@
                                         <td class="align-center"><d:property value="address"/></td>
                                         <td class="align-center"><d:property value="phone"/></td>
                                         <td class="align-center"><d:property value="email"/></td> 
-                                        <td>
+                                        <td style="text-align: center">
                                             <a href="#" class="table-icon edit" item_id="<d:property value="id"/>" title="Edit"></a>
-                                            <a href="#" class="table-icon archive" item_id="<d:property value="id"/>" title="Archive"></a>
-                                            <a href="#" class="table-icon delete" item_id="<d:property value="id"/>" title="Delete"></a>
                                         </td>
                                     </tr>
                                 </d:iterator>

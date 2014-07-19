@@ -12,7 +12,8 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
-        <title>Manager Employee Page</title>
+        <title>Manager Order</title>
+        <link rel="shortcut icon" href="img/au-icon.png">
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
         <link href="js/uploadfile.min.css" rel="stylesheet" type="text/css"/>
@@ -79,7 +80,9 @@
             <div id="context"></div>
         </div>
         <div class="wrap">
-            <%@include file="employeeheader.jsp" %>
+            <div id="header">
+                <%@include file="navigation.jsp" %>
+            </div>
             <div id="content">
                 <div id="main" style="width: 100% !important">
                     <div class="full_w">

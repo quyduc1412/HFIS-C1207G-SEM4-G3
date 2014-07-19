@@ -1,29 +1,24 @@
 
 <div id="sidebar">
     <div class="box">
-        <div class="h_title">&#8250; Main control</div>
+        <a href="home"><div class="h_title">&#8250; Home</div></a>
         <ul id="home">
-            <li class="b1"><a class="icon view_page" href="warehouses">WareHouses</a></li>
-            <li class="b2"><a class="icon report" href="item">Item</a></li>
-            <li class="b2"><a class="icon users" href="employees">Employees</a></li>
         </ul>
     </div>
 
     <div class="box">
         <div class="h_title">&#8250; Manage content</div>
         <ul>
-            <li class="b1"><a class="icon page" href="">Show all pages</a></li>
-            <li class="b2"><a class="icon add_page" href="">Add new page</a></li>
-            <li class="b1"><a class="icon photo" href="">Add new gallery</a></li>
-            <li class="b2"><a class="icon category" href="">Categories</a></li>
+            <li class="b1"><a class="icon view_page" href="warehouses">WareHouses</a></li>
+            <li class="b2"><a class="icon report" href="item">Item</a></li>
+            <li class="b2"><a class="icon users" href="employees">Employees</a></li>
         </ul>
     </div>
     <div class="box">
-        <div class="h_title">&#8250; Users</div>
+        <div class="h_title">&#8250; Order</div>
         <ul>
-            <li class="b1"><a class="icon users" href="">Show all users</a></li>
-            <li class="b2"><a class="icon add_user" href="">Add new user</a></li>
-            <li class="b1"><a class="icon block_users" href="">Lock users</a></li>
+            <li class="b1"><a class="icon users" href="managerorderadmin">Manager Order</a></li>
+            <li class="b2"><a class="icon add_user" href="reportorder">Report Order</a></li>
         </ul>
     </div>
     <div class="box">

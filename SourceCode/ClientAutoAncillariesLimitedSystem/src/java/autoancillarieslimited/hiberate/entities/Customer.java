@@ -100,6 +100,13 @@ public class Customer implements java.io.Serializable {
         this.gender = gender;
     }
 
+    public String getGenderString() {
+        if(gender){
+            return "Male";
+        }
+        return "Female";
+    }
+    
     public String getAddress() {
         return this.address;
     }
@@ -159,7 +166,10 @@ public class Customer implements java.io.Serializable {
         String lastName = (String) jsonObject.get("P3");
         String passWord = (String) jsonObject.get("P4");
         String phoneNumber = (String) jsonObject.get("P5");
-        boolean gender = Boolean.valueOf((String) jsonObject.get("P6"));
+        boolean gender = true;
+        if (!((String) jsonObject.get("P6")).equals("0")) {
+            gender = false;
+        }
         String address = (String) jsonObject.get("P7");
         String city = (String) jsonObject.get("P8");
         String country = (String) jsonObject.get("P9");

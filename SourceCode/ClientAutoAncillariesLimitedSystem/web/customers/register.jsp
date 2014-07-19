@@ -42,37 +42,34 @@
                                     <input type="text" name="lname" id="lname" class="validate[required,maxSize[20]]">
                                 </label>
                                 <label for="email3"> <span>email</span>
-                                    <input type="text" name="email3" id="email3" class="validate[required,custom[email],maxSize[20]]">
+                                    <input type="text" name="email3" id="email3" class="validate[required,custom[email],maxSize[30]]">
                                 </label>
                                 <label for="phone"> <span>phone number</span>
-                                    <input type="text" name="phone" id="phone" class="validate[custom[onlyNumber],required,maxSize[20]]">
+                                    <input type="text" name="phone" id="phone" class="validate[custom[onlyNumber],required,minSize[9],maxSize[20]]">
                                 </label>
                                 <label for="address1"> <span>address</span>
                                     <input type="text" name="address1" id="address1" class="validate[required,maxSize[20]]">
                                 </label>
                                 <div class="register_1">
                                     <label for="city"> <span>city</span>
-                                        <select name="city" id="city">
-                                            <option value="Ha Noi">Ha Noi</option>
-                                            <option value="Vinh Phuc">Vinh Phuc</option>
-                                            <option value="Quang Tri">Quang Tri</option>
-                                        </select>
+                                        <input type="text" name="city" id="city" class="validate[required,maxSize[20]]">
                                     </label>
-                                    <label for="state"> <span>gender</span>
-                                        <select name="gender" id="gender">
-                                            <option value="0">Male</option>
-                                            <option value="1">Female</option>
-                                        </select>
-                                    </label>
+
                                 </div>
                                 <label for="address2"> <span>password</span>
-                                    <input type="password" name="password" id="address2" class="validate[required,maxSize[20]]">
+                                    <input type="password" name="password" id="address2" class="validate[required,maxSize[20],minSize[8]]">
                                 </label>
                                 <label for="address2"> <span>Re-password</span>
-                                    <input type="password" name="password" id="address3" class="validate[required,maxSize[20],equals[address2]]">
+                                    <input type="password" name="password" id="address3" class="validate[required,maxSize[20],minSize[8],equals[address2]]">
                                 </label>
                                 <label for="zip"> <span>country</span>
                                     <input type="text" name="country" id="zip" class="validate[required,maxSize[20]]">
+                                </label>
+                                <label for="state" style="margin-left: 40px;"> <span>gender</span>
+                                    <select name="gender" id="gender">
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    </select>
                                 </label>
                             </div>
                             <input type="submit" name="send2" id="send2" value="" style="background: url(img/orange_registerbutton.png) no-repeat;">
@@ -87,36 +84,13 @@
                         <h4>contact information</h4>
                         <ul>
                             <li>
-                                <b>address:</b> <span>426 Grant Street Pine Hill, TX 75652</span>
+                                <b>address:</b> <span>FPT - Aptech Group 3</span>
                             </li>
                             <li>
-                                <b>phone:</b> <span>903-889-6313</span>
+                                <b>phone:</b> <span>+841695716614</span>
                             </li>
                             <li>
-                                <b>fax:</b> <span>903-889-6313</span>
-                            </li>
-                            <li>
-                                <b>email:</b> <span><a href="http://www.freewebsitetemplates.com/misc/contact">info@carrepairshop.com</a></span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="featured">
-                        <h3>featured services</h3>
-                        <ul>
-                            <li>
-                                <a href="services.html">engine maintenance</a>
-                            </li>
-                            <li>
-                                <a href="services.html">wheel alignment</a>
-                            </li>
-                            <li>
-                                <a href="services.html">air condition services</a>
-                            </li>
-                            <li>
-                                <a href="services.html">transmission</a>
-                            </li>
-                            <li>
-                                <a href="services.html">promos &amp; discounts</a>
+                                <b>email:</b> <span><a>ducnxq_b01437@fpt.aptech.ac.vn</a></span>
                             </li>
                         </ul>
                     </div>

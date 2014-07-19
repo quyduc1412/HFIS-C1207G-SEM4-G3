@@ -1,6 +1,8 @@
 package autoancillarieslimited.hiberate.entities;
 // Generated Jul 1, 2014 11:22:27 AM by Hibernate Tools 3.6.0
 
+import autoancillarieslimited.hiberate.dao.OrderDAO;
+import autoancillarieslimited.hiberate.dao.PurchaseOrderDAO;
 import autoancillarieslimited.hiberate.dao.WareHousesDAO;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -21,7 +23,7 @@ public class WareHouses implements java.io.Serializable {
     private String email;
     private Set employees = new HashSet(0);
     private Region region;
-    
+
     public WareHouses() {
     }
 
@@ -97,8 +99,7 @@ public class WareHouses implements java.io.Serializable {
     public Region getRegion() {
         return WareHousesDAO.getInstance().getRegionByID(region_ID);
     }
-    
-    
+
     public static WareHouses parserWarehouses(String dataJson) {
         try {
             WareHouses i = new WareHouses();
@@ -122,8 +123,8 @@ public class WareHouses implements java.io.Serializable {
             return null;
         }
     }
-    
-    public  static  String parserWarehouseToJson(WareHouses item) {
+
+    public static String parserWarehouseToJson(WareHouses item) {
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("P0", item.getId());
         jSONObject.put("P1", item.getName());
@@ -133,6 +134,52 @@ public class WareHouses implements java.io.Serializable {
         jSONObject.put("P5", item.getRegion_ID());
         jSONObject.put("P6", item.getRegion().getName());
         return jSONObject.toString();
+    }
+    private Long totalOrder;
+    private Long completeOrder;
+    private Long pendingOrder;
+    private Long cancelOrder;
+    private String dateFrom;
+    private String dateTo;
+
+    public void setDateFrom(String dateFrom) {
+        this.dateFrom = dateFrom;
+    }
+
+    public void setDateTo(String dateTo) {
+        this.dateTo = dateTo;
+    }
+
+    public Long getTotalOrder() {
+        if (dateFrom != null && !dateFrom.equals("") && dateTo != null && !dateTo.equals("")) {
+            return OrderDAO.getInstance().getTotalOrderByWarehouse(id,dateFrom,dateTo);
+        } else {
+            return OrderDAO.getInstance().getTotalOrder(id);
+        }
+    }
+
+    public Long getCompleteOrder() {
+        if (dateFrom != null && !dateFrom.equals("") && dateTo != null && !dateTo.equals("")) {
+            return OrderDAO.getInstance().getTotalOrder(id, 2, dateFrom, dateTo);
+        } else {
+            return OrderDAO.getInstance().getTotalOrder(id, 2);
+        }
+    }
+
+    public Long getPendingOrder() {
+        if (dateFrom != null && !dateFrom.equals("") && dateTo != null && !dateTo.equals("")) {
+            return OrderDAO.getInstance().getTotalOrder(id, 0, dateFrom, dateTo);
+        } else {
+            return OrderDAO.getInstance().getTotalOrder(id, 0);
+        }
+    }
+
+    public Long getCancelOrder() {
+        if (dateFrom != null && !dateFrom.equals("") && dateTo != null && !dateTo.equals("")) {
+            return OrderDAO.getInstance().getTotalOrder(id, 1, dateFrom, dateTo);
+        } else {
+            return OrderDAO.getInstance().getTotalOrder(id, 1);
+        }
     }
 
 }

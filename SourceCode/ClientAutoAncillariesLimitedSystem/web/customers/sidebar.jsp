@@ -12,7 +12,7 @@
             } else {
                 Customer user = (Customer) request.getSession().getAttribute("USER");
                 out.print("<div style='text-align: center;'>Webcome <a style='color:blue;'> " + user.getEmail() + "<a> <a href='logout'>Logout</a></div>");
-                out.print("<ul> <li> <a href='historycart'>Order History</a> </li> <li> <a href='profile'>Profile</a> </li> <li> <a href='#'>Change Password</a> </li> </ul>");
+                out.print("<ul> <li> <a href='historycart'>Order History</a> </li> <li> <a href='profile'>Profile</a> </li> <li> <a href='#' class='clickchangepassword'>Change Password</a> </li> </ul>");
             }
         %>
     </div>
@@ -21,7 +21,7 @@
         <ul id="menu-category">
         </ul>
     </div>
-    <div class="archives">
+<!--    <div class="archives">
         <h3>archive</h3>
         <ul>
             <li>
@@ -40,5 +40,5 @@
                 <a href="blog-single.html">february 2023</a>
             </li>
         </ul>
-    </div>
+    </div>-->
 </div>   

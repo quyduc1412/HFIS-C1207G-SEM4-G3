@@ -107,7 +107,7 @@ public class ProductDAO extends AbstractDao<Item> {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
-            set = session.createQuery("from Item").setFirstResult((pageNumber - 1) * pageSize).setMaxResults(pageSize).list();
+            set = session.createQuery("from Item ORDER BY Date_Created DESC").setFirstResult((pageNumber - 1) * pageSize).setMaxResults(pageSize).list();
             session.flush();
             session.clear();
             session.getTransaction().commit();
@@ -132,9 +132,9 @@ public class ProductDAO extends AbstractDao<Item> {
             session = HibernateUtil.getSessionFactory().openSession();
             beginTransaction = session.beginTransaction();
             if (filter.getType_ID() != 0) {
-                set = session.createQuery("from Item where Name like '%" + filter.getName() + "%' AND Type_ID ='" + filter.getType_ID() + "' ").list();
+                set = session.createQuery("from Item where Name like '%" + filter.getName() + "%' AND Type_ID ='" + filter.getType_ID() + "' ORDER BY Date_Created DESC").list();
             } else {
-                set = session.createQuery("from Item where Name like '%" + filter.getName() + "%'").list();
+                set = session.createQuery("from Item where Name like '%" + filter.getName() + "%' ORDER BY Date_Created DESC").list();
             }
             session.flush();
             session.clear();

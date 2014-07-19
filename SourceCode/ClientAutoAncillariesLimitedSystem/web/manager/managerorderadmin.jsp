@@ -12,7 +12,8 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
-        <title>Manager Employee Page</title>
+        <title>Manager Order</title>
+        <link rel="shortcut icon" href="img/au-icon.png">
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
         <link href="js/uploadfile.min.css" rel="stylesheet" type="text/css"/>
@@ -90,6 +91,7 @@
                         <div>
                             <form method="get">
                                 <div style="float: right;margin-right: 5px">
+                                    <a>Warehouse</a><select id="warehouse" name="warehouse"></select>
                                     <a>From</a><input name="datefrom" type="text" id="datefrom" value="<d:property value="datefrom"/>"/>
                                     <a>To</a><input name="dateto" type="text" id="dateto" value="<d:property value="dateto"/>"/>
                                     <a>Name</a><select name="status"><option value="-1">All</option><option value="0">Pending</option><option value="1">Watting</option><option value="2">Completed</option></select><input type="submit" value="Search" />

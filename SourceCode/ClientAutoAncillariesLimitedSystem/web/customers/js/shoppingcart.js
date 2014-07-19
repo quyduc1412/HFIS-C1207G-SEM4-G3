@@ -18,6 +18,15 @@ $(document).ready(function() {
             };
         }
     });
+    var ChangePassword = Model.$extend({
+        mapping: function() {
+            return {
+                'currentpassword': 'P0',
+                'password': 'P1',
+                'newpassword': 'P2'
+            };
+        }
+    });
     function getParameterByName(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
         var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -44,7 +53,7 @@ $(document).ready(function() {
                 des = des.substring(0, 29) + "...";
             }
             totalprice += value.item.price * value.quantity;
-            data += "<li> <a href='detail?id=" + value.item.id + "' class='figure'><img style='width:50px;height:50px;' src='../upload/" + value.item.thumbnail + "' alt=''></a> <div> <span><a href='blog-single.html'>" + value.item.name + "</a></span> <p>" + des + "</p><p><a>Price :</a>" + value.item.price + "</p><p><a>All Amout</a> "+value.quantity+"</p> </div> </li>";
+            data += "<li> <a href='detail?id=" + value.item.id + "' class='figure'><img style='width:50px;height:50px;' src='../upload/" + value.item.thumbnail + "' alt=''></a> <div> <span><a href='blog-single.html'>" + value.item.name + "</a></span> <p>" + des + "</p><p><a>Price :</a>" + value.item.price + "</p><p><a>All Amout</a> " + value.quantity + "</p> </div> </li>";
         });
         data += "<p style='text-align: center;'><a>Total price :" + totalprice + "</a><a href='submitorder'><input type='submit' id='checkOrder' value='Check Order'></a></p>";
         data += "</ul>";
@@ -85,10 +94,9 @@ $(document).ready(function() {
         if ($("select#warehouse").val() !== '0') {
             var data = $("#warehouse").val();
             var onFinished = function(resuilt) {
-                alert(resuilt.code);
                 if (resuilt.code === 405) {
                     window.location.href = "login.jsp?message=" + resuilt.data_response;
-                }else{
+                } else {
                     window.location.href = "historycart";
                 }
             };
@@ -119,6 +127,43 @@ $(document).ready(function() {
             $('#details-warehouse td#name-region').html(item.get('P6'));
         };
         _service.call('../manager/getwarehousebyid', data, onGetSuccess);
+        $('#close-dialog').on('click', function() {
+            $('#overlay').fadeOut();
+        });
+    });
+
+
+    $('.clickchangepassword').on('click', function(e) {
+        e.preventDefault();
+        $("#overlay #context").load("views/view_change_pass.html", function() {
+            $(document).trigger('DIALOG_CHANGEPASSSWORD_LOADED');
+        });
+    });
+    $(document).on('DIALOG_CHANGEPASSSWORD_LOADED', function(event) {
+        $('#overlay').fadeIn();
+        var onChangeSuccess = function(result) {
+            $('#message').text(result.data_response);
+            $('#message').fadeIn();
+            setTimeout(
+                    function()
+                    {
+                        $('#message').fadeOut();
+                        if (result.code === 400) {
+                            location.reload();
+                        }
+                    }, 3000);
+        };
+        $('#commit-change-password').on('click', function(e) {
+            e.preventDefault();
+            var currentpass = $('#currentpass').val();
+            var password = $('#newpass').val();
+            var confirmpass = $('#cofirmpass').val();
+            var item = new ChangePassword();
+            item.set('currentpassword', currentpass);
+            item.set('password', password);
+            item.set('newpassword', confirmpass);
+            _service.call('changepassword', item.toJsonString(), onChangeSuccess);
+        });
         $('#close-dialog').on('click', function() {
             $('#overlay').fadeOut();
         });

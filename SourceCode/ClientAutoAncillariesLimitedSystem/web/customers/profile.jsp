@@ -32,9 +32,9 @@
         <link href="../manager/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
         <script src="../manager/jquery-ui-1.11.0/jquery-ui.min.js" type="text/javascript"></script>
         <link href="../manager/jquery-ui-1.11.0/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
-        <script src="js/historycart.js" type="text/javascript"></script>
         <script src="js/shoppingcart.js" type="text/javascript"></script>
         <script src="js/login.js" type="text/javascript"></script>
+        <script src="js/views/profile.js" type="text/javascript"></script>
         <style>
             .content tr:nth-child(even),#context tr:nth-child(even){
                 background: #ffffff;
@@ -59,7 +59,7 @@
         </style>
     </head>
     <body>
-        <div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
+        <div id="message" style="width: 100%;height: auto;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
         <div id="overlay">
             <div id="bg-overlay"></div>
             <!--<div class="comfirm dialog half_w"><button id="yes">Yes</button><button id="cancel">Cancel</button></div>-->
@@ -73,49 +73,57 @@
         <div id="body">
             <div class="content">
                 <div class="section">
-                    <div style="width: 100%;text-align: center"><h3>Profile</h3></div>
-                    <table>
-                        <tr>
-                            <td>Email</td>
-                            <td><d:property value="customer.email"/></td>
-                        </tr>
-                        <tr>
-                            <td>First Name</td>
-                            <td><input type="text" value="<d:property value="customer.firstName"/>"/></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>Last Name</td>
-                            <td><input type="text" value="<d:property value="customer.lastName"/>"/></td>
-                        </tr>
-                        <tr>
-                            <td>Gender</td>
-                            <td><select id="gender"><option value="0">Male</option><option value="1">Female</option></select></td>
-                        </tr>
-                        <tr>
-                            <td>Password</td>
-                            <td><a href="#">Click here to change password</a></td>
-                        </tr>
-                        <tr>
-                            <td>Phone</td>
-                            <td><input  type="text" value="<d:property value="customer.phoneNumber"/>"/></td>
-                        </tr>
+                    <div style="width: 100%;text-align: center"><h3>Profile</h3><a id="id-profile" style="display: none"><d:property value="customer.id"/></a></div>
+                    <form id="form-updateprofile">
+                        <table>
+                            <tr>
+                                <td>Email</td>
+                                <td><d:property value="customer.email"/></td>
+                            </tr>
+                            <tr>
+                                <td>First Name</td>
+                                <td><input type="text" class="validate[required,maxSize[20]]" value="<d:property value="customer.firstName"/>" id="fname"/></td>
+                            </tr>
 
-                        <tr>
-                            <td>Address</td>
-                            <td><input type="text" value="<d:property value="customer.address"/>"/>  </td>
-                        </tr>
-                        
-                        <tr>
-                            <td>City</td>
-                            <td><d:property value="customer.city"/></td>
-                        </tr>
-                        
-                        <tr>
-                            <td>Country</td>
-                            <td><d:property value="customer.country"/></td>
-                        </tr>
-                    </table>
+                            <tr>
+                                <td>Last Name</td>
+                                <td><input type="text" class="validate[required,maxSize[20]]" value="<d:property value="customer.lastName"/>" id="lname"/></td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td><select id="gender"><option value="0">Male</option><option value="1">Female</option></select></td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td><a href="#" class="clickchangepassword">Click here to change password</a></td>
+                            </tr>
+                            <tr>
+                                <td>Phone</td>
+                                <td><input id="phone" type="text" value="<d:property value="customer.phoneNumber"/>" class="validate[custom[onlyNumber],required,maxSize[12],minSize[8]]"/></td>
+                            </tr>
+
+                            <tr>
+                                <td>Address</td>
+                                <td><input id="address" type="text" class="validate[required,maxSize[50]]" value="<d:property value="customer.address"/>"/>  </td>
+                            </tr>
+
+                            <tr>
+                                <td>City</td>
+                                <!--<td><d:property value="customer.city"/></td>-->
+                                <td><select id="city"><option value="Ha Noi">Ha Noi</option><option value="Vinh Phuc">Vinh Phuc</option><option value="Ho Chi Minh">Ho Chi Minh</option></select></td>
+                            </tr>
+
+                            <tr>
+                                <td>Country</td>
+                                <!--<td><d:property value="customer.country"/></td>-->
+                                <td><select id="country"><option value="Viet Nam">Viet Nam</option><option value="Nhat Ban">Nhat Ban</option></select></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="button" value="Update" id="update-profile"/></td>
+                            </tr>
+                        </table>
+                    </form>
                 </div>
                 <%@include file="sidebar.jsp" %>
             </div>

@@ -24,11 +24,11 @@ and open the template in the editor.
         <div class="element two">
             <div style="float: left;width: 50%;">
                 <label for="password">Password<span class="red">(required)</span></label>
-                <input id="password" name="password"  type="password" class="validate[required,maxSize[20]] text">
+                <input id="password" name="password"  type="password" class="validate[required,maxSize[20],minSize[8]] text">
             </div>
             <div style="float: left;width: 50%;" >
                 <label for="re-password">Re - Password<span class="red">(required)</span></label>
-                <input id="re-password" name="re-password" type="password" class="validate[required,maxSize[20],equals[password]] text">
+                <input id="re-password" name="re-password" type="password" class="validate[required,maxSize[20],minSize[8]] text">
             </div>
         </div>
         <div class="element two">
@@ -36,7 +36,7 @@ and open the template in the editor.
                 <label for="gender">Gender <span class="red">(required)</span></label>
                 <select name="gender" id="gender">
                     <option value="0">Male</option>
-                    <option value="0">Female</option>
+                    <option value="1">Female</option>
                 </select>
             </div>
             <div style="float: left;width: 50%;" >
@@ -56,7 +56,7 @@ and open the template in the editor.
         </div>
         <div class="element">
             <label for="address">Address <span class="red">(required)</span></label>
-            <input id="address" name="address" class="validate[required,maxSize[20]] text">
+            <input id="address" name="address" class="validate[required,maxSize[50]] text">
         </div>
         <div class="entry">
             <button type="submit" class="add">Save Customer</button> <button class="cancel">Cancel</button>

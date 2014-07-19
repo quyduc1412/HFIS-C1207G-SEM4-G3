@@ -51,14 +51,14 @@ public class AddCustomerAction extends ActionSupport {
                 if (c != null) {
                     CustomerDAO.getInstance().insert(c);
                     code = StringUtils.SUCCESS;
-                    data_response = StringUtils.ADD_EMPLOYEE_SUCCESS;
+                    data_response = StringUtils.ADD_CUSTOMER_SUCCESS;
                 }
             } else {
                 data_response = "Email is registered";
                 code = StringUtils.FAILD;
             }
         } catch (Exception ex) {
-            data_response = StringUtils.ADD_EMPLOYEE_FAILD + " " + ex.getMessage();
+            data_response = StringUtils.ADD_CUSTOMER_FAILD + " " + ex.getMessage();
             code = StringUtils.FAILD;
         }
 

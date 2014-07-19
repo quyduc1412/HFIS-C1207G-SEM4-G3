@@ -22,6 +22,15 @@ $(document).ready(function() {
             };
         }
     });
+    var onLoadListWHSuccess2 = function(result) {
+        var data = "";
+        data += "<option value='all'>All</option>";
+        $.each(result.list, function(index, value) {
+            data += "<option value='" + value.id + "'>" + value.name + "</option>";
+        });
+        $('#warehouse').html(data);
+    };
+    _service.call('getallwarehouses', '', onLoadListWHSuccess2);
     var ChangeStatus = Model.$extend({
         mapping: function() {
             return {

@@ -9,7 +9,8 @@
 
         <%@taglib prefix="s" uri="/struts-tags"%>
         <meta charset="UTF-8">
-        <title>Blog - Car Repair Shop Website Template</title>
+        <title>Detail Product - Auto Ancillaries Limited System</title>
+        <link rel="shortcut icon" href="img/au-icon.png">
         <link rel="stylesheet" href="css/style.css" type="text/css">
         <script src="js/jquery1.9.1.min.js" type="text/javascript"></script>
         <script src="js/jquery.json-2.4.js" type="text/javascript"></script>
@@ -30,7 +31,8 @@
         <script src="js/jquery.validationEngine.js" type="text/javascript"></script>
         <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css"/>
         <script src="js/shoppingcart.js" type="text/javascript"></script>
-<script src="js/login.js" type="text/javascript"></script>
+        <script src="js/login.js" type="text/javascript"></script>
+        <script src="js/detail.js" type="text/javascript"></script>
     </head>
     <body><div id="message" style="width: 100%;height: auto;position: fixed;text-align: center;font-size: xx-large;background-color: #0ba1b5;color: white"></div>
         <div id="header">
@@ -41,40 +43,19 @@
                 <div class="section">
                     <div class="blog">
                         <div class="article">
-
                             <div>
-                                <a href="#" class="figure"><img src='../upload/<s:property value="item.thumbnail"/>' width="169" height="152" alt=""></a>
+                                <div style="width: 169px;float: left;padding-right: 30px;text-align: center">
+                                    <a class="figure"><img id="currentimage" src='../upload/<s:property value="item.thumbnail"/>' width="169" height="152" alt=""/></a>
+                                    <s:iterator value="item.listImage">
+                                    <img class="images-product" src='../upload/<s:property />' width="30%" height="auto" alt=""/>
+                                    </s:iterator>
+                                </div>
                                 <h3><s:property value="item.name" /></h3>
                                 <p><s:property value="item.description" /></p>
-                                <p>Category : <s:property value="item.typeItem.nameType" /></p>
-                                <p>Price : <s:property value="item.price" /></p>
+                                <p><a style="color: #fcac00;">Category</a> : <s:property value="item.typeItem.nameType" /></p>
+                                <p><a style="color: #fcac00;">Price</a> : <s:property value="item.price" /></p>
                                 <input type="submit" name="Add To Cart" id="addtocart" value="" style="float: right;background: url(img/Add-to-Cart-Button.png) no-repeat;width: 120px;height: 32px">
                             </div>
-                        </div>
-                        <div class="comment">
-                            <h4>one comment</h4>
-                            <div>
-                                <a href="#" class="figure"><img src="images/janedoe.jpg" alt="">jane doe</a>
-                                <p>
-                                    <span>july 27, 2023</span> This is a comment. Nunc sed porta neque. Sed dui elit, condimentum venenatis pretium ut, pellentesque eget nulla. Nulla facilisi. <a href="#" class="reply">reply</a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="commentForm">
-                            <h4>leave a comment</h4>
-                            <form action="index.html">
-                                <div>
-                                    <label for="name"> <span>name</span>
-                                        <input type="text" name="name" id="name">
-                                    </label>
-                                    <label for="email"> <span>email</span>
-                                        <input type="text" name="email" id="email">
-                                    </label>
-                                </div>
-                                <label for="comment"> <span>comment</span>
-                                    <textarea name="comment" id="comment"></textarea>
-                                </label>
-                            </form>
                         </div>
                     </div>
                 </div>

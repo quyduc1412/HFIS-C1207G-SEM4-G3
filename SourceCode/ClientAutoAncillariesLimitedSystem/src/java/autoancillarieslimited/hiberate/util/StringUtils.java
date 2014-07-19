@@ -27,4 +27,6 @@ public class StringUtils {
     public static final String UPDATE_EMPLOYEE_SUCCESS = "Update Employee success!";
     public static final int SUCCESS = 400;
     public static final int FAILD = 405;
+    public static String ADD_CUSTOMER_SUCCESS = "Register Success";
+    public static String ADD_CUSTOMER_FAILD =  "Register Faild";;
 }

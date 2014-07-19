@@ -31,6 +31,9 @@
             <result type="json">
             </result>
         </action>
+       <action class="autoancillarieslimited.action.order.ReportOrderAction" name="reportorder">
+            <result>reportorder.jsp</result>
+        </action>
     </package>
     
 </struts>

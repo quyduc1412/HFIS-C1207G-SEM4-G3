@@ -71,7 +71,6 @@ $(document).ready(function() {
             }
         });
         $('#filterCategory').html(data);
-        after(data2);
     };
     _service.call('getallwarehouses', '', onLoadListWHSuccess);
     var getWareHouses = function(after, data2) {

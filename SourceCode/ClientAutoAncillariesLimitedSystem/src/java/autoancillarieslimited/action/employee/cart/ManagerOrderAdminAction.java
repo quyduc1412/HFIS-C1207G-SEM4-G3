@@ -31,6 +31,11 @@ public class ManagerOrderAdminAction extends ActionSupport implements ServletRes
     private String datefrom;
     private String dateto;
     private String status;
+    private String warehouse;
+
+    public void setWarehouse(String warehouse) {
+        this.warehouse = warehouse;
+    }
 
     private String pagecontent;
 
@@ -101,14 +106,18 @@ public class ManagerOrderAdminAction extends ActionSupport implements ServletRes
             Employee e = (Employee) map.get("USER-EMPLOYEE");
             try {
                 if (((datefrom == null && dateto == null) || (datefrom.equalsIgnoreCase("") || dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)) {
-                    list = PurchaseOrderDAO.getInstance().getListByAdmin(status);
+                    list = PurchaseOrderDAO.getInstance().getListByAdmin(status, page);
                     System.out.println("METHOD 0");
-                } else if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1)) {
-                    list = PurchaseOrderDAO.getInstance().getListByAdmin(datefrom, dateto, status);
+                } else if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase(""))) && (status != null && Integer.parseInt(status.trim()) != -1) && (warehouse != null) && Integer.parseInt(warehouse) != 0) {
+                    list = PurchaseOrderDAO.getInstance().getListByAdmin(datefrom, dateto, status, warehouse, page);
                     System.out.println("METHOD 1");
+                } else if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase(""))) && ((warehouse != null) && Integer.parseInt(warehouse) != 0)) {
+                    list = PurchaseOrderDAO.getInstance().getListByAdmin(datefrom, dateto, warehouse, page);
                 } else if (((datefrom != null && dateto != null) && (!datefrom.equalsIgnoreCase("") || !dateto.equalsIgnoreCase("")))) {
-                    list = PurchaseOrderDAO.getInstance().getListByAdmin(datefrom, dateto);
+                    list = PurchaseOrderDAO.getInstance().getListByAdmin(datefrom, dateto, page);
                     System.out.println("METHOD 2");
+                } else if (((warehouse != null) && Integer.parseInt(warehouse) != 0)) {
+                    list = PurchaseOrderDAO.getInstance().getListByIDWarehouse(Integer.parseInt(warehouse));
                 } else {
                     list = PurchaseOrderDAO.getInstance().getListByAdmin(page);
                     System.out.println("METHOD 3");
@@ -130,12 +139,12 @@ public class ManagerOrderAdminAction extends ActionSupport implements ServletRes
     private void setPageNav() {
         pagecontent = new String();
         pagecontent += "<div class='pagination'>";
-        Long count = PurchaseOrderDAO.getInstance().getCountOrder(datefrom, dateto, status);
+        Long count = PurchaseOrderDAO.getInstance().getCountOrder(datefrom, dateto, status, warehouse);
         if (datefrom != null && dateto != null && status != null) {
             for (int i = 1; i <= count; i++) {
-                pagecontent += "<a href='managerorderadmin?page=" + i + "&datefrom="+datefrom+"&dateto="+dateto+"&status="+status+" '>" + i + "</a>";
+                pagecontent += "<a href='managerorderadmin?page=" + i + "&datefrom=" + datefrom + "&dateto=" + dateto + "&status=" + status + "&warehouse=" + warehouse + " '>" + i + "</a>";
             }
-        }else{
+        } else {
             for (int i = 1; i <= count; i++) {
                 pagecontent += "<a href='managerorderadmin?page=" + i + "'>" + i + "</a>";
             }

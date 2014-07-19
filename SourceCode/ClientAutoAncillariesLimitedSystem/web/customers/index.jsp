@@ -9,7 +9,8 @@
     <%@taglib prefix="s" uri="/struts-tags"%>
     <head>
         <meta charset="UTF-8">
-        <title>Services - Car Repair Shop Website Template</title>
+        <title>Home - Auto Ancillaries Limited System</title>
+        <link rel="shortcut icon" href="img/au-icon.png">
         <link rel="stylesheet" href="css/style.css" type="text/css">
         <script src="js/jquery1.9.1.min.js" type="text/javascript"></script>
         <script src="js/jquery.json-2.4.js" type="text/javascript"></script>

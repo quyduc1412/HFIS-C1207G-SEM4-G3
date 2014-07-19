@@ -15,11 +15,10 @@ $(document).ready(function() {
         }
     });
     var onLoginSuccess = function(result) {
-        alert(result.code);
         if (result.code === 400) {
             window.location = 'managerorder';
         } else if (result.code === 401) {
-            window.location = 'item';
+            window.location = 'home';
         } else {
             $('#message').text(result.data_response);
             $('#message').fadeIn();

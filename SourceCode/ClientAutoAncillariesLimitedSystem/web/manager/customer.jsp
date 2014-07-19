@@ -12,7 +12,8 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta name="author" content="Paweł 'kilab' Balicki - kilab.pl" />
-        <title>Manager Employee Page</title>
+        <title>Manager Customer Page</title>
+        <link rel="shortcut icon" href="img/au-icon.png">
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/navi.css" media="screen" />
         <link href="js/uploadfile.min.css" rel="stylesheet" type="text/css"/>
@@ -103,7 +104,7 @@
                                     <th scope="col">First Name</th>
                                     <th scope="col">Last Name</th>
                                     <th scope="col">Password</th>
-                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Phone</th>
                                     <th scope="col">Gender</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">City</th>
@@ -122,7 +123,7 @@
                                         <td class="align-center"><d:property value="lastName"/></td>
                                         <td class="align-center"><d:property value="passWord"/></td>
                                         <td class="align-center"><d:property value="phoneNumber"/></td> 
-                                        <td class="align-center"><d:property value="gender"/></td> 
+                                        <td class="align-center"><d:property value="genderString"/></td> 
                                         <td class="align-center"><d:property value="address"/></td> 
                                         <td class="align-center"><d:property value="city"/></td> 
                                         <td class="align-center"><d:property value="country"/></td> 

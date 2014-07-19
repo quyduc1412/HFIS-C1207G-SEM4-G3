@@ -57,9 +57,9 @@ $(document).ready(function() {
                     {
                         $('#message').fadeOut();
                         if (result.code === 400) {
-                            location.reload();
+                            window.location.href = "home";
                         }
-                    }, 3000);
+                    }, 2000);
             if (result.code === 400) {
             }
         };

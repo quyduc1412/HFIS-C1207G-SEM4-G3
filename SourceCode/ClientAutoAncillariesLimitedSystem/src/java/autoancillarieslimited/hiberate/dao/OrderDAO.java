@@ -56,9 +56,200 @@ public class OrderDAO {
         }
         return list;
     }
-    public static void main(String[] args) {
-        System.out.println(OrderDAO.getInstance().getItemOrderByIDPurchase(3).size());
+
+    public Long getTotalOrder(int id_hw) {
+        Long set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = (Long) session.createQuery("select count(*) from PurchaseOrder where ID_Warehouse like '" + id_hw + "'").uniqueResult();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
     }
+
+    
+    public Long getTotalOrderByWarehouse(int id_hw, String dateFrom, String dateTo) {
+        Long set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = (Long) session.createQuery("select count(*) from PurchaseOrder where ID_Warehouse like '" + id_hw + "' AND Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").uniqueResult();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
+    public Long getTotalOrder(int id_hw, String dateFrom, String dateTo) {
+        Long set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = (Long) session.createQuery("select count(*) from PurchaseOrder where Status like '" + id_hw + "' AND Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").uniqueResult();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
+    public Long getTotalOrder(int id_wh, int status) {
+        Long set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = (Long) session.createQuery("select count(*) from PurchaseOrder where ID_Warehouse like '" + id_wh + "' AND Status like '" + status + "'").uniqueResult();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
+    public Long getTotalOrder(int id_wh, int status, String dateFrom, String dateTo) {
+        Long set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = (Long) session.createQuery("select count(*) from PurchaseOrder where ID_Warehouse like '" + id_wh + "' AND Status like '" + status + "'  AND Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").uniqueResult();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
+    public Long getTotalOrder() {
+        Long set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = (Long) session.createQuery("select count(*) from PurchaseOrder").uniqueResult();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
+    public Long getTotalOrder(String dateFrom, String dateTo) {
+        Long set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = (Long) session.createQuery("select count(*) from PurchaseOrder where Date_Order >='" + dateFrom + "' AND Date_Order <='" + dateTo + "'").uniqueResult();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
+    public Long getTotalOrderByStatus(int status) {
+        Long set = null;
+        Session session = null;
+        Transaction beginTransaction = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            beginTransaction = session.beginTransaction();
+            set = (Long) session.createQuery("select count(*) from PurchaseOrder where Status like '" + status + "'").uniqueResult();
+            session.flush();
+            session.clear();
+            session.getTransaction().commit();
+        } catch (HibernateException ex) {
+            ex.printStackTrace();
+            if (beginTransaction != null) {
+                beginTransaction.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return set;
+    }
+
     public void addOrder(List<ItemOrder> list, PurchaseOrder order) {
         for (ItemOrder io : list) {
             io.setPurchaseOrder(order);

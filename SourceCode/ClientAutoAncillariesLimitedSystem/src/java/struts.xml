@@ -8,6 +8,7 @@
     <include file="struts-warehouses.xml"/>
     <include file="struts-employee.xml"/>
     <include file="struts-customer.xml"/>
+    <include file="struts-order.xml"/>
     <include file="struts-shopping-cart.xml"/>
     <package name="default" extends="struts-default,json-default" namespace="/manager">
         <action class="autoancillarieslimited.action.Index" name="index">
@@ -48,6 +49,14 @@
         </action>
        <action class="autoancillarieslimited.action.customer.ProfileCustomerAction" name="profile">
            <result>profile.jsp</result>
+        </action>
+       <action class="autoancillarieslimited.action.customer.UpdateProfileAction" name="updateprofile">
+            <result type="json">
+            </result>
+        </action>
+       <action class="autoancillarieslimited.action.customer.ChangePasswordAction" name="changepassword">
+            <result type="json">
+            </result>
         </action>
     </package>
 </struts>
