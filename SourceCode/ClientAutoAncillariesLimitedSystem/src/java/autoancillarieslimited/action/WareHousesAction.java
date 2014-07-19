@@ -17,7 +17,6 @@ import java.util.List;
  *
  * @author Duc
  */
-
 public class WareHousesAction extends ActionSupport {
 
     private List<WareHouses> list;
@@ -59,5 +58,4 @@ public class WareHousesAction extends ActionSupport {
         }
         return SUCCESS;
     }
-
 }

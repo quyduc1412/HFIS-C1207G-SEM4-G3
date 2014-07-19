@@ -65,6 +65,4 @@ public class AddCustomerAction extends ActionSupport {
         return SUCCESS;
     }
 
-
-
 }
